@@ -1,6 +1,7 @@
 import requests
 
 from .errors import HttpError
+from .response import Response
 
 
 class Client:
@@ -11,7 +12,7 @@ class Client:
         self.site = site
         self.api_key = api_key
 
-    def call(self, query: str) -> dict:
+    def call(self, query: str) -> Response:
         params = f'?site={self.site}'
         if self.api_key is not None:
             params += f'&access_token={self.api_key}'
@@ -20,4 +21,4 @@ class Client:
 
         if response.status_code != 200:
             raise HttpError(response.status_code)
-        return response.json()
+        return Response(response.json())

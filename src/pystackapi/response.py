@@ -1,39 +1,21 @@
+from collections.abc import Iterator
 from typing import Any
+
+from .item import Item
 
 
 class Response:
-    """
-    Implements result of method `Client.call`.
-
-    Usage:
-
-    ```py
-    cl = pystackapi.Client(pystackapi.sites.StackOverflow)
-    res = cl.call('info/')
-    print(res.total_questions)  # prints: `23730861`.
-    ```
-
-    Use getitem notation, if key isn't valid Python identifier:
-
-    ```
-    print(res['total_questions'])  # prints: `23730861`.
-    ```
-    """
+    """Implements result of API calling."""
     def __init__(self, data: dict) -> None:
-        self.__data = data['items'][0]
+        self.__items = list(map(Item, data['items']))
         self.response_info = {k: v for k, v in data.items() if k != 'items'}
 
-    def __iter__(self):
-        return ((k, v) for k, v in self.__data.items())
+    def __iter__(self) -> Iterator:
+        return iter(self.__items)
 
     def __repr__(self) -> str:
-        return f'<Response object with {len(self.__data.keys())} keys>'
+        return f'<Response object with {len(self.__items)} ' \
+               f'item{"" if len(self.__items) == 1 else "s"}>'
 
-    def __getattr__(self, name: Any) -> Any:
-        try:
-            return getattr(self.__data, name)
-        except AttributeError:
-            return self.__data[name]
-
-    def __getitem__(self, item: Any) -> Any:
-        return self.__data[item]
+    def __getitem__(self, item: int) -> Any:
+        return self.__items[item]

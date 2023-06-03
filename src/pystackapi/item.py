@@ -3,7 +3,7 @@ from typing import Any
 
 
 class Item:
-    """Implements each item of API response."""
+    """Implements concrete item of API response."""
     def __init__(self, data: dict) -> None:
         self.__data = data
 

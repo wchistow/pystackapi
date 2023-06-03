@@ -22,3 +22,7 @@ class Client:
         if response.status_code != 200:
             raise HttpError(response.status_code)
         return Response(response.json())
+
+    def get_info(self) -> Response:
+        """Returns result of calling `/info` API method."""
+        return self.call('info/')

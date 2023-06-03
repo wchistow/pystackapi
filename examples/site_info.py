@@ -5,7 +5,7 @@ from pystackapi.sites import StackOverflow
 
 client = Client(site=StackOverflow)
 
-res = client.call('info/')
+res = client.get_info()
 
 print(res)
 print(res.response_info)

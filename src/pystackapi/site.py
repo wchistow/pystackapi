@@ -13,11 +13,13 @@ class Site:
         self.name = name
         self.api_key = api_key
 
-    def call(self, query: str) -> Response:
+    def call(self, query: str, **kwargs: dict[str, Any]) -> Response:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
         if self.api_key is not None:
             params += f'&access_token={self.api_key}'
+
+        params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))
 
         response = requests.get(f'{self.base_url}{query}{params}')
 
@@ -33,6 +35,6 @@ class Site:
         """Returns result of calling `/users` API method."""
         if ids is not None:
             ids_str = ';'.join(map(str, ids))
-            return self.call(f'users/{ids_str}')
+            return self.call(f'users/{ids_str}', **kwargs)
         else:
-            return self.call('users/')
+            return self.call('users/', **kwargs)

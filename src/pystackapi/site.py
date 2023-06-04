@@ -28,3 +28,11 @@ class Site:
     def get_info(self) -> Response:
         """Returns result of calling `/info` API method."""
         return self.call('info/')
+
+    def get_users(self, ids: list | None = None):
+    """Returns result of calling `/users` API method."""
+        if ids is not None:
+            ids_str = ';'.join(map(str, ids))
+            return self.call(f'users/{ids_str}')
+        else:
+            return self.call('users/')

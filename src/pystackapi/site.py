@@ -30,7 +30,7 @@ class Site:
         return self.call('info/')
 
     def get_users(self, ids: list | None = None):
-    """Returns result of calling `/users` API method."""
+        """Returns result of calling `/users` API method."""
         if ids is not None:
             ids_str = ';'.join(map(str, ids))
             return self.call(f'users/{ids_str}')

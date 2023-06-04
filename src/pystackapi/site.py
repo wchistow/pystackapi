@@ -4,18 +4,18 @@ from .errors import HttpError
 from .response import Response
 
 
-class Client:
+class Site:
     """Implements API client."""
     version = '2.3'
     base_url = f'https://api.stackexchange.com/{version}/'
 
-    def __init__(self, site: str, api_key: str | None = None) -> None:
-        self.site = site
+    def __init__(self, name: str, api_key: str | None = None) -> None:
+        self.name = name
         self.api_key = api_key
 
     def call(self, query: str) -> Response:
         """Returns result of calling of `query` to API."""
-        params = f'?site={self.site}'
+        params = f'?site={self.name}'
         if self.api_key is not None:
             params += f'&access_token={self.api_key}'
 

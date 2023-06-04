@@ -1,9 +1,9 @@
 import json
 
-from pystackapi import Client
+from pystackapi import Site
 from pystackapi.sites import StackOverflow
 
-client = Client(site=StackOverflow)
+client = Site(StackOverflow)
 
 res = client.get_info()
 

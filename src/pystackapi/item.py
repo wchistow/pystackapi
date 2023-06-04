@@ -4,13 +4,13 @@ from typing import Any
 
 class Item:
     """Implements concrete item of API response."""
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: dict[Any, Any]) -> None:
         self.__data = data
 
     def __repr__(self) -> str:
         return f'<Item with {len(self.__data)} key{"" if len(self.__items) == 1 else "s"}>'
 
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator[tuple[Any, Any]]:
         return ((k, v) for k, v in self.__data.items())
 
     def __getattr__(self, name: str) -> Any:

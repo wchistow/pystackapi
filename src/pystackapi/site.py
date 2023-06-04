@@ -1,3 +1,5 @@
+from typing import Any
+
 import requests
 
 from .errors import HttpError
@@ -31,7 +33,7 @@ class Site:
         """Returns result of calling `/info` API method."""
         return self.call('info/')
 
-    def get_users(self, ids: list | None = None):
+    def get_users(self, ids: list[int] | None = None, **kwargs: dict[str, Any]) -> Response:
         """Returns result of calling `/users` API method."""
         if ids is not None:
             ids_str = ';'.join(map(str, ids))

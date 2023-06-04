@@ -6,11 +6,11 @@ from .item import Item
 
 class Response:
     """Implements result of API calling."""
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: dict[Any, Any]) -> None:
         self.__items = list(map(Item, data['items']))
         self.response_info = {k: v for k, v in data.items() if k != 'items'}
 
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator[Iterator[tuple[Any, Any]]]:
         return iter(self.__items)
 
     def __repr__(self) -> str:

@@ -10,7 +10,7 @@ class Response:
         self.__items = list(map(Item, data['items']))
         self.response_info = {k: v for k, v in data.items() if k != 'items'}
 
-    def __iter__(self) -> Iterator[Iterator[tuple[Any, Any]]]:
+    def __iter__(self) -> Iterator[Item]:
         return iter(self.__items)
 
     def __repr__(self) -> str:

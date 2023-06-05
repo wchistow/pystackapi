@@ -1,14 +1,15 @@
 from pystackapi import Site
 from pystackapi.sites import StackOverflow
 
-client = Site(name=StackOverflow)
+site = Site(name=StackOverflow)
 
 # ======= Simple call ========
-res = client.get_users([1, 2])
+res = site.get_users([1, 2])
 
 print(res[0].display_name)
 
 # ======= Call with parameters ========
-res = client.get_users([1, 2], sort='reputation', order='asc')
+res = site.get_users([1, 2, 3, 4], sort='reputation')
 
-print(res[0].display_name)
+for user in res:
+    print(f'{user.account_id}: {user.display_name}')

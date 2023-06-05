@@ -40,3 +40,11 @@ class Site:
             return self.call(f'users/{ids_str}', **kwargs)
         else:
             return self.call('users/', **kwargs)
+
+    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> Response:
+        """Returns result of calling `/questions` API method."""
+        if ids is not None:
+            ids_str = ';'.join(map(str, ids))
+            return self.call(f'questions/{ids_str}', **kwargs)
+        else:
+            return self.call('questions/', **kwargs)

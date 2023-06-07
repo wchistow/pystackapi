@@ -24,6 +24,15 @@ class BaseModel:
         return f'<{cls_name} model>'
 
 
+class User(BaseModel):
+    def __init__(self, client: _SiteT, data: dict[Any, Any]) -> None:
+        super().__init__(client, data)
+
+    def get_answers(self, **kwargs: Any) -> list['Answer']:
+        response = self._client.call(f'users/{self.account_id}/answers', **kwargs)
+        return [Answer(self._client, dict(data)) for data in response]
+
+
 class Question(BaseModel):
     def __init__(self, client: _SiteT, data: dict[Any, Any]) -> None:
         super().__init__(client, data)

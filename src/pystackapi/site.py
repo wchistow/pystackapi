@@ -3,7 +3,7 @@ from typing import Any
 import requests
 
 from .errors import HttpError
-from .models import Question
+from .models import Question, User
 from .response import Response
 
 
@@ -34,13 +34,14 @@ class Site:
         """Returns result of calling `/info` API method."""
         return self.call('info/')
 
-    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> Response:
+    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[User]:
         """Returns result of calling `/users` API method."""
         if ids is not None:
-            ids_str = ';'.join(map(str, ids))
-            return self.call(f'users/{ids_str}', **kwargs)
+            addition = ';'.join(map(str, ids))
         else:
-            return self.call('users/', **kwargs)
+            addition = ''
+        response = self.call(f'users/{addition}', **kwargs)
+        return [User(self, dict(data)) for data in response]
 
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Question]:
         """Returns result of calling `/questions` API method."""

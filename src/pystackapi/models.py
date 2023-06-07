@@ -32,6 +32,10 @@ class User(BaseModel):
         response = self._client.call(f'users/{self.account_id}/answers', **kwargs)
         return [Answer(self._client, dict(data)) for data in response]
 
+    def get_badges(self, **kwargs: Any) -> list['Badge']:
+        response = self._client.call(f'users/{self.account_id}/badges', **kwargs)
+        return [Badge(self._client, dict(data)) for data in response]
+
 
 class Question(BaseModel):
     def __init__(self, client: _SiteT, data: dict[Any, Any]) -> None:
@@ -52,5 +56,10 @@ class Answer(BaseModel):
 
 
 class Comment(BaseModel):
+    def __init__(self, client: _SiteT, data: dict[Any, Any]) -> None:
+        super().__init__(client, data)
+
+
+class Badge(BaseModel):
     def __init__(self, client: _SiteT, data: dict[Any, Any]) -> None:
         super().__init__(client, data)

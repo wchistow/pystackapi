@@ -43,6 +43,9 @@ class Site:
         response = self.call(f'users/{addition}', **kwargs)
         return [User(self, dict(data)) for data in response]
 
+    def get_user(self, uid: int, **kwargs: Any) -> User:
+        return self.get_users([uid], **kwargs)[0]
+
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Question]:
         """Returns result of calling `/questions` API method."""
         if ids is not None:

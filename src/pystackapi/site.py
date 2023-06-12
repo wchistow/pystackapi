@@ -22,7 +22,8 @@ class Site:
         if self.api_key is not None:
             params += f'&access_token={self.api_key}'
 
-        params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))
+        if kwargs:
+            params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))
 
         response = requests.get(f'{self.base_url}{query}{params}')
 

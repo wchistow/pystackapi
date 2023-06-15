@@ -4,6 +4,7 @@ from .base import BaseModel, SiteT
 from .answer import Answer
 from .badge import Badge
 from .comment import Comment
+from .priviledge import Privilege
 
 
 class User(BaseModel):
@@ -25,3 +26,7 @@ class User(BaseModel):
         else:
             response = self._client.call(f'users/{self.account_id}/comments', **kwargs)
         return [Comment(self._client, dict(data)) for data in response]
+
+    def get_privileges(self, **kwargs) -> list[Privilege]:
+        response = self._client.call(f'users/{self.account_id}/privileges', **kwargs)
+        return [Privilege(self._client, dict(data)) for data in response]

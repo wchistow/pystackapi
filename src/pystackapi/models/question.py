@@ -10,9 +10,7 @@ class Question(BaseModel):
         super().__init__(client, data)
 
     def get_answers(self, **kwargs: Any) -> list[Answer]:
-        response = self._client.call(f'questions/{self.question_id}/answers', **kwargs)
-        return [Answer(self._client, dict(data)) for data in response]
+        return self._get_call(f'questions/{self.question_id}/answers', Answer, **kwargs)
 
     def get_comments(self, **kwargs: Any) -> list[Comment]:
-        response = self._client.call(f'questions/{self.question_id}/comments', **kwargs)
-        return [Comment(self._client, dict(data)) for data in response]
+        return self._get_call(f'questions/{self.question_id}/comments', Comment, **kwargs)

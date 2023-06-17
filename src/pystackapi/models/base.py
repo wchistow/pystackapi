@@ -1,4 +1,4 @@
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol, Type, TypeVar
 
 from ..response import Response
 
@@ -9,12 +9,17 @@ class _Site(Protocol):
 
 
 SiteT = TypeVar('SiteT', bound=_Site)
+BaseModelT_co = TypeVar('BaseModelT_co', bound='BaseModel', covariant=True)
 
 
 class BaseModel:
     def __init__(self, client: SiteT, data: dict[Any, Any]) -> None:
         self._data = data
         self._client = client
+
+    def _get_call(self, url: str, model: Type[BaseModelT_co], **kwargs: Any) -> list[BaseModelT_co]:
+        response = self._client.call(url, **kwargs)
+        return [model(self._client, dict(data)) for data in response]
 
     def __getattr__(self, name: str) -> Any:
         return self._data[name]

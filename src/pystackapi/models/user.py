@@ -8,16 +8,9 @@ from .priviledge import Privilege
 from .question import Question
 
 
-BaseModelT_co = TypeVar('BaseModelT_co', bound=BaseModel, covariant=True)
-
-
 class User(BaseModel):
     def __init__(self, client: SiteT, data: dict[Any, Any]) -> None:
         super().__init__(client, data)
-
-    def _get_call(self, url: str, model: Type[BaseModelT_co], **kwargs: Any) -> list[BaseModelT_co]:
-        response = self._client.call(url, **kwargs)
-        return [model(self._client, dict(data)) for data in response]
 
     def get_answers(self, **kwargs: Any) -> list[Answer]:
         return self._get_call(f'users/{self.account_id}/answers', Answer, **kwargs)

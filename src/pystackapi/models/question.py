@@ -6,6 +6,7 @@ from .comment import Comment
 
 
 class Question(BaseModel):
+    """Implements the question object - https://api.stackexchange.com/docs/types/question."""
     def __init__(self, client: SiteT, data: dict[Any, Any]) -> None:
         super().__init__(client, data)
 

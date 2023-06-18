@@ -1,4 +1,4 @@
-from typing import Any, Type, TypeVar
+from typing import Any
 
 from .base import BaseModel, SiteT
 from .answer import Answer
@@ -9,6 +9,7 @@ from .question import Question
 
 
 class User(BaseModel):
+    """Implements the user object - https://api.stackexchange.com/docs/types/user."""
     def __init__(self, client: SiteT, data: dict[Any, Any]) -> None:
         super().__init__(client, data)
 

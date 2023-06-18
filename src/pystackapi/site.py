@@ -3,7 +3,7 @@ from typing import Any
 import requests
 
 from .errors import HttpError
-from .models import Question, User
+from .models import Question, User, Badge
 from .response import Response
 
 
@@ -58,3 +58,14 @@ class Site:
 
     def get_question(self, q_id: int, **kwargs: Any) -> Question:
         return self.get_questions([q_id], **kwargs)[0]
+
+    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Badge]:
+        if ids is not None:
+            url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
+        else:
+            url = 'badges/recipients'
+        response = self.call(url, **kwargs)
+        return [Badge(self, dict(data)) for data in response]
+
+    def get_tag_based_badges(self, **kwargs: Any) -> list[Badge]:
+        return [Badge(self, dict(data)) for data in self.call('badges/tags', **kwargs)]

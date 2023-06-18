@@ -25,10 +25,11 @@ class Site:
         if kwargs:
             params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))
 
-        response = requests.get(f'{self.base_url}{query}{params}')
+        url = f'{self.base_url}{query}{params}'
+        response = requests.get(url)
 
         if response.status_code != 200:
-            raise HttpError(response.status_code)
+            raise HttpError(response.status_code, url)
         return Response(response.json())
 
     def get_info(self) -> Response:

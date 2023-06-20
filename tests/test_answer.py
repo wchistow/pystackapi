@@ -1,3 +1,4 @@
+"""Tests for model `Answer`."""
 import unittest
 
 from pystackapi.models import Answer
@@ -10,6 +11,7 @@ class AnswerTestCase(unittest.TestCase):
         self.answer = Answer(self.client, {'answer_id': 1})
 
     def test_get_comments(self) -> None:
+        """Tests for method `get_comments`."""
         self.answer.get_comments()
         
         self.assertEqual(self.client.query, f'answers/{self.answer.answer_id}/comments')

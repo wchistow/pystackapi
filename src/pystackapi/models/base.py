@@ -21,6 +21,11 @@ class BaseModel:
         response = self._client.call(url, **kwargs)
         return [model(self._client, dict(data)) for data in response]
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, BaseModel):
+            return NotImplemented
+        return self._data == other._data
+
     def __getattr__(self, name: str) -> Any:
         return self._data[name]
 

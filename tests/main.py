@@ -1,10 +1,11 @@
+import lest
+
 import sys
-import unittest
 
 sys.path.insert(0, '../src')
 
-from test_answer import AnswerTestCase
-from test_base import BaseTestCase
+import test_answer
+import test_base
 
 if __name__ == "__main__":
-    unittest.main()
+    lest.run()

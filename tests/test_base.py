@@ -1,9 +1,13 @@
 """Tests for base model."""
 from typing import Any
-import unittest
+
+import lest
 
 from pystackapi.models.base import BaseModel, SiteT
 from test_client import TestClient
+
+test_client = TestClient(return_items=[{'id': 2}])
+base_model = BaseModel(test_client, {'id': 1})  # example data
 
 
 class _TestModel(BaseModel):
@@ -11,25 +15,25 @@ class _TestModel(BaseModel):
         super().__init__(client, data)
 
 
-class BaseTestCase(unittest.TestCase):
-    def setUp(self) -> None:
-        self.client = TestClient(return_items=[{'id': 2}])
-        self.base_model = BaseModel(self.client, {'id': 1})  # example data
-    
-    def test__get_call(self) -> None:
-        """Tests for method `_get_call`."""
-        result = self.base_model._get_call('some-url', _TestModel)
+@lest.register
+def test__get_call() -> None:
+    """Tests for method `_get_call`."""
+    result = base_model._get_call('some-url', _TestModel)
 
-        self.assertEqual(len(result), 1)
-        self.assertTrue(isinstance(result[0], _TestModel))
-        self.assertEqual(result[0], _TestModel(self.client, {'id': 2}))
-    
-    def test_eq(self) -> None:
-        """Tests for method `__eq__`."""
-        other = BaseModel(self.client, {'id': 1})
-        
-        self.assertTrue(self.base_model == other)
-    
-    def test_getattr(self) -> None:
-        """Tests for method `__getattr__`."""
-        self.assertEqual(self.base_model.id, 1)
+    lest.assertions.assert_eq(len(result), 1)
+    lest.assertions.assert_true(isinstance(result[0], _TestModel))
+    lest.assertions.assert_eq(result[0], _TestModel(test_client, {'id': 2}))
+
+
+@lest.register
+def test_eq() -> None:
+    """Tests for method `__eq__`."""
+    other = BaseModel(test_client, {'id': 1})
+
+    lest.assertions.assert_true(base_model == other)
+
+
+@lest.register
+def test_getattr() -> None:
+    """Tests for method `__getattr__`."""
+    lest.assertions.assert_eq(base_model.id, 1)

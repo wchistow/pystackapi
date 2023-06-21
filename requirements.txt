@@ -1,1 +1,2 @@
 requests==2.31.0
+lest==0.3.0  # For tests.

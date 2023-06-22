@@ -16,13 +16,25 @@ class _TestModel(BaseModel):
 
 
 @lest.register
-def test__get_call() -> None:
-    """Tests for method `_get_call`."""
+def test__get_call_without_kwargs() -> None:
+    """Tests for method `_get_call` without kwargs."""
     result = base_model._get_call('some-url', _TestModel)
+
+    lest.assert_eq(test_client.query, 'some-url')
+    lest.assert_eq(test_client.kwargs, {})
 
     lest.assert_eq(len(result), 1)
     lest.assert_true(isinstance(result[0], _TestModel))
     lest.assert_eq(result[0], _TestModel(test_client, {'id': 2}))
+
+
+@lest.register
+def test__get_call_with_kwargs() -> None:
+    """Tests for method `_get_call` with kwargs."""
+    result = base_model._get_call('some-url', _TestModel, a=1, bcd=45)
+
+    lest.assert_eq(test_client.query, 'some-url')
+    lest.assert_eq(test_client.kwargs, {'a': 1, 'bcd': 45})
 
 
 @lest.register

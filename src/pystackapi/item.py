@@ -7,8 +7,16 @@ class Item:
     def __init__(self, data: dict[Any, Any]) -> None:
         self.__data = data
 
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, dict):
+            return self.__data == other
+        elif isinstance(other, self.__class__):
+            return self.__data == other.__data
+        else:
+            return NotImplemented
+
     def __repr__(self) -> str:
-        return f'<Item with {len(self.__data)} key{"" if len(self.__items) == 1 else "s"}>'
+        return f'<Item with {len(self.__data)} key{"" if len(self.__data) == 1 else "s"}>'
 
     def __iter__(self) -> Iterator[tuple[Any, Any]]:
         return ((k, v) for k, v in self.__data.items())

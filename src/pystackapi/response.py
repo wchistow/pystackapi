@@ -17,5 +17,5 @@ class Response:
         return f'<Response object with {len(self.__items)} ' \
                f'item{"" if len(self.__items) == 1 else "s"}>'
 
-    def __getitem__(self, item: int) -> Any:
+    def __getitem__(self, item: int) -> Item:
         return self.__items[item]

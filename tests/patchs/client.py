@@ -3,7 +3,7 @@ from typing import Any
 from pystackapi.response import Response
 
 
-class TestClient:
+class ClientPatch:
     """Implements client for tests."""
     def __init__(self, return_items: list[Any] | None = None) -> None:
         self.query: str | None = None

@@ -4,9 +4,9 @@ from typing import Any
 import lest
 
 from pystackapi.models.base import BaseModel, SiteT
-from test_client import TestClient
+from patchs import ClientPatch
 
-test_client = TestClient(return_items=[{'id': 2}])
+test_client = ClientPatch(return_items=[{'id': 2}])
 base_model = BaseModel(test_client, {'id': 1})  # example data
 
 

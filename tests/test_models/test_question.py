@@ -2,9 +2,9 @@
 import lest
 
 from pystackapi.models import Question
-from test_client import TestClient
+from patchs import ClientPatch
 
-client = TestClient()
+client = ClientPatch()
 question = Question(client, {'question_id': 1})
 
 

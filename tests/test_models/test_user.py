@@ -2,9 +2,9 @@
 import lest
 
 from pystackapi.models import User
-from test_client import TestClient
+from patchs import ClientPatch
 
-client = TestClient()
+client = ClientPatch()
 user = User(client, {'account_id': 1})
 
 

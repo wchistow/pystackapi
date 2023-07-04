@@ -1,9 +1,16 @@
-from typing import Any
+from typing import Any, TypedDict
 
 import requests
 
 from .errors import HttpError
 from .item import Item
+
+
+class ResponseDict(TypedDict):
+    items: list[Item]
+    has_more: bool
+    quota_max: int
+    quota_remaining: int
 
 
 class Site:
@@ -15,7 +22,7 @@ class Site:
         self.name = name
         self.api_key = api_key
 
-    def get(self, query: str, **kwargs: dict[str, Any]) -> dict:
+    def get(self, query: str, **kwargs: dict[str, Any]) -> ResponseDict:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
         if self.api_key is not None:
@@ -34,11 +41,11 @@ class Site:
         result['items'] = [Item(data) for data in result['items']]
         return result
 
-    def get_info(self) -> dict:
+    def get_info(self) -> ResponseDict:
         """Returns result of calling `/info` API method."""
         return self.get('info/')
 
-    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> dict:
+    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/users` API method."""
         if ids is not None:
             addition = ';'.join(map(str, ids))
@@ -46,10 +53,10 @@ class Site:
             addition = ''
         return self.get(f'users/{addition}', **kwargs)
 
-    def get_user(self, uid: int, **kwargs: Any) -> dict:
+    def get_user(self, uid: int, **kwargs: Any) -> ResponseDict:
         return self.get_users([uid], **kwargs)[0]
 
-    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> dict:
+    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/questions` API method."""
         if ids is not None:
             addition = ';'.join(map(str, ids))
@@ -57,15 +64,15 @@ class Site:
             addition = ''
         return self.get(f'questions/{addition}', **kwargs)
 
-    def get_question(self, q_id: int, **kwargs: Any) -> dict:
+    def get_question(self, q_id: int, **kwargs: Any) -> ResponseDict:
         return self.get_questions([q_id], **kwargs)[0]
 
-    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> dict:
+    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         if ids is not None:
             url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
         else:
             url = 'badges/recipients'
         return self.get(url, **kwargs)
 
-    def get_tag_based_badges(self, **kwargs: Any) -> dict:
+    def get_tag_based_badges(self, **kwargs: Any) -> ResponseDict:
         return self.get('badges/tags', **kwargs)

@@ -1,4 +1,4 @@
-from typing import Any, TypedDict
+from typing import Any, cast, TypedDict
 
 import requests
 
@@ -39,7 +39,7 @@ class Site:
 
         result = response.json()
         result['items'] = [Item(data) for data in result['items']]
-        return result
+        return cast(ResponseDict, result)  # we guarantee that `result` is `ResponseDict`.
 
     def get_info(self) -> ResponseDict:
         """Returns result of calling `/info` API method."""

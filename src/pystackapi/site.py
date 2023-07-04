@@ -54,7 +54,7 @@ class Site:
         return self.get(f'users/{addition}', **kwargs)
 
     def get_user(self, uid: int, **kwargs: Any) -> ResponseDict:
-        return self.get_users([uid], **kwargs)[0]
+        return self.get_users([uid], **kwargs)
 
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/questions` API method."""
@@ -65,7 +65,7 @@ class Site:
         return self.get(f'questions/{addition}', **kwargs)
 
     def get_question(self, q_id: int, **kwargs: Any) -> ResponseDict:
-        return self.get_questions([q_id], **kwargs)[0]
+        return self.get_questions([q_id], **kwargs)
 
     def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         if ids is not None:

@@ -18,15 +18,19 @@ class Site:
     version = '2.3'
     base_url = f'https://api.stackexchange.com/{version}/'
 
-    def __init__(self, name: str, api_key: str | None = None) -> None:
+    def __init__(self, name: str, access_token: str | None = None,
+                 app_key: str | None = None) -> None:
         self.name = name
-        self.api_key = api_key
+        self.access_token = access_token
+        self.app_key = app_key
 
     def get(self, query: str, **kwargs: Any) -> ResponseDict:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
-        if self.api_key is not None:
-            params += f'&access_token={self.api_key}'
+        if self.access_token is not None:
+            params += f'&access_token={self.access_token}'
+        if self.app_key is not None:
+            params += f'&key={self.app_key}'
 
         if kwargs:
             params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))

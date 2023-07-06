@@ -32,6 +32,24 @@ def test_get_with_kwargs() -> None:
 
 
 @lest.register
+def test_get_with_access_token() -> None:
+    l_site = site_m.Site('stackoverflow', access_token='someaccesstoken')
+    l_site.get('ghgh/')
+
+    lest.assert_eq(requests.url,
+                   'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow&access_token=someaccesstoken')
+
+
+@lest.register
+def test_get_with_app_key() -> None:
+    l_site = site_m.Site('stackoverflow', app_key='someappkey')
+    l_site.get('ghgh/')
+
+    lest.assert_eq(requests.url,
+                   'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow&key=someappkey')
+
+
+@lest.register
 def test_get_info() -> None:
     site.get_info()
 

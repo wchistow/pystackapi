@@ -22,7 +22,7 @@ class Site:
         self.name = name
         self.api_key = api_key
 
-    def get(self, query: str, **kwargs: dict[str, Any]) -> ResponseDict:
+    def get(self, query: str, **kwargs: Any) -> ResponseDict:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
         if self.api_key is not None:

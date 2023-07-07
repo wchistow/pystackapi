@@ -2,6 +2,7 @@
 import lest
 
 from pystackapi import site as site_m
+from pystackapi.errors import HttpError
 
 from mocks import RequestsMock
 
@@ -47,6 +48,19 @@ def test_get_with_app_key() -> None:
 
     lest.assert_eq(requests.url,
                    'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow&key=someappkey')
+
+
+@lest.register
+def test_handling_error() -> None:
+    l_requests = RequestsMock(status_code=400)
+
+    site_m.__dict__['requests'] = l_requests
+    l_site = site_m.Site('stackoverflow')
+
+    with lest.assert_raises(HttpError):
+        l_site.get('ghgh/')
+
+    site_m.__dict__['requests'] = requests  # reset
 
 
 @lest.register

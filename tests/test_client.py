@@ -78,17 +78,17 @@ def test_get_users_without_ids() -> None:
 
 
 @lest.register
-def test_get_users_with_one_id() -> None:
-    site.get_users([1])
-
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/users/1?site=stackoverflow')
-
-
-@lest.register
-def test_get_users_with_many_ids() -> None:
+def test_get_users_with_ids() -> None:
     site.get_users([1, 2])
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/users/1;2?site=stackoverflow')
+
+
+@lest.register
+def test_get_user() -> None:
+    site.get_user(1)
+
+    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/users/1?site=stackoverflow')
 
 
 @lest.register
@@ -99,18 +99,19 @@ def test_get_questions_without_ids() -> None:
 
 
 @lest.register
-def test_get_questions_with_one_id() -> None:
-    site.get_questions([1])
-
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/questions/1?site=stackoverflow')
-
-
-@lest.register
-def test_get_questions_with_many_ids() -> None:
+def test_get_questions_with_ids() -> None:
     site.get_questions([1, 2])
 
     lest.assert_eq(requests.url,
                    'https://api.stackexchange.com/2.3/questions/1;2?site=stackoverflow')
+
+
+@lest.register
+def test_get_question() -> None:
+    site.get_question(1)
+
+    lest.assert_eq(requests.url,
+                   'https://api.stackexchange.com/2.3/questions/1?site=stackoverflow')
 
 
 @lest.register
@@ -121,18 +122,18 @@ def test_get_articles_without_ids() -> None:
 
 
 @lest.register
-def test_get_articles_with_one_id() -> None:
-    site.get_articles([1])
-
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/articles/1?site=stackoverflow')
-
-
-@lest.register
-def test_get_articles_with_many_ids() -> None:
+def test_get_articles_with_ids() -> None:
     site.get_articles([1, 2])
 
     lest.assert_eq(requests.url,
                    'https://api.stackexchange.com/2.3/articles/1;2?site=stackoverflow')
+
+
+@lest.register
+def test_get_article() -> None:
+    site.get_article(1)
+
+    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/articles/1?site=stackoverflow')
 
 
 @lest.register
@@ -143,18 +144,18 @@ def test_get_answers_without_ids() -> None:
 
 
 @lest.register
-def test_get_answers_with_one_id() -> None:
-    site.get_answers([1])
-
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/1?site=stackoverflow')
-
-
-@lest.register
-def test_get_answers_with_many_ids() -> None:
+def test_get_answers_with_ids() -> None:
     site.get_answers([1, 2])
 
     lest.assert_eq(requests.url,
                    'https://api.stackexchange.com/2.3/answers/1;2?site=stackoverflow')
+
+
+@lest.register
+def test_get_answer() -> None:
+    site.get_answer(1)
+
+    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/1?site=stackoverflow')
 
 
 @lest.register
@@ -166,15 +167,7 @@ def test_get_badges_recipients_without_ids() -> None:
 
 
 @lest.register
-def test_get_badges_recipients_with_one_id() -> None:
-    site.get_badges_recipients([1])
-
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/badges/1/recipients?site=stackoverflow')
-
-
-@lest.register
-def test_get_badges_recipients_with_many_ids() -> None:
+def test_get_badges_recipients_with_ids() -> None:
     site.get_badges_recipients([1, 2])
 
     lest.assert_eq(requests.url,

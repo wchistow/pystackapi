@@ -82,6 +82,17 @@ class Site:
     def get_answer(self, a_id: int, **kwargs: Any) -> ResponseDict:
         return self.get_questions([a_id], **kwargs)
 
+    def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+        """Returns result of calling `/articles` API method."""
+        if ids is not None:
+            addition = ';'.join(map(str, ids))
+        else:
+            addition = ''
+        return self.get(f'articles/{addition}', **kwargs)
+
+    def get_article(self, a_id: int, **kwargs: Any) -> ResponseDict:
+        return self.get_articles([a_id], **kwargs)
+
     def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         if ids is not None:
             url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'

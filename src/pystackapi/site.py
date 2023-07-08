@@ -80,7 +80,7 @@ class Site:
         return self.get(f'answers/{addition}', **kwargs)
 
     def get_answer(self, a_id: int, **kwargs: Any) -> ResponseDict:
-        return self.get_questions([a_id], **kwargs)
+        return self.get_answers([a_id], **kwargs)
 
     def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/articles` API method."""

@@ -51,10 +51,7 @@ class Site:
 
     def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/users` API method."""
-        if ids is not None:
-            addition = ';'.join(map(str, ids))
-        else:
-            addition = ''
+        addition = ';'.join(map(str, ids or []))
         return self.get(f'users/{addition}', **kwargs)
 
     def get_user(self, uid: int, **kwargs: Any) -> ResponseDict:
@@ -62,10 +59,7 @@ class Site:
 
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/questions` API method."""
-        if ids is not None:
-            addition = ';'.join(map(str, ids))
-        else:
-            addition = ''
+        addition = ';'.join(map(str, ids or []))
         return self.get(f'questions/{addition}', **kwargs)
 
     def get_question(self, q_id: int, **kwargs: Any) -> ResponseDict:
@@ -73,10 +67,7 @@ class Site:
 
     def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/answers` API method."""
-        if ids is not None:
-            addition = ';'.join(map(str, ids))
-        else:
-            addition = ''
+        addition = ';'.join(map(str, ids or []))
         return self.get(f'answers/{addition}', **kwargs)
 
     def get_answer(self, a_id: int, **kwargs: Any) -> ResponseDict:
@@ -84,10 +75,7 @@ class Site:
 
     def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
         """Returns result of calling `/articles` API method."""
-        if ids is not None:
-            addition = ';'.join(map(str, ids))
-        else:
-            addition = ''
+        addition = ';'.join(map(str, ids or []))
         return self.get(f'articles/{addition}', **kwargs)
 
     def get_article(self, a_id: int, **kwargs: Any) -> ResponseDict:

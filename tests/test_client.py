@@ -18,6 +18,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ------------ Tests for `Site.get` ------------
+
+
 @lest.register
 def test_simple_get() -> None:
     site.get('ghgh/')
@@ -77,6 +80,9 @@ def test_return_value_of_get() -> None:
     lest.assert_eq(res, expected_result)
 
 
+# ------------ Tests for `Site.get_info` ------------
+
+
 @lest.register
 def test_get_info() -> None:
     site.get_info()
@@ -89,6 +95,9 @@ def test_return_value_of_get_info() -> None:
     res = site.get_info()
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+# ------------ Tests for `Site.get_users` and `Site.get_user` ------------
 
 
 @lest.register
@@ -124,6 +133,9 @@ def test_return_value_of_get_user() -> None:
     res = site.get_user(1)
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+# ------------ Tests for `Site.get_questions` and `Site.get_question` ------------
 
 
 @lest.register
@@ -163,6 +175,9 @@ def test_return_value_of_get_question() -> None:
     lest.assert_eq(res, Item({'id': 1}))
 
 
+# ------------ Tests for `Site.get_articles` and `Site.get_article` ------------
+
+
 @lest.register
 def test_get_articles_without_ids() -> None:
     site.get_articles()
@@ -197,6 +212,9 @@ def test_return_value_of_get_article() -> None:
     res = site.get_article(1)
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+# ------------ Tests for `Site.get_answers` and `Site.get_answer` ------------
 
 
 @lest.register
@@ -235,6 +253,9 @@ def test_return_value_of_get_answer() -> None:
     lest.assert_eq(res, Item({'id': 1}))
 
 
+# ------------ Tests for `Site.get_badges_recipients` ------------
+
+
 @lest.register
 def test_get_badges_recipients_without_ids() -> None:
     site.get_badges_recipients()
@@ -256,6 +277,9 @@ def test_return_value_of_get_badges_recipients() -> None:
     res = site.get_badges_recipients()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ------------ Tests for `Site.get_tag_based_badges` ------------
 
 
 @lest.register

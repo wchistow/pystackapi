@@ -3,6 +3,7 @@ import lest
 
 from pystackapi import site as site_m
 from pystackapi.errors import HttpError
+from pystackapi.item import Item
 
 from mocks import RequestsMock
 
@@ -64,10 +65,30 @@ def test_handling_error() -> None:
 
 
 @lest.register
+def test_return_value_of_get() -> None:
+    res = site.get('ghgh/')
+
+    expected_result = {
+        'items': [
+            Item({'id': 1})
+        ]
+    }
+
+    lest.assert_eq(res, expected_result)
+
+
+@lest.register
 def test_get_info() -> None:
     site.get_info()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/info/?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_info() -> None:
+    res = site.get_info()
+
+    lest.assert_eq(res, Item({'id': 1}))
 
 
 @lest.register
@@ -85,10 +106,24 @@ def test_get_users_with_ids() -> None:
 
 
 @lest.register
+def test_return_value_of_get_users() -> None:
+    res = site.get_users()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+@lest.register
 def test_get_user() -> None:
     site.get_user(1)
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/users/1?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_user() -> None:
+    res = site.get_user(1)
+
+    lest.assert_eq(res, Item({'id': 1}))
 
 
 @lest.register
@@ -107,11 +142,25 @@ def test_get_questions_with_ids() -> None:
 
 
 @lest.register
+def test_return_value_of_get_questions() -> None:
+    res = site.get_questions()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+@lest.register
 def test_get_question() -> None:
     site.get_question(1)
 
     lest.assert_eq(requests.url,
                    'https://api.stackexchange.com/2.3/questions/1?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_question() -> None:
+    res = site.get_question(1)
+
+    lest.assert_eq(res, Item({'id': 1}))
 
 
 @lest.register
@@ -130,10 +179,24 @@ def test_get_articles_with_ids() -> None:
 
 
 @lest.register
+def test_return_value_of_get_articles() -> None:
+    res = site.get_articles()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+@lest.register
 def test_get_article() -> None:
     site.get_article(1)
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/articles/1?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_article() -> None:
+    res = site.get_article(1)
+
+    lest.assert_eq(res, Item({'id': 1}))
 
 
 @lest.register
@@ -152,10 +215,24 @@ def test_get_answers_with_ids() -> None:
 
 
 @lest.register
+def test_return_value_of_get_answers() -> None:
+    res = site.get_answers()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+@lest.register
 def test_get_answer() -> None:
     site.get_answer(1)
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/1?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_answer() -> None:
+    res = site.get_answer(1)
+
+    lest.assert_eq(res, Item({'id': 1}))
 
 
 @lest.register
@@ -175,7 +252,21 @@ def test_get_badges_recipients_with_ids() -> None:
 
 
 @lest.register
+def test_return_value_of_get_badges_recipients() -> None:
+    res = site.get_badges_recipients()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+@lest.register
 def test_get_tag_based_badges() -> None:
     site.get_tag_based_badges()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/badges/tags?site=stackoverflow')
+
+
+@lest.register
+def test_return_value_of_get_tag_based_badges() -> None:
+    res = site.get_tag_based_badges()
+
+    lest.assert_eq(res, [Item({'id': 1})])

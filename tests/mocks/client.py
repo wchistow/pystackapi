@@ -5,7 +5,7 @@ from pystackapi.item import Item
 
 class ClientMock:
     """Implements client for tests."""
-    def __init__(self, return_items: list[Any] | None = None) -> None:
+    def __init__(self, return_items: list | None = None) -> None:
         self.query: str | None = None
         self.kwargs: dict[str, Any] | None = None
         self.return_items = return_items or []

@@ -1,9 +1,8 @@
 """Mock that replace the `requests` library."""
-from typing import Any
 
 
 class RequestsMock:
-    def __init__(self, return_items: list[Any] | None = None, status_code: int = 200) -> None:
+    def __init__(self, return_items: list | None = None, status_code: int = 200) -> None:
         """
         :param return_items: what is in the `'items'` key of response
         :param status_code: what is status code of response

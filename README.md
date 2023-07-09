@@ -16,11 +16,9 @@ from pystackapi.sites import StackOverflow
 
 site = Site(StackOverflow)
 
-response = site.get_info()
+info = site.get_info()
 
-info = response['items'][0]
-
-print(f'Total questions in StackOverflow: {info.total_questions}')
+print(f'Total questions on StackOverflow: {info.total_questions}')
 ```
 
 Output:

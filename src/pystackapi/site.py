@@ -6,8 +6,8 @@ from .errors import HttpError
 from .item import Item
 
 
-class ResponseDict(TypedDict):
-    items: list[Item]
+class RawResponseDict(TypedDict):
+    items: list[dict]
     has_more: bool
     quota_max: int
     quota_remaining: int
@@ -24,7 +24,7 @@ class Site:
         self.access_token = access_token
         self.app_key = app_key
 
-    def get(self, query: str, **kwargs: Any) -> ResponseDict:
+    def get(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
         if self.access_token is not None:
@@ -41,52 +41,51 @@ class Site:
         if response.status_code != 200:
             raise HttpError(response.status_code, url)
 
-        result = response.json()
-        result['items'] = [Item(data) for data in result['items']]
-        return cast(ResponseDict, result)  # we guarantee that `result` is `ResponseDict`.
+        # we guarantee that `response.json` is `RawResponseDict`.
+        return cast(RawResponseDict, response.json())
 
-    def get_info(self) -> ResponseDict:
+    def get_info(self) -> Item:
         """Returns result of calling `/info` API method."""
-        return self.get('info/')
+        return Item(self.get('info/')['items'][0])
 
-    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/users` API method."""
         addition = ';'.join(map(str, ids or []))
-        return self.get(f'users/{addition}', **kwargs)
+        return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
-    def get_user(self, uid: int, **kwargs: Any) -> ResponseDict:
-        return self.get_users([uid], **kwargs)
+    def get_user(self, uid: int, **kwargs: Any) -> Item:
+        return self.get_users([uid], **kwargs)[0]
 
-    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/questions` API method."""
         addition = ';'.join(map(str, ids or []))
-        return self.get(f'questions/{addition}', **kwargs)
+        return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
-    def get_question(self, q_id: int, **kwargs: Any) -> ResponseDict:
-        return self.get_questions([q_id], **kwargs)
+    def get_question(self, q_id: int, **kwargs: Any) -> Item:
+        return self.get_questions([q_id], **kwargs)[0]
 
-    def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+    def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/answers` API method."""
         addition = ';'.join(map(str, ids or []))
-        return self.get(f'answers/{addition}', **kwargs)
+        return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
-    def get_answer(self, a_id: int, **kwargs: Any) -> ResponseDict:
-        return self.get_answers([a_id], **kwargs)
+    def get_answer(self, a_id: int, **kwargs: Any) -> Item:
+        return self.get_answers([a_id], **kwargs)[0]
 
-    def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+    def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/articles` API method."""
         addition = ';'.join(map(str, ids or []))
-        return self.get(f'articles/{addition}', **kwargs)
+        return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
-    def get_article(self, a_id: int, **kwargs: Any) -> ResponseDict:
-        return self.get_articles([a_id], **kwargs)
+    def get_article(self, a_id: int, **kwargs: Any) -> Item:
+        return self.get_articles([a_id], **kwargs)[0]
 
-    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> ResponseDict:
+    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         if ids is not None:
             url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
         else:
             url = 'badges/recipients'
-        return self.get(url, **kwargs)
+        return [Item(data) for data in self.get(url, **kwargs)['items']]
 
-    def get_tag_based_badges(self, **kwargs: Any) -> ResponseDict:
-        return self.get('badges/tags', **kwargs)
+    def get_tag_based_badges(self, **kwargs: Any) -> list[Item]:
+        return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]

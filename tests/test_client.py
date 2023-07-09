@@ -6,7 +6,7 @@ from pystackapi.errors import HttpError
 
 from mocks import RequestsMock
 
-requests = RequestsMock()
+requests = RequestsMock(return_items=[{'id': 1}])
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')

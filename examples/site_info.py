@@ -3,8 +3,6 @@ from pystackapi.sites import StackOverflow
 
 site = Site(StackOverflow)
 
-res = site.get_info()
-
-info = res['items'][0]
+info = site.get_info()
 
 print(f'Total questions on SO: {info.total_questions}')

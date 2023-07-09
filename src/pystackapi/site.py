@@ -24,7 +24,7 @@ class Site:
         self.access_token = access_token
         self.app_key = app_key
 
-    def get(self, query: str, **kwargs: Any) -> RawResponseDict:
+    def get(self, query: str, **kwargs: str) -> RawResponseDict:
         """Returns result of calling of `query` to API."""
         params = f'?site={self.name}'
         if self.access_token is not None:

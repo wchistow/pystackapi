@@ -44,25 +44,8 @@ class Site:
         # we guarantee that `response.json` is `RawResponseDict`.
         return cast(RawResponseDict, response.json())
 
-    def get_info(self) -> Item:
-        """Returns result of calling `/info` API method."""
-        return Item(self.get('info/')['items'][0])
-
-    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/users` API method."""
-        addition = ';'.join(map(str, ids or []))
-        return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
-
-    def get_user(self, uid: int, **kwargs: Any) -> Item:
-        return self.get_users([uid], **kwargs)[0]
-
-    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/questions` API method."""
-        addition = ';'.join(map(str, ids or []))
-        return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
-
-    def get_question(self, q_id: int, **kwargs: Any) -> Item:
-        return self.get_questions([q_id], **kwargs)[0]
+    # CONTRIBUTORS: Please, sort methods by alphabet in pairs
+    # with first `get_<plural>` and then, get_<singular>`.
 
     def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/answers` API method."""
@@ -89,3 +72,23 @@ class Site:
 
     def get_tag_based_badges(self, **kwargs: Any) -> list[Item]:
         return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]
+
+    def get_info(self) -> Item:
+        """Returns result of calling `/info` API method."""
+        return Item(self.get('info/')['items'][0])
+
+    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """Returns result of calling `/questions` API method."""
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
+
+    def get_question(self, q_id: int, **kwargs: Any) -> Item:
+        return self.get_questions([q_id], **kwargs)[0]
+
+    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """Returns result of calling `/users` API method."""
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
+
+    def get_user(self, uid: int, **kwargs: Any) -> Item:
+        return self.get_users([uid], **kwargs)[0]

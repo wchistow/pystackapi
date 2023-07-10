@@ -73,6 +73,13 @@ class Site:
     def get_tag_based_badges(self, **kwargs: Any) -> list[Item]:
         return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]
 
+    def get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]:
+        addition = ';'.join(map(str, slugs or []))
+        return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
+
+    def get_collective(self, slug: str, **kwargs: Any) -> Item:
+        return self.get_collectives([slug], **kwargs)[0]
+
     def get_info(self) -> Item:
         """Returns result of calling `/info` API method."""
         return Item(self.get('info/')['items'][0])

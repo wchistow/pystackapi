@@ -1,15 +1,15 @@
 # PyStackAPI developers' guide
 
-## [Development iteration](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md##development-iteration)
+## [Development iteration](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#development-iteration)
 
-1. write tests (see [tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md##tests-structure));
+1. write tests (see [tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#tests-structure));
 2. implement necessary feature in the library;
-3. run MyPy and test (see about [running mypy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md##running-mypy-and-tests));
+3. run MyPy and test (see about [running mypy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests));
 4. push changes.
 
 ---
 
-## [Tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md##tests-structure)
+## [Tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#tests-structure)
 
 For example, you are implementing the `get_comment` method.
 
@@ -43,7 +43,7 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
 
 ---
 
-## [Running MyPy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md##running-mypy-and-tests)
+## [Running MyPy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests)
 
 1. Install requirements of library from file `requirements.txt`:
    ```shell

@@ -80,6 +80,13 @@ class Site:
     def get_collective(self, slug: str, **kwargs: Any) -> Item:
         return self.get_collectives([slug], **kwargs)[0]
 
+    def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
+
+    def get_comment(self, c_id: int, **kwargs: Any) -> Item:
+        return self.get_comments([c_id], **kwargs)[0]
+
     def get_info(self) -> Item:
         """Returns result of calling `/info` API method."""
         return Item(self.get('info/')['items'][0])

@@ -10,8 +10,8 @@
    + [X] `get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `articles/` and `answers/{ids}`;
    + [X] `get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]` - API method `collectives/` and `collectives/{slugs}`;
    + [X] `get_collective(self, slug: str, **kwargs: Any) -> Item`;
-   + [ ] `get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `comments/` and `answers/{ids}`;
-   + [ ] `get_comment(self, c_id: int, **kwargs: Any) -> Item`;
+   + [X] `get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `comments/` and `answers/{ids}`;
+   + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item`;
    + [ ] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

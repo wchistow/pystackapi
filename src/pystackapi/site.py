@@ -25,7 +25,7 @@ class Site:
         self.app_key = app_key
 
     def get(self, query: str, **kwargs: Any) -> RawResponseDict:
-        """Returns result of calling of `query` to API."""
+        """Returns raw result of calling `query` to API."""
         params = f'?site={self.name}'
         if self.access_token is not None:
             params += f'&access_token={self.access_token}'
@@ -48,22 +48,34 @@ class Site:
     # with first `get_<plural>` and then, get_<singular>`.
 
     def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/answers` API method."""
+        """
+        Returns the `'items'` key of API response on method `answers/`, or,
+        if the `ids` argument is set, `answers/{ids}`.
+        """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
     def get_answer(self, a_id: int, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `answers/{a_id}`."""
         return self.get_answers([a_id], **kwargs)[0]
 
     def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/articles` API method."""
+        """
+        Returns the `'items'` key of API response on method `articles/`, or,
+        if the `ids` argument is set, `articles/{ids}`.
+        """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
     def get_article(self, a_id: int, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `articles/{a_id}`."""
         return self.get_articles([a_id], **kwargs)[0]
 
     def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns the `'items'` key of API response on method `badges/recipients/`, or,
+        if the `ids` argument is set, `badges/{ids}/recipients/`.
+        """
         if ids is not None:
             url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
         else:
@@ -71,41 +83,61 @@ class Site:
         return [Item(data) for data in self.get(url, **kwargs)['items']]
 
     def get_tag_based_badges(self, **kwargs: Any) -> list[Item]:
+        """Returns first element of `'items'` key of API response on method `badges/tags`."""
         return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]
 
     def get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns the `'items'` key of API response on method `collectives/`, or,
+        if the `slugs` argument is set, `collectives/{slugs}`.
+        """
         addition = ';'.join(map(str, slugs or []))
         return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
 
     def get_collective(self, slug: str, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `collectives/{slug}`."""
         return self.get_collectives([slug], **kwargs)[0]
 
     def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns the `'items'` key of API response on method `comments/`, or,
+        if the `ids` argument is set, `comments/{ids}`.
+        """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
 
     def get_comment(self, c_id: int, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `questions/{c_id}`."""
         return self.get_comments([c_id], **kwargs)[0]
 
     def get_info(self) -> Item:
-        """Returns result of calling `/info` API method."""
+        """Returns first element of `'items'` key of API response on method `info/`."""
         return Item(self.get('info/')['items'][0])
 
     def get_privileges(self, **kwargs: Any) -> list[Item]:
+        """Returns first element of `'items'` key of API response on method `privileges/`."""
         return [Item(data) for data in self.get('privileges/', **kwargs)['items']]
 
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/questions` API method."""
+        """
+        Returns the `'items'` key of API response on method `questions/`, or,
+        if the `ids` argument is set, `questions/{ids}`.
+        """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
     def get_question(self, q_id: int, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `questions/{q_id}`."""
         return self.get_questions([q_id], **kwargs)[0]
 
     def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
-        """Returns result of calling `/users` API method."""
+        """
+        Returns the `'items'` key of API response on method `users/`, or,
+        if the `ids` argument is set, `users/{ids}`.
+        """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
     def get_user(self, uid: int, **kwargs: Any) -> Item:
+        """Returns first element of `'items'` key of API response on method `users/{uid}`."""
         return self.get_users([uid], **kwargs)[0]

@@ -5,7 +5,8 @@
 1. write tests (see [tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#tests-structure));
 2. implement necessary feature in the library;
 3. run MyPy and test (see about [running mypy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests));
-4. push changes.
+4. commit changes;
+5. push commit.
 
 ---
 

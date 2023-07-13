@@ -91,6 +91,9 @@ class Site:
         """Returns result of calling `/info` API method."""
         return Item(self.get('info/')['items'][0])
 
+    def get_privileges(self, **kwargs: Any) -> list[Item]:
+        return [Item(data) for data in self.get('privileges/', **kwargs)['items']]
+
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """Returns result of calling `/questions` API method."""
         addition = ';'.join(map(str, ids or []))

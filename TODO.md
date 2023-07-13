@@ -12,7 +12,7 @@
    + [X] `get_collective(self, slug: str, **kwargs: Any) -> Item`;
    + [X] `get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `comments/` and `answers/{ids}`;
    + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item`;
-   + [ ] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
+   + [X] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
    + [ ] `get_revisions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `revisions/`;
    + [ ] `get_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/`;
 

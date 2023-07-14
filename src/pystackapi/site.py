@@ -49,32 +49,32 @@ class Site:
 
     def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `answers/`, or,
-        if the `ids` argument is set, `answers/{ids}`.
+        Returns, if `ids` is set, all the undeleted answers in the system,
+        else the set of answers identified by `ids`.
         """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
     def get_answer(self, a_id: int, **kwargs: Any) -> Item:
-        """Returns item of API response on method `answers/{a_id}`."""
+        """Returns answer identified by `a_id`."""
         return self.get_answers([a_id], **kwargs)[0]
 
     def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `articles/`, or,
-        if the `ids` argument is set, `articles/{ids}`.
+        Returns, if `ids` is set, all articles on the site,
+        else the articles identified by `ids`.
         """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
     def get_article(self, a_id: int, **kwargs: Any) -> Item:
-        """Returns item of API response on method `articles/{a_id}`."""
+        """Returns article identified by `a_id`."""
         return self.get_articles([a_id], **kwargs)[0]
 
     def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `badges/recipients/`, or,
-        if the `ids` argument is set, `badges/{ids}/recipients/`.
+        Returns, if `ids` is set, recently awarded badges in the system,
+        constrained to a certain set of badges, else recently awarded badges in the system.
         """
         if ids is not None:
             url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
@@ -83,56 +83,56 @@ class Site:
         return [Item(data) for data in self.get(url, **kwargs)['items']]
 
     def get_tag_based_badges(self, **kwargs: Any) -> list[Item]:
-        """Returns item of API response on method `badges/tags`."""
+        """Returns the badges that are awarded for participation in specific tags."""
         return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]
 
     def get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `collectives/`, or,
-        if the `slugs` argument is set, `collectives/{slugs}`.
+        Returns, if `slugs` is set, collectives in `slugs` found on the site,
+        else, all collectives in the system.
         """
         addition = ';'.join(map(str, slugs or []))
         return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
 
     def get_collective(self, slug: str, **kwargs: Any) -> Item:
-        """Returns item of API response on method `collectives/{slug}`."""
+        """Returns collective with specific `slug`."""
         return self.get_collectives([slug], **kwargs)[0]
 
     def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `comments/`, or,
-        if the `ids` argument is set, `comments/{ids}`.
+        Returns, if `ids` is set, the comments identified in `ids`,
+        else, all comments on the site.
         """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
 
     def get_comment(self, c_id: int, **kwargs: Any) -> Item:
-        """Returns item of API response on method `questions/{c_id}`."""
+        """Returns the comment identified in `c_id`."""
         return self.get_comments([c_id], **kwargs)[0]
 
     def get_info(self) -> Item:
-        """Returns item of API response on method `info/`."""
+        """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])
 
     def get_privileges(self, **kwargs: Any) -> list[Item]:
-        """Returns item of API response on method `privileges/`."""
+        """Returns the earnable privileges on a site."""
         return [Item(data) for data in self.get('privileges/', **kwargs)['items']]
 
     def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `questions/`, or,
-        if the `ids` argument is set, `questions/{ids}`.
+        Returns, if `ids` is set, all the undeleted questions in the system,
+        else the set of questions identified by `ids`.
         """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
     def get_question(self, q_id: int, **kwargs: Any) -> Item:
-        """Returns item of API response on method `questions/{q_id}`."""
+        """Returns the question identified in `q_id`."""
         return self.get_questions([q_id], **kwargs)[0]
 
     def search(self, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `search/`.
+        Searches a site for any questions which fit the given criteria.
         **Warning:** one of `tagged` or `intitle` keyword arguments must be set.
         """
         if 'tagged' not in kwargs and 'intitle' not in kwargs:
@@ -141,21 +141,24 @@ class Site:
         return [Item(data) for data in self.get('search/', **kwargs)['items']]
 
     def advanced_search(self, **kwargs: Any) -> list[Item]:
-        """Returns items of API response on method `search/advanced/`."""
+        """Searches a site for any questions which fit the given criteria."""
         return [Item(data) for data in self.get('search/advanced/', **kwargs)['items']]
 
     def get_similar(self, title: str, **kwargs: Any) -> list[Item]:
-        """Returns items of API response on method `similar/`."""
+        """
+        Returns questions which are similar to a hypothetical one based
+        on a title and tag combination.
+        """
         return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
 
     def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns items of API response on method `users/`, or,
-        if the `ids` argument is set, `users/{ids}`.
+        Returns, if `ids` is set, the users identified by `ids`,
+        else all users on a site.
         """
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
     def get_user(self, uid: int, **kwargs: Any) -> Item:
-        """Returns item of API response on method `users/{uid}`."""
+        """Returns the user identified in `uid`."""
         return self.get_users([uid], **kwargs)[0]

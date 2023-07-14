@@ -2,7 +2,7 @@ from typing import Any, cast, TypedDict
 
 import requests
 
-from .errors import HttpError
+from .errors import BadArgumentsError, HttpError
 from .item import Item
 
 
@@ -129,6 +129,24 @@ class Site:
     def get_question(self, q_id: int, **kwargs: Any) -> Item:
         """Returns item of API response on method `questions/{q_id}`."""
         return self.get_questions([q_id], **kwargs)[0]
+
+    def search(self, **kwargs: Any) -> list[Item]:
+        """
+        Returns items of API response on method `search/`.
+        **Warning:** one of `tagged` or `intitle` keyword arguments must be set.
+        """
+        if 'tagged' not in kwargs and 'intitle' not in kwargs:
+            raise BadArgumentsError('one of `tagged` or `intitle` keyword arguments must be set.')
+
+        return [Item(data) for data in self.get('search/', **kwargs)['items']]
+
+    def advanced_search(self, **kwargs: Any) -> list[Item]:
+        """Returns items of API response on method `search/advanced/`."""
+        return [Item(data) for data in self.get('search/advanced/', **kwargs)['items']]
+
+    def get_similar(self, title: str, **kwargs: Any) -> list[Item]:
+        """Returns items of API response on method `similar/`."""
+        return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
 
     def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """

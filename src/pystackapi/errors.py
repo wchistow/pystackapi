@@ -1,3 +1,7 @@
+class BadArgumentsError(Exception):
+    ...
+
+
 class HttpError(Exception):
     """Raises, when API returns not 200 status code."""
     def __init__(self, code: int, url: str) -> None:

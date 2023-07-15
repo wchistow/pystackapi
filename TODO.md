@@ -14,7 +14,7 @@
    + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item`;
    + [X] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
    + [ ] `get_revisions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `revisions/`;
-   + [ ] `get_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/`;
+   + [X] `get_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/`;
    + [X] `get_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/`;
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

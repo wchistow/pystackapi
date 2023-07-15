@@ -155,6 +155,10 @@ class Site:
         """
         return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
 
+    def get_tags(self, **kwargs: Any) -> list[Item]:
+        """Returns all tags in the system."""
+        return [Item(data) for data in self.get('tags/', **kwargs)['items']]
+
     def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the users identified by `ids`,

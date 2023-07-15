@@ -16,14 +16,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_get_comments_without_ids() -> None:
+def test_get_comments_without_ids_url() -> None:
     site.get_comments()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/comments/?site=stackoverflow')
 
 
 @lest.register
-def test_get_comments_with_ids() -> None:
+def test_get_comments_with_ids_url() -> None:
     site.get_comments([1, 2])
 
     lest.assert_eq(requests.url,
@@ -31,21 +31,21 @@ def test_get_comments_with_ids() -> None:
 
 
 @lest.register
-def test_return_value_of_get_comments() -> None:
+def test_get_comments_return_value() -> None:
     res = site.get_comments()
 
     lest.assert_eq(res, [Item({'id': 1})])
 
 
 @lest.register
-def test_get_comment() -> None:
+def test_get_comment_url() -> None:
     site.get_comment(1)
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/comments/1?site=stackoverflow')
 
 
 @lest.register
-def test_return_value_of_get_comment() -> None:
+def test_get_comment_return_value() -> None:
     res = site.get_comment(1)
 
     lest.assert_eq(res, Item({'id': 1}))

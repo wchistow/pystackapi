@@ -16,14 +16,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_get_privileges() -> None:
+def test_get_privileges_url() -> None:
     site.get_privileges()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/privileges/?site=stackoverflow')
 
 
 @lest.register
-def test_return_value_of_get_privileges() -> None:
+def test_get_privileges_return_value() -> None:
     res = site.get_privileges()
 
     lest.assert_eq(res, [Item({'id': 1})])

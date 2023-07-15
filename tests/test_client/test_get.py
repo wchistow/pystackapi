@@ -19,14 +19,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_simple_get() -> None:
+def test_simple_get_url() -> None:
     site.get('ghgh/')
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow')
 
 
 @lest.register
-def test_get_with_kwargs() -> None:
+def test_get_with_kwargs_url() -> None:
     site.get('ghgh/', arg1='hello')
 
     lest.assert_eq(requests.url,
@@ -34,7 +34,7 @@ def test_get_with_kwargs() -> None:
 
 
 @lest.register
-def test_get_with_access_token() -> None:
+def test_get_with_access_token_url() -> None:
     l_site = site_m.Site('stackoverflow', access_token='someaccesstoken')
     l_site.get('ghgh/')
 
@@ -44,7 +44,7 @@ def test_get_with_access_token() -> None:
 
 
 @lest.register
-def test_get_with_app_key() -> None:
+def test_get_with_app_key_url() -> None:
     l_site = site_m.Site('stackoverflow', app_key='someappkey')
     l_site.get('ghgh/')
 
@@ -66,7 +66,7 @@ def test_handling_error() -> None:
 
 
 @lest.register
-def test_return_value_of_get() -> None:
+def test_get_return_value() -> None:
     res = site.get('ghgh/')
 
     expected_result = {

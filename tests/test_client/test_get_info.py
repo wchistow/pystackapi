@@ -16,14 +16,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_get_info() -> None:
+def test_get_info_url() -> None:
     site.get_info()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/info/?site=stackoverflow')
 
 
 @lest.register
-def test_return_value_of_get_info() -> None:
+def test_get_info_return_value() -> None:
     res = site.get_info()
 
     lest.assert_eq(res, Item({'id': 1}))

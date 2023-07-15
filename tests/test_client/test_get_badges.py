@@ -36,7 +36,7 @@ def test_get_badges_return_value() -> None:
 
 
 @lest.register
-def test_get_badges_recipients_without_ids() -> None:
+def test_get_badges_recipients_without_ids_url() -> None:
     site.get_badges_recipients()
 
     lest.assert_eq(requests.url,
@@ -44,7 +44,7 @@ def test_get_badges_recipients_without_ids() -> None:
 
 
 @lest.register
-def test_get_badges_recipients_with_ids() -> None:
+def test_get_badges_recipients_with_ids_url() -> None:
     site.get_badges_recipients([1, 2])
 
     lest.assert_eq(requests.url,
@@ -52,7 +52,7 @@ def test_get_badges_recipients_with_ids() -> None:
 
 
 @lest.register
-def test_return_value_of_get_badges_recipients() -> None:
+def test_get_badges_recipients_return_value() -> None:
     res = site.get_badges_recipients()
 
     lest.assert_eq(res, [Item({'id': 1})])
@@ -62,14 +62,14 @@ def test_return_value_of_get_badges_recipients() -> None:
 
 
 @lest.register
-def test_get_tag_based_badges() -> None:
+def test_get_tag_based_badges_url() -> None:
     site.get_tag_based_badges()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/badges/tags?site=stackoverflow')
 
 
 @lest.register
-def test_return_value_of_get_tag_based_badges() -> None:
+def test_get_tag_based_badges_return_value() -> None:
     res = site.get_tag_based_badges()
 
     lest.assert_eq(res, [Item({'id': 1})])

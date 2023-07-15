@@ -16,14 +16,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_get_answers_without_ids() -> None:
+def test_get_answers_without_ids_url() -> None:
     site.get_answers()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/?site=stackoverflow')
 
 
 @lest.register
-def test_get_answers_with_ids() -> None:
+def test_get_answers_with_ids_url() -> None:
     site.get_answers([1, 2])
 
     lest.assert_eq(requests.url,
@@ -31,21 +31,21 @@ def test_get_answers_with_ids() -> None:
 
 
 @lest.register
-def test_return_value_of_get_answers() -> None:
+def test_get_answers_return_value() -> None:
     res = site.get_answers()
 
     lest.assert_eq(res, [Item({'id': 1})])
 
 
 @lest.register
-def test_get_answer() -> None:
+def test_get_answer_url() -> None:
     site.get_answer(1)
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/1?site=stackoverflow')
 
 
 @lest.register
-def test_return_value_of_get_answer() -> None:
+def test_get_answer_return_value() -> None:
     res = site.get_answer(1)
 
     lest.assert_eq(res, Item({'id': 1}))

@@ -34,11 +34,11 @@ For example, you are implementing the `get_comment` method.
        requests.reset()
    ```
 3. then, there should be the following methods:
-    + `test_get_answers_without_ids` - tests that method `get_answers` without transmitting identifiers to it applies to the desired URL;
-    + `test_get_answers_with_ids` - tests that method `get_answers` with transmitting some identifiers to it applies to the desired URL;
-    + `test_return_value_of_get_answers` - tests that method `get_answers` returns desired list of class `Item`'s instances (desired is `[Item({'id': 1})]`);
-    + `test_get_answer` - tests that method `get_answer` applies to the desired URL;
-    + `test_return_value_of_get_answer` - tests that method `get_answer` returns desired instance of class `Item` (desired is `Item({'id': 1})`).
+    + `test_get_answers_without_ids_url` - tests that method `get_answers` without transmitting identifiers to it applies to the desired URL;
+    + `test_get_answers_with_ids_url` - tests that method `get_answers` with transmitting some identifiers to it applies to the desired URL;
+    + `test_get_answers_return_value` - tests that method `get_answers` returns desired list of class `Item`'s instances (desired is `[Item({'id': 1})]`);
+    + `test_get_answer_url` - tests that method `get_answer` applies to the desired URL;
+    + `test_get_answer_return_value` - tests that method `get_answer` returns desired instance of class `Item` (desired is `Item({'id': 1})`).
 
 For more details, see file [`tests/test_client/test_get_answers.py`](https://github.com/wchistow/pystackapi/blob/master/tests/test_client/test_get_answers.py).
 

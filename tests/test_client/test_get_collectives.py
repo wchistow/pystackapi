@@ -16,14 +16,14 @@ def reset_requests() -> None:
 
 
 @lest.register
-def test_get_collectives_without_slugs() -> None:
+def test_get_collectives_without_slugs_url() -> None:
     site.get_collectives()
 
     lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/collectives/?site=stackoverflow')
 
 
 @lest.register
-def test_get_collectives_with_slugs() -> None:
+def test_get_collectives_with_slugs_url() -> None:
     site.get_collectives(['co1', 'co2'])
 
     lest.assert_eq(requests.url,
@@ -31,14 +31,14 @@ def test_get_collectives_with_slugs() -> None:
 
 
 @lest.register
-def test_return_value_of_get_collectives() -> None:
+def test_get_collectives_return_value() -> None:
     res = site.get_collectives()
 
     lest.assert_eq(res, [Item({'id': 1})])
 
 
 @lest.register
-def test_get_collective() -> None:
+def test_get_collective_url() -> None:
     site.get_collective('co1')
 
     lest.assert_eq(requests.url,
@@ -46,7 +46,7 @@ def test_get_collective() -> None:
 
 
 @lest.register
-def test_return_value_of_get_collective() -> None:
+def test_get_collective_return_value() -> None:
     res = site.get_collective('co1')
 
     lest.assert_eq(res, Item({'id': 1}))

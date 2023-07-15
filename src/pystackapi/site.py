@@ -71,6 +71,10 @@ class Site:
         """Returns article identified by `a_id`."""
         return self.get_articles([a_id], **kwargs)[0]
 
+    def get_badges(self, **kwargs: Any) -> list[Item]:
+        """Returns all badges in the system."""
+        return [Item(data) for data in self.get('badges/', **kwargs)['items']]
+
     def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, recently awarded badges in the system,

@@ -164,6 +164,11 @@ class Site:
         except IndexError:
             return None
 
+    def get_revisions(self, ids: list[int], **kwargs: Any) -> list[Item]:
+        """Returns edit revisions identified by `ids`."""
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'revisions/{addition}', **kwargs)['items']]
+
     def search(self, **kwargs: Any) -> list[Item]:
         """
         Searches a site for any questions which fit the given criteria.

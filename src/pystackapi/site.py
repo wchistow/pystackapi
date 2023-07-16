@@ -55,9 +55,15 @@ class Site:
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
-    def get_answer(self, a_id: int, **kwargs: Any) -> Item:
-        """Returns answer identified by `a_id`."""
-        return self.get_answers([a_id], **kwargs)[0]
+    def get_answer(self, a_id: int, **kwargs: Any) -> Item | None:
+        """
+        Returns answer identified by `a_id`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_answers([a_id], **kwargs)[0]
+        except IndexError:
+            return None
 
     def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
@@ -67,9 +73,15 @@ class Site:
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
-    def get_article(self, a_id: int, **kwargs: Any) -> Item:
-        """Returns article identified by `a_id`."""
-        return self.get_articles([a_id], **kwargs)[0]
+    def get_article(self, a_id: int, **kwargs: Any) -> Item | None:
+        """
+        Returns article identified by `a_id`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_articles([a_id], **kwargs)[0]
+        except IndexError:
+            return None
 
     def get_badges(self, **kwargs: Any) -> list[Item]:
         """Returns all badges in the system."""
@@ -98,9 +110,15 @@ class Site:
         addition = ';'.join(map(str, slugs or []))
         return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
 
-    def get_collective(self, slug: str, **kwargs: Any) -> Item:
-        """Returns collective with specific `slug`."""
-        return self.get_collectives([slug], **kwargs)[0]
+    def get_collective(self, slug: str, **kwargs: Any) -> Item | None:
+        """
+        Returns collective with specific `slug`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_collectives([slug], **kwargs)[0]
+        except IndexError:
+            return None
 
     def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
@@ -110,13 +128,19 @@ class Site:
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
 
-    def get_comment(self, c_id: int, **kwargs: Any) -> Item:
-        """Returns the comment identified in `c_id`."""
-        return self.get_comments([c_id], **kwargs)[0]
+    def get_comment(self, c_id: int, **kwargs: Any) -> Item | None:
+        """
+        Returns the comment identified in `c_id`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_comments([c_id], **kwargs)[0]
+        except IndexError:
+            return None
 
     def get_info(self) -> Item:
         """Returns a collection of statistics about the site."""
-        return Item(self.get('info/')['items'][0])
+        return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
 
     def get_privileges(self, **kwargs: Any) -> list[Item]:
         """Returns the earnable privileges on a site."""
@@ -130,9 +154,15 @@ class Site:
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
-    def get_question(self, q_id: int, **kwargs: Any) -> Item:
-        """Returns the question identified in `q_id`."""
-        return self.get_questions([q_id], **kwargs)[0]
+    def get_question(self, q_id: int, **kwargs: Any) -> Item | None:
+        """
+        Returns the question identified in `q_id`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_questions([q_id], **kwargs)[0]
+        except IndexError:
+            return None
 
     def search(self, **kwargs: Any) -> list[Item]:
         """
@@ -167,6 +197,12 @@ class Site:
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
-    def get_user(self, uid: int, **kwargs: Any) -> Item:
-        """Returns the user identified in `uid`."""
-        return self.get_users([uid], **kwargs)[0]
+    def get_user(self, uid: int, **kwargs: Any) -> Item | None:
+        """
+        Returns the user identified in `uid`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_users([uid], **kwargs)[0]
+        except IndexError:
+            return None

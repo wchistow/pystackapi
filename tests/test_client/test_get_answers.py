@@ -49,3 +49,14 @@ def test_get_answer_return_value() -> None:
     res = site.get_answer(1)
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+@lest.register
+def test_get_answer_with_no_data() -> None:
+    requests.no_data = ['https://api.stackexchange.com/2.3/answers/1?site=stackoverflow']
+
+    res = site.get_answer(1)
+
+    lest.assert_true(res is None)
+
+    requests.no_data = []

@@ -2,25 +2,34 @@
 
 
 class RequestsMock:
-    def __init__(self, return_items: list | None = None, status_code: int = 200) -> None:
+    def __init__(self,
+                 return_items: list | None = None,
+                 status_code: int = 200,
+                 no_data: list[str] | None = None) -> None:
         """
         :param return_items: what is in the `'items'` key of response
         :param status_code: what is status code of response
+        :param no_data: on which urls key `'items'` should be empty
         """
         self.return_items = return_items or []
+        self.status_code = status_code
+        self.no_data = no_data or []
 
         self.url: str | None = None
-        self.status_code = status_code
 
     def get(self, url: str) -> 'ResponseMock':
         self.url = url
-        return ResponseMock(self.status_code, {'items': self.return_items})
+        if url in self.no_data:
+            return ResponseMock(self.status_code, {'items': []})
+        else:
+            return ResponseMock(self.status_code, {'items': self.return_items})
 
     def reset(self) -> None:
         self.url = None
 
 
 class ResponseMock:
+    """Implements HTTP response."""
     def __init__(self, status_code: int, data: dict) -> None:
         self.status_code = status_code
         self.data = data

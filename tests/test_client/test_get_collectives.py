@@ -50,3 +50,14 @@ def test_get_collective_return_value() -> None:
     res = site.get_collective('co1')
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+@lest.register
+def test_get_collective_with_no_data() -> None:
+    requests.no_data = ['https://api.stackexchange.com/2.3/collectives/co1?site=stackoverflow']
+
+    res = site.get_collective('co1')
+
+    lest.assert_true(res is None)
+
+    requests.no_data = []

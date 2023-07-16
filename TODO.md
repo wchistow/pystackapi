@@ -11,11 +11,11 @@
    + [X] `get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]` - API method `collectives/` and `collectives/{slugs}`;
    + [X] `get_collective(self, slug: str, **kwargs: Any) -> Item`;
    + [X] `get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `comments/` and `answers/{ids}`;
-   + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item`;
+   + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item | None`;
    + [X] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
    + [ ] `get_revisions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `revisions/`;
    + [X] `get_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/`;
    + [X] `get_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/`;
- + [ ] `KeyError` raises in methods `Site.get_<singular>`, when there is no items in response;
+ + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

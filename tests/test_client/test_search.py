@@ -5,7 +5,7 @@ from pystackapi import site as site_m
 from pystackapi.item import Item
 from pystackapi.errors import BadArgumentsError
 
-from . import requests
+from . import API_VERSION, requests
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')
@@ -23,8 +23,8 @@ def reset_requests() -> None:
 def test_search_url() -> None:
     site.search(tagged='python')
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/search/?site=stackoverflow&tagged=python')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/'
+                                 f'?site=stackoverflow&tagged=python')
 
 
 @lest.register
@@ -47,8 +47,8 @@ def test_search_return_value() -> None:
 def test_advanced_search_url() -> None:
     site.advanced_search()
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/search/advanced/?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/advanced/'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
@@ -65,7 +65,7 @@ def test_advanced_search_return_value() -> None:
 def test_get_similar_url() -> None:
     site.get_similar('some_title')
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/similar/'
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/similar/'
                                  '?site=stackoverflow&title=some_title')
 
 

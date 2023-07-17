@@ -4,7 +4,7 @@ import lest
 from pystackapi import site as site_m
 from pystackapi.item import Item
 
-from . import requests
+from . import API_VERSION, requests
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')
@@ -19,15 +19,16 @@ def reset_requests() -> None:
 def test_get_answers_without_ids_url() -> None:
     site.get_answers()
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
 def test_get_answers_with_ids_url() -> None:
     site.get_answers([1, 2])
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/answers/1;2?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1;2'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
@@ -41,7 +42,8 @@ def test_get_answers_return_value() -> None:
 def test_get_answer_url() -> None:
     site.get_answer(1)
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/answers/1?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
@@ -53,7 +55,7 @@ def test_get_answer_return_value() -> None:
 
 @lest.register
 def test_get_answer_with_no_data() -> None:
-    requests.no_data = ['https://api.stackexchange.com/2.3/answers/1?site=stackoverflow']
+    requests.no_data = [f'https://api.stackexchange.com/{API_VERSION}/answers/1?site=stackoverflow']
 
     res = site.get_answer(1)
 

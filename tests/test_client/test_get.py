@@ -7,7 +7,7 @@ from pystackapi.item import Item
 
 from mocks import RequestsMock
 
-from . import requests
+from . import API_VERSION, requests
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')
@@ -22,15 +22,16 @@ def reset_requests() -> None:
 def test_simple_get_url() -> None:
     site.get('ghgh/')
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow')
+    lest.assert_eq(requests.url,
+                   f'https://api.stackexchange.com/{API_VERSION}/ghgh/?site=stackoverflow')
 
 
 @lest.register
 def test_get_with_kwargs_url() -> None:
     site.get('ghgh/', arg1='hello')
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow&arg1=hello')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
+                                 f'?site=stackoverflow&arg1=hello')
 
 
 @lest.register
@@ -39,7 +40,7 @@ def test_get_with_access_token_url() -> None:
     l_site.get('ghgh/')
 
     lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow'
+                   f'https://api.stackexchange.com/{API_VERSION}/ghgh/?site=stackoverflow'
                    '&access_token=someaccesstoken')
 
 
@@ -48,8 +49,8 @@ def test_get_with_app_key_url() -> None:
     l_site = site_m.Site('stackoverflow', app_key='someappkey')
     l_site.get('ghgh/')
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/ghgh/?site=stackoverflow&key=someappkey')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
+                                 f'?site=stackoverflow&key=someappkey')
 
 
 @lest.register

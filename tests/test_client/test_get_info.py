@@ -4,7 +4,7 @@ import lest
 from pystackapi import site as site_m
 from pystackapi.item import Item
 
-from . import requests
+from . import API_VERSION, requests
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')
@@ -19,7 +19,8 @@ def reset_requests() -> None:
 def test_get_info_url() -> None:
     site.get_info()
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/info/?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/info/'
+                                 f'?site=stackoverflow')
 
 
 @lest.register

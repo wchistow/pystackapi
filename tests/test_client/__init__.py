@@ -6,6 +6,8 @@ from mocks import RequestsMock
 # have to referenced to the same object.
 requests = RequestsMock(return_items=[{'id': 1}])
 
+API_VERSION = '2.3'
+
 from . import test_get
 from . import test_get_answers
 from . import test_get_articles

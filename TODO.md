@@ -20,6 +20,6 @@
    + [ ] `get_post(self, c_id: int, **kwargs: Any) -> Item | None`;
    + [ ] `get_suggested_edits(self, **kwargs: Any) -> list[Item]` - API method `suggested-edits/`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
- + [ ] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
+ + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

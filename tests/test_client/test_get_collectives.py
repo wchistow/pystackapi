@@ -4,7 +4,7 @@ import lest
 from pystackapi import site as site_m
 from pystackapi.item import Item
 
-from . import requests
+from . import API_VERSION, requests
 
 site_m.__dict__['requests'] = requests
 site = site_m.Site('stackoverflow')
@@ -19,15 +19,16 @@ def reset_requests() -> None:
 def test_get_collectives_without_slugs_url() -> None:
     site.get_collectives()
 
-    lest.assert_eq(requests.url, 'https://api.stackexchange.com/2.3/collectives/?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
 def test_get_collectives_with_slugs_url() -> None:
     site.get_collectives(['co1', 'co2'])
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/collectives/co1;co2?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/co1;co2'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
@@ -41,8 +42,8 @@ def test_get_collectives_return_value() -> None:
 def test_get_collective_url() -> None:
     site.get_collective('co1')
 
-    lest.assert_eq(requests.url,
-                   'https://api.stackexchange.com/2.3/collectives/co1?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/co1'
+                                 f'?site=stackoverflow')
 
 
 @lest.register
@@ -54,7 +55,9 @@ def test_get_collective_return_value() -> None:
 
 @lest.register
 def test_get_collective_with_no_data() -> None:
-    requests.no_data = ['https://api.stackexchange.com/2.3/collectives/co1?site=stackoverflow']
+    requests.no_data = [
+        f'https://api.stackexchange.com/{API_VERSION}/collectives/co1?site=stackoverflow'
+    ]
 
     res = site.get_collective('co1')
 

@@ -23,7 +23,7 @@ For example, you are implementing the `get_comment` method.
    from pystackapi import site as site_m
    from pystackapi.item import Item
    
-   from . import requests
+   from . import API_VERSION, requests
    
    site_m.__dict__['requests'] = requests
    site = site_m.Site('stackoverflow')

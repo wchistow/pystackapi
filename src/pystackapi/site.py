@@ -122,7 +122,7 @@ class Site:
 
     def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns, if `ids` is set, the comments identified in `ids`,
+        Returns, if `ids` is set, the comments identified by `ids`,
         else, all comments on the site.
         """
         addition = ';'.join(map(str, ids or []))
@@ -141,6 +141,24 @@ class Site:
     def get_info(self) -> Item:
         """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
+
+    def get_posts(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns, if `ids` is set, the posts identified by `ids`,
+        else, all posts on the site.
+        """
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'posts/{addition}', **kwargs)['items']]
+
+    def get_post(self, p_id: int, **kwargs: Any) -> Item | None:
+        """
+        Returns the post identified in `p_id`.
+        Returns `None` if requested object don't found.
+        """
+        try:
+            return self.get_posts([p_id], **kwargs)[0]
+        except IndexError:
+            return None
 
     def get_privileges(self, **kwargs: Any) -> list[Item]:
         """Returns the earnable privileges on a site."""

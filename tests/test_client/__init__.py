@@ -15,6 +15,7 @@ from . import test_get_badges
 from . import test_get_collectives
 from . import test_get_comments
 from . import test_get_info
+from . import test_get_posts
 from . import test_get_privileges
 from . import test_get_questions
 from . import test_get_revisions

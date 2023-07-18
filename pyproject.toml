@@ -1,0 +1,29 @@
+[project]
+name = 'pystackapi'
+version = '0.1.0dev'
+license = {file = 'LICENSE'}
+description = 'PyStackAPI is a modern, 100% typed wrapper for the StackExchange API, written in Python.'
+authors = [
+    {name = 'Vladimir Chistov', email='wchistow@yandex.ru'},
+]
+requires-python = '>=3.10'
+readme = 'README.md'
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3 :: Only',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Typing :: Typed',
+]
+dependencies = [
+  'requests==2.31.0',
+]
+
+[project.urls]
+'Homepage' = 'https://github.com/wchistow/pystackapi'
+'Bug Tracker' = 'https://github.com/wchistow/pystackapi/issues'
+'Repository' = 'https://github.com/wchistow/pystackapi.git'

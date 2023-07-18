@@ -19,6 +19,11 @@
    + [X] `get_posts(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `posts/` and `posts/{ids}`;
    + [X] `get_post(self, c_id: int, **kwargs: Any) -> Item | None`;
    + [ ] `get_suggested_edits(self, **kwargs: Any) -> list[Item]` - API method `suggested-edits/`;
+   + [ ] `get_comments_on_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `answers/{ids}/comments`;
+   + [ ] `get_comments_on_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `articles/{ids}/comments`;
+   + [ ] `get_comments_on_posts(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `posts/{ids}/comments`;
+   + [ ] `get_comments_on_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]` - API method `questions/{ids}/comments`;
+   + [ ] `get_non_tag_based_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/name`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

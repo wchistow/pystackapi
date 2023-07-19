@@ -208,6 +208,14 @@ class Site:
         """
         return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
 
+    def get_suggested_edits(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns, if `ids` is set, the suggested edits identified by `ids`,
+        else all suggested edits on the site.
+        """
+        addition = ';'.join(map(str, ids or []))
+        return [Item(data) for data in self.get(f'suggested-edits/{addition}', **kwargs)['items']]
+
     def get_tags(self, **kwargs: Any) -> list[Item]:
         """Returns all tags in the system."""
         return [Item(data) for data in self.get('tags/', **kwargs)['items']]

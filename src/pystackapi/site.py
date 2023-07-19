@@ -102,6 +102,10 @@ class Site:
         """Returns the badges that are awarded for participation in specific tags."""
         return [Item(data) for data in self.get('badges/tags', **kwargs)['items']]
 
+    def get_non_tag_based_badges(self, **kwargs: Any) -> list[Item]:
+        """Returns all non-tagged-based badges in alphabetical order."""
+        return [Item(data) for data in self.get('badges/name', **kwargs)['items']]
+
     def get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `slugs` is set, collectives in `slugs` found on the site,

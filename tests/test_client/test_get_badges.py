@@ -75,3 +75,21 @@ def test_get_tag_based_badges_return_value() -> None:
     res = site.get_tag_based_badges()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_non_tag_based_badges` ----
+
+
+@lest.register
+def test_get_non_tag_based_badges_url() -> None:
+    site.get_non_tag_based_badges()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/name'
+                                 f'?site=stackoverflow')
+
+
+@lest.register
+def test_get_non_tag_based_badges_return_value() -> None:
+    res = site.get_non_tag_based_badges()
+
+    lest.assert_eq(res, [Item({'id': 1})])

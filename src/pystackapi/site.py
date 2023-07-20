@@ -146,7 +146,7 @@ class Site:
     def get_comments_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of answers."""
         if not ids:
-            raise BadArgumentsError('the `ids` argument should be a non empty list.')
+            raise BadArgumentsError('the `ids` argument should be a non empty iterable object.')
         return [Item(data) for data in
                 self.get(f'answers/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 

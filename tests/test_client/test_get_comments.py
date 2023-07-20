@@ -82,3 +82,21 @@ def test_get_comments_on_answers_return_value() -> None:
     res = site.get_comments_on_answers([1, 2])
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_comments_on_articles` ---
+
+
+@lest.register
+def test_get_comments_on_articles_url() -> None:
+    site.get_comments_on_articles([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/articles/1;2/'
+                                 f'comments/?site=stackoverflow')
+
+
+@lest.register
+def test_get_comments_on_articles_return_value() -> None:
+    res = site.get_comments_on_articles([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])

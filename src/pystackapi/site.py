@@ -1,4 +1,5 @@
 from typing import Any, cast, TypedDict
+from collections.abc import Iterable
 
 import requests
 
@@ -47,7 +48,7 @@ class Site:
     # CONTRIBUTORS: Please, sort methods by alphabet in pairs
     # with first `get_<plural>` and then, get_<singular>`.
 
-    def get_answers(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all the undeleted answers in the system,
         else the set of answers identified by `ids`.
@@ -65,7 +66,7 @@ class Site:
         except IndexError:
             return None
 
-    def get_articles(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all articles on the site,
         else the articles identified by `ids`.
@@ -87,7 +88,7 @@ class Site:
         """Returns all badges in the system."""
         return [Item(data) for data in self.get('badges/', **kwargs)['items']]
 
-    def get_badges_recipients(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_badges_recipients(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, recently awarded badges in the system,
         constrained to a certain set of badges, else recently awarded badges in the system.
@@ -106,7 +107,7 @@ class Site:
         """Returns all non-tagged-based badges in alphabetical order."""
         return [Item(data) for data in self.get('badges/name', **kwargs)['items']]
 
-    def get_collectives(self, slugs: list[str] | None = None, **kwargs: Any) -> list[Item]:
+    def get_collectives(self, slugs: Iterable[str] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `slugs` is set, collectives in `slugs` found on the site,
         else, all collectives in the system.
@@ -124,7 +125,7 @@ class Site:
         except IndexError:
             return None
 
-    def get_comments(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_comments(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the comments identified by `ids`,
         else, all comments on the site.
@@ -142,7 +143,7 @@ class Site:
         except IndexError:
             return None
 
-    def get_comments_on_answers(self, ids: list[int], **kwargs: Any) -> list[Item]:
+    def get_comments_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of answers."""
         if not ids:
             raise BadArgumentsError('the `ids` argument should be a non empty list.')
@@ -153,7 +154,7 @@ class Site:
         """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
 
-    def get_posts(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_posts(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the posts identified by `ids`,
         else, all posts on the site.
@@ -175,7 +176,7 @@ class Site:
         """Returns the earnable privileges on a site."""
         return [Item(data) for data in self.get('privileges/', **kwargs)['items']]
 
-    def get_questions(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_questions(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all the undeleted questions in the system,
         else the set of questions identified by `ids`.
@@ -193,7 +194,7 @@ class Site:
         except IndexError:
             return None
 
-    def get_revisions(self, ids: list[int], **kwargs: Any) -> list[Item]:
+    def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""
         addition = ';'.join(map(str, ids or []))
         return [Item(data) for data in self.get(f'revisions/{addition}', **kwargs)['items']]
@@ -219,7 +220,7 @@ class Site:
         """
         return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
 
-    def get_suggested_edits(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_suggested_edits(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the suggested edits identified by `ids`,
         else all suggested edits on the site.
@@ -231,7 +232,7 @@ class Site:
         """Returns all tags in the system."""
         return [Item(data) for data in self.get('tags/', **kwargs)['items']]
 
-    def get_users(self, ids: list[int] | None = None, **kwargs: Any) -> list[Item]:
+    def get_users(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the users identified by `ids`,
         else all users on a site.

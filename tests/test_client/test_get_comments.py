@@ -1,4 +1,4 @@
-"""Tests for `Site.get_comments` and `Site.get_comment`."""
+"""Tests for `Site.get_comments`, `Site.get_comment` and `Site.get_comments_on_*`."""
 import lest
 
 from pystackapi import site as site_m
@@ -64,3 +64,21 @@ def test_get_comment_with_no_data() -> None:
     lest.assert_true(res is None)
 
     requests.no_data = []
+
+
+# ---- tests for `Site.get_comments_on_answers` ---
+
+
+@lest.register
+def test_get_comments_on_answers_url() -> None:
+    site.get_comments_on_answers([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1;2/'
+                                 f'comments/?site=stackoverflow')
+
+
+@lest.register
+def test_get_comments_on_answers_return_value() -> None:
+    res = site.get_comments_on_answers([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])

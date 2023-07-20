@@ -1,4 +1,4 @@
-from typing import Any, cast, TypedDict
+from typing import Any, cast, TypedDict, NoReturn
 from collections.abc import Iterable
 
 import requests
@@ -145,22 +145,19 @@ class Site:
 
     def get_comments_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of answers."""
-        if not ids:
-            raise BadArgumentsError('the `ids` argument should be a non empty iterable object.')
+        _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
                 self.get(f'answers/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 
     def get_comments_on_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of articles."""
-        if not ids:
-            raise BadArgumentsError('the `ids` argument should be a non empty iterable object.')
+        _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
                 self.get(f'articles/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 
     def get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of questions."""
-        if not ids:
-            raise BadArgumentsError('the `ids` argument should be a non empty iterable object.')
+        _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
                 self.get(f'questions/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 
@@ -263,3 +260,17 @@ class Site:
             return self.get_users([uid], **kwargs)[0]
         except IndexError:
             return None
+
+
+def _check_iterable_is_not_empty(iterable: Iterable[Any],  # type: ignore[return]
+                                 arg_name: str = 'ids') -> None | NoReturn:
+    """
+    Raises `BadArgumentsError` with message
+    "`the \\`{arg_name}\\` argument should be a non-empty iterable object.`" if `iterable` is empty.
+
+    :param arg_name: argument name for error message. Default - `"ids"`.
+    """
+    if not iterable:
+        raise BadArgumentsError(
+            f'the `{arg_name}` argument should be a non-empty iterable object.'
+        )

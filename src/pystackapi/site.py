@@ -157,6 +157,13 @@ class Site:
         return [Item(data) for data in
                 self.get(f'articles/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 
+    def get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the comments on a set of questions."""
+        if not ids:
+            raise BadArgumentsError('the `ids` argument should be a non empty iterable object.')
+        return [Item(data) for data in
+                self.get(f'questions/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+
     def get_info(self) -> Item:
         """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])  # here can't be `IndexError`

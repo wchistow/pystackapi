@@ -22,7 +22,7 @@
    + [X] `get_comments_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `answers/{ids}/comments`;
    + [X] `get_comments_on_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `articles/{ids}/comments`;
    + [ ] `get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/comments`;
-   + [ ] `get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/comments`;
+   + [X] `get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/comments`;
    + [X] `get_non_tag_based_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/name`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.

@@ -155,6 +155,12 @@ class Site:
         return [Item(data) for data in
                 self.get(f'articles/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
 
+    def get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the comments on a set of posts."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'posts/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+
     def get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of questions."""
         _check_iterable_is_not_empty(ids)

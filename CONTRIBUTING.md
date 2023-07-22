@@ -60,9 +60,9 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
    ```shell
    pystackapi$ python -m mypy ./src/
    ```
-4. Install requirements for running tests:
+4. Install requirement for running tests:
    ```shell
-   pystackapi$ pip install lest rich==13.4.2  # Rich is requirement of Lest
+   pystackapi$ pip install lest
    ```
 5. Run tests:
    ```shell
@@ -77,7 +77,7 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
 
 > Note #2: you can install all developer's requirements by this command:
 > ```shell
-> $ pip install mypy types-requests lest rich==13.4.2
+> $ pip install mypy types-requests lest
 > ```
 
 ---

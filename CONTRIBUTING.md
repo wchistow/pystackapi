@@ -4,7 +4,7 @@
 
 1. write tests (see [tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#tests-structure));
 2. implement necessary feature in the library;
-3. run MyPy and test (see about [running mypy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests));
+3. run MyPy, PyLint and test (see about [running MyPy, PyLint and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests));
 4. commit changes;
 5. push commit.
 
@@ -45,7 +45,7 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
 
 ---
 
-## [Running MyPy and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests)
+## [Running MyPy, PyLint and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests)
 
 1. Install requirements of library from file `requirements.txt`:
    ```shell
@@ -56,28 +56,36 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
    pystackapi$ pip install mypy
    pystackapi$ pip install types-requests
    ```
-3. Run, directly, MyPy:
+3. Run MyPy:
    ```shell
    pystackapi$ python -m mypy ./src/
    ```
-4. Install requirement for running tests:
+4. Install special requirements for running PyLint:
+   ```shell
+   pystackapi$ pip install pylint
+   ```
+5. Run PyLint:
+   ```shell
+   pystackapi$ python -m pylint ./src/
+   ```
+6. Install requirement for running tests:
    ```shell
    pystackapi$ pip install lest
    ```
-5. Run tests:
+7. Run tests:
    ```shell
    pystackapi$ cd tests
    pystackapi/tests$ python main.py
    ```
 
-> Note #1: if you already installed all requirements, you can run MyPy and tests by command
+> Note #1: if you already installed all requirements, you can run MyPy, PyLint and tests by command
 > ```shell
-> pystackapi$ python -m mypy ./src/; cd tests; python main.py
+> pystackapi$ python -m mypy ./src/; python -m pylint ./src/; cd tests; python main.py
 > ```
 
 > Note #2: you can install all developer's requirements by this command:
 > ```shell
-> $ pip install mypy types-requests lest
+> $ pip install mypy types-requests pylint lest
 > ```
 
 ---

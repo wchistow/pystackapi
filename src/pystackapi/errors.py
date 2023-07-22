@@ -1,5 +1,5 @@
 class BadArgumentsError(Exception):
-    ...
+    """Raises, when given arguments are invalid."""
 
 
 class HttpError(Exception):

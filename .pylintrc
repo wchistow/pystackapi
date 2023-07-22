@@ -1,0 +1,5 @@
+[MAIN]
+disable=invalid-name,
+        too-many-public-methods,
+        missing-timeout,
+        missing-module-docstring,

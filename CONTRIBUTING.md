@@ -47,7 +47,7 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
 
 ## [Running MyPy, PyLint and tests](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#running-mypy-and-tests)
 
-1. Install requirements of library from file `requirements.txt`:
+1. In first, install requirements of library from file `requirements.txt`:
    ```shell
    pystackapi$ pip install -r ./requirements.txt
    ``` 

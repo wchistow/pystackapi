@@ -24,9 +24,9 @@
    + [X] `get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/comments`;
    + [X] `get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/comments`;
    + [X] `get_non_tag_based_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/name`;
-   + [ ] `get_questions_on_answers(self, ids: list[int], **kwargs: Any) -> list[Item]` - API method `answers/{ids}/questions`;
+   + [X] `get_questions_on_answers(self, ids: list[int], **kwargs: Any) -> list[Item]` - API method `answers/{ids}/questions`;
    + [ ] `get_linked_in_articles(self, ids: list[int], **kwargs: Any) -> list[Item]` - API method `articles/{ids}/linked`;
-   + [ ] `get_questions_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/questions`;
+   + [X] `get_questions_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/questions`;
    + [ ] `get_answers_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
    + [ ] `get_tags_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
    + [ ] `get_users_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;

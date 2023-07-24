@@ -212,6 +212,19 @@ class Site:
         except IndexError:
             return None
 
+    def get_questions_on_answers(self, ids: list[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions on a set of answers."""
+        _check_iterable_is_not_empty(ids)
+        addition = ';'.join(map(str, ids))
+        return [Item(data) for data in self.get(f'answers/{addition}/questions', **kwargs)['items']]
+
+    def get_questions_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]:
+        """Returns the questions on a set of collectives."""
+        _check_iterable_is_not_empty(slugs, 'slugs')
+        addition = ';'.join(slugs)
+        return [Item(data)
+                for data in self.get(f'collectives/{addition}/questions', **kwargs)['items']]
+
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""
         addition = ';'.join(map(str, ids or []))

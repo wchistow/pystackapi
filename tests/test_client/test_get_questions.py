@@ -1,4 +1,6 @@
-"""Tests for `Site.get_questions` and `Site.get_question`."""
+"""
+Tests for `Site.get_questions`, `Site.get_question`,
+`Site.get_questions_on_answers` and `Site.get_questions_on_collectives`."""
 import lest
 
 from pystackapi import site as site_m
@@ -64,3 +66,39 @@ def test_get_question_with_no_data() -> None:
     lest.assert_true(res is None)
 
     requests.no_data = []
+
+
+# ---- tests for `Site.get_questions_on_answers` ----
+
+
+@lest.register
+def test_get_questions_on_answers_url() -> None:
+    site.get_questions_on_answers([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/answers/1;2/questions?site=stackoverflow')
+
+
+@lest.register
+def test_get_questions_on_answers_return_value() -> None:
+    res = site.get_questions_on_answers([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_questions_on_collectives` ----
+
+
+@lest.register
+def test_get_questions_on_collectives_url() -> None:
+    site.get_questions_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/collectives/co1;co2/questions?site=stackoverflow')
+
+
+@lest.register
+def test_get_questions_on_collectives_return_value() -> None:
+    res = site.get_questions_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(res, [Item({'id': 1})])

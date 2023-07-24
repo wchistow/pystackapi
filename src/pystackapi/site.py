@@ -54,7 +54,7 @@ class Site:
         Returns, if `ids` is set, all the undeleted answers in the system,
         else the set of answers identified by `ids`.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
     def get_answer(self, a_id: int, **kwargs: Any) -> Item | None:
@@ -72,7 +72,7 @@ class Site:
         Returns, if `ids` is set, all articles on the site,
         else the articles identified by `ids`.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
     def get_article(self, a_id: int, **kwargs: Any) -> Item | None:
@@ -95,7 +95,7 @@ class Site:
         constrained to a certain set of badges, else recently awarded badges in the system.
         """
         if ids is not None:
-            url = 'badges/' + ';'.join(map(str, ids)) + '/recipients'
+            url = 'badges/' + ';'.join(map(str, _check_iterable_arg(ids))) + '/recipients'
         else:
             url = 'badges/recipients'
         return [Item(data) for data in self.get(url, **kwargs)['items']]
@@ -113,7 +113,7 @@ class Site:
         Returns, if `slugs` is set, collectives in `slugs` found on the site,
         else, all collectives in the system.
         """
-        addition = ';'.join(map(str, slugs or []))
+        addition = ';'.join(map(str, _check_iterable_arg(slugs, arg_name='slugs')))
         return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
 
     def get_collective(self, slug: str, **kwargs: Any) -> Item | None:
@@ -131,7 +131,7 @@ class Site:
         Returns, if `ids` is set, the comments identified by `ids`,
         else, all comments on the site.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
 
     def get_comment(self, c_id: int, **kwargs: Any) -> Item | None:
@@ -183,7 +183,7 @@ class Site:
         Returns, if `ids` is set, the posts identified by `ids`,
         else, all posts on the site.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'posts/{addition}', **kwargs)['items']]
 
     def get_post(self, p_id: int, **kwargs: Any) -> Item | None:
@@ -205,7 +205,7 @@ class Site:
         Returns, if `ids` is set, all the undeleted questions in the system,
         else the set of questions identified by `ids`.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
     def get_question(self, q_id: int, **kwargs: Any) -> Item | None:
@@ -226,14 +226,14 @@ class Site:
 
     def get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of collectives."""
-        _check_iterable_is_not_empty(slugs, 'slugs')
+        _check_iterable_is_not_empty(slugs, arg_name='slugs')
         addition = ';'.join(slugs)
         return [Item(data)
                 for data in self.get(f'collectives/{addition}/questions', **kwargs)['items']]
 
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'revisions/{addition}', **kwargs)['items']]
 
     def search(self, **kwargs: Any) -> list[Item]:
@@ -262,7 +262,7 @@ class Site:
         Returns, if `ids` is set, the suggested edits identified by `ids`,
         else all suggested edits on the site.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'suggested-edits/{addition}', **kwargs)['items']]
 
     def get_tags(self, **kwargs: Any) -> list[Item]:
@@ -274,7 +274,7 @@ class Site:
         Returns, if `ids` is set, the users identified by `ids`,
         else all users on a site.
         """
-        addition = ';'.join(map(str, ids or []))
+        addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
     def get_user(self, uid: int, **kwargs: Any) -> Item | None:
@@ -288,15 +288,33 @@ class Site:
             return None
 
 
-def _check_iterable_is_not_empty(iterable: Iterable[Any],  # type: ignore[return]
+def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]
                                  arg_name: str = 'ids') -> None | NoReturn:
     """
     Raises `BadArgumentsError` with message
-    "`the \\`{arg_name}\\` argument should be a non-empty iterable object.`" if `iterable` is empty.
+    "`the \\`{arg_name}\\` argument can't be an empty iterable object.`" if `iterable` is empty.
 
     :param arg_name: argument name for error message. Default - `"ids"`.
     """
     if not iterable:
         raise BadArgumentsError(
-            f'the `{arg_name}` argument should be a non-empty iterable object.'
+            f'the `{arg_name}` argument can\'t be an empty iterable object.'
         )
+
+
+def _check_iterable_arg(iterable: Iterable | None, arg_name: str = 'ids') -> Iterable | NoReturn:
+    """
+    Raises `BadArgumentsError` with message
+    "`the \\`{arg_name}\\` argument should be a non-empty iterable object.`"
+    if `iterable` is empty, and it's not `None`.
+
+    If `iterable` is `None`, returns empty list (`[]`).
+
+    If `iterable` is not `None`, and it's not empty, returns `iterable`.
+
+    :param arg_name: argument name for error message. Default - `"ids"`.
+    """
+    if iterable is None:
+        return []
+    _check_iterable_is_not_empty(iterable, arg_name=arg_name)
+    return iterable

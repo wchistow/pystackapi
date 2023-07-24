@@ -172,7 +172,7 @@ class Site:
         """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
 
-    def get_linked_in_articles(self, ids: list[int], **kwargs: Any) -> list[Item]:
+    def get_linked_in_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the questions that are linked to the articles identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
@@ -218,13 +218,13 @@ class Site:
         except IndexError:
             return None
 
-    def get_questions_on_answers(self, ids: list[int], **kwargs: Any) -> list[Item]:
+    def get_questions_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of answers."""
         _check_iterable_is_not_empty(ids)
         addition = ';'.join(map(str, ids))
         return [Item(data) for data in self.get(f'answers/{addition}/questions', **kwargs)['items']]
 
-    def get_questions_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]:
+    def get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of collectives."""
         _check_iterable_is_not_empty(slugs, 'slugs')
         addition = ';'.join(slugs)

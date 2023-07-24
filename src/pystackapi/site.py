@@ -172,6 +172,12 @@ class Site:
         """Returns a collection of statistics about the site."""
         return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
 
+    def get_linked_in_articles(self, ids: list[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions that are linked to the articles identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'articles/{";".join(map(str, ids))}/linked', **kwargs)['items']]
+
     def get_posts(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the posts identified by `ids`,

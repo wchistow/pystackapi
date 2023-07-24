@@ -30,6 +30,8 @@
    + [ ] `get_answers_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
    + [ ] `get_tags_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
    + [ ] `get_users_on_collectives(self, slugs: list[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
+   + [ ] `get_revisions_on_posts(self, ids: list[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
+   + [ ] `get_suggested_edits_on_posts(self, ids: list[int], **kwargs: Any) -> list[item]` - API method `posts/{ids}/suggested-edits`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

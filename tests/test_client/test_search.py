@@ -24,7 +24,7 @@ def test_search_url() -> None:
     site.search(tagged='python')
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/'
-                                 f'?site=stackoverflow&tagged=python')
+                                 '?site=stackoverflow&tagged=python')
 
 
 @lest.register
@@ -48,7 +48,7 @@ def test_advanced_search_url() -> None:
     site.advanced_search()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/advanced/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

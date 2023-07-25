@@ -20,7 +20,7 @@ def test_get_articles_without_ids_url() -> None:
     site.get_articles()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/articles/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -28,7 +28,7 @@ def test_get_articles_with_ids_url() -> None:
     site.get_articles([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/articles/1;2'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -43,7 +43,7 @@ def test_get_article_url() -> None:
     site.get_article(1)
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/articles/1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

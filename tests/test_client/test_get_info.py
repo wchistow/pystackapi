@@ -20,7 +20,7 @@ def test_get_info_url() -> None:
     site.get_info()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/info/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

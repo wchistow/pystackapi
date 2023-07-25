@@ -20,7 +20,7 @@ def test_get_users_without_ids_url() -> None:
     site.get_users()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/users/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -28,7 +28,7 @@ def test_get_users_with_ids_url() -> None:
     site.get_users([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/users/1;2'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -43,7 +43,7 @@ def test_get_user_url() -> None:
     site.get_user(1)
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/users/1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

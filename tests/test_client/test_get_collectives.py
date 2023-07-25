@@ -20,7 +20,7 @@ def test_get_collectives_without_slugs_url() -> None:
     site.get_collectives()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -28,7 +28,7 @@ def test_get_collectives_with_slugs_url() -> None:
     site.get_collectives(['co1', 'co2'])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/co1;co2'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -43,7 +43,7 @@ def test_get_collective_url() -> None:
     site.get_collective('co1')
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/collectives/co1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

@@ -20,7 +20,7 @@ def test_get_answers_without_ids_url() -> None:
     site.get_answers()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -28,7 +28,7 @@ def test_get_answers_with_ids_url() -> None:
     site.get_answers([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1;2'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -43,7 +43,7 @@ def test_get_answer_url() -> None:
     site.get_answer(1)
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

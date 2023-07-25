@@ -20,7 +20,7 @@ def test_get_comments_without_ids_url() -> None:
     site.get_comments()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/comments/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -28,7 +28,7 @@ def test_get_comments_with_ids_url() -> None:
     site.get_comments([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/comments/1;2'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -43,7 +43,7 @@ def test_get_comment_url() -> None:
     site.get_comment(1)
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/comments/1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -74,7 +74,7 @@ def test_get_comments_on_answers_url() -> None:
     site.get_comments_on_answers([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/answers/1;2/'
-                                 f'comments/?site=stackoverflow')
+                                 'comments/?site=stackoverflow')
 
 
 @lest.register
@@ -92,7 +92,7 @@ def test_get_comments_on_articles_url() -> None:
     site.get_comments_on_articles([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/articles/1;2/'
-                                 f'comments/?site=stackoverflow')
+                                 'comments/?site=stackoverflow')
 
 
 @lest.register
@@ -110,7 +110,7 @@ def test_get_comments_on_questions_url() -> None:
     site.get_comments_on_questions([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/questions/1;2/'
-                                 f'comments/?site=stackoverflow')
+                                 'comments/?site=stackoverflow')
 
 
 @lest.register
@@ -128,7 +128,7 @@ def test_get_comments_on_posts_url() -> None:
     site.get_comments_on_posts([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/posts/1;2/'
-                                 f'comments/?site=stackoverflow')
+                                 'comments/?site=stackoverflow')
 
 
 @lest.register

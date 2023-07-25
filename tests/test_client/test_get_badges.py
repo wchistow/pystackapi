@@ -23,7 +23,7 @@ def test_get_badges_url() -> None:
     site.get_badges()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -41,7 +41,7 @@ def test_get_badges_recipients_without_ids_url() -> None:
     site.get_badges_recipients()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/recipients'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -49,7 +49,7 @@ def test_get_badges_recipients_with_ids_url() -> None:
     site.get_badges_recipients([1, 2])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/1;2/'
-                                 f'recipients?site=stackoverflow')
+                                 'recipients?site=stackoverflow')
 
 
 @lest.register
@@ -67,7 +67,7 @@ def test_get_tag_based_badges_url() -> None:
     site.get_tag_based_badges()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/tags'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register
@@ -85,7 +85,7 @@ def test_get_non_tag_based_badges_url() -> None:
     site.get_non_tag_based_badges()
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/name'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

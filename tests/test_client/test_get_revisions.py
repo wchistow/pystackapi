@@ -20,7 +20,7 @@ def test_get_revisions_url() -> None:
     site.get_revisions([1])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/revisions/1'
-                                 f'?site=stackoverflow')
+                                 '?site=stackoverflow')
 
 
 @lest.register

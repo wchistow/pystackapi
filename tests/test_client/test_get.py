@@ -31,7 +31,7 @@ def test_get_with_kwargs_url() -> None:
     site.get('ghgh/', arg1='hello')
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
-                                 f'?site=stackoverflow&arg1=hello')
+                                 '?site=stackoverflow&arg1=hello')
 
 
 @lest.register
@@ -50,7 +50,7 @@ def test_get_with_app_key_url() -> None:
     l_site.get('ghgh/')
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
-                                 f'?site=stackoverflow&key=someappkey')
+                                 '?site=stackoverflow&key=someappkey')
 
 
 @lest.register

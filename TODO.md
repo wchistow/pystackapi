@@ -28,7 +28,7 @@
    + [X] `get_linked_in_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `articles/{ids}/linked`;
    + [X] `get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/questions`;
    + [X] `get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
-   + [ ] `get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
+   + [X] `get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
    + [ ] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
    + [ ] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
    + [ ] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[item]` - API method `posts/{ids}/suggested-edits`;

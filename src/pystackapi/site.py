@@ -67,6 +67,12 @@ class Site:
         except IndexError:
             return None
 
+    def get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
+        """Returns answers belonging to collectives in `slugs` found on the site."""
+        _check_iterable_is_not_empty(slugs, arg_name='slugs')
+        return [Item(data)
+                for data in self.get(f'collectives/{";".join(slugs)}/answers', **kwargs)['items']]
+
     def get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all articles on the site,

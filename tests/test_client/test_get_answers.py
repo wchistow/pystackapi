@@ -1,4 +1,4 @@
-"""Tests for `Site.get_answers` and `Site.get_answer`."""
+"""Tests for `Site.get_answers`, `Site.get_answer` and `Site.get_answers_on_collectives`."""
 import lest
 
 from pystackapi import site as site_m
@@ -62,3 +62,22 @@ def test_get_answer_with_no_data() -> None:
     lest.assert_true(res is None)
 
     requests.no_data = []
+
+
+# ---- tests for `Site.get_answers_on_collectives` ----
+
+
+@lest.register
+def test_get_answers_on_collectives_url() -> None:
+    site.get_answers_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/collectives/co1;co2/answers?site=stackoverflow')
+
+
+
+@lest.register
+def test_get_answers_on_collectives_return_value() -> None:
+    res = site.get_answers_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(res, [Item({'id': 1})])

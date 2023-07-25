@@ -29,7 +29,7 @@
    + [X] `get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/questions`;
    + [X] `get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
    + [X] `get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
-   + [ ] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
+   + [X] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
    + [ ] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
    + [ ] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[item]` - API method `posts/{ids}/suggested-edits`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;

@@ -32,6 +32,13 @@
    + [X] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
    + [ ] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
    + [ ] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[item]` - API method `posts/{ids}/suggested-edits`;
+   + [ ] `get_answers_on_questions(eslf, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/answers`;
+   + [ ] `get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/linked`;
+   + [ ] `get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/related`;
+   + [ ] `get_timelines_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/timeline`;
+   + [ ] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
+   + [ ] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
+   + [ ] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

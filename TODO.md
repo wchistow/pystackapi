@@ -30,8 +30,8 @@
    + [X] `get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
    + [X] `get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
    + [X] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
-   + [ ] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
-   + [ ] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[item]` - API method `posts/{ids}/suggested-edits`;
+   + [X] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
+   + [X] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/suggested-edits`;
    + [ ] `get_answers_on_questions(eslf, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/answers`;
    + [ ] `get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/linked`;
    + [ ] `get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/related`;

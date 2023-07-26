@@ -242,6 +242,14 @@ class Site:
         addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'revisions/{addition}', **kwargs)['items']]
 
+    def get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns revisions on the set of posts, identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data)
+                for data in self.get(f'posts/{";".join(map(str, ids))}/revisions',
+                                     **kwargs)['items']
+                ]
+
     def search(self, **kwargs: Any) -> list[Item]:
         """
         Searches a site for any questions which fit the given criteria.
@@ -270,6 +278,14 @@ class Site:
         """
         addition = ';'.join(map(str, _check_iterable_arg(ids)))
         return [Item(data) for data in self.get(f'suggested-edits/{addition}', **kwargs)['items']]
+
+    def get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns suggested edits on the set of posts, identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data)
+                for data in self.get(f'posts/{";".join(map(str, ids))}/suggested-edits',
+                                     **kwargs)['items']
+                ]
 
     def get_tags(self, **kwargs: Any) -> list[Item]:
         """Returns all tags in the system."""

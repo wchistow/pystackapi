@@ -1,4 +1,7 @@
-"""Tests for `Site.get_answers`, `Site.get_answer` and `Site.get_answers_on_collectives`."""
+"""
+Tests for `Site.get_answers`, `Site.get_answer`,
+`Site.get_answers_on_collectives` and `Site.get_answers_on_questions`.
+"""
 import lest
 
 from pystackapi import site as site_m
@@ -75,9 +78,26 @@ def test_get_answers_on_collectives_url() -> None:
                                  '/collectives/co1;co2/answers?site=stackoverflow')
 
 
-
 @lest.register
 def test_get_answers_on_collectives_return_value() -> None:
     res = site.get_answers_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_answers_on_questions` ----
+
+
+@lest.register
+def test_get_answers_on_questions_url() -> None:
+    site.get_answers_on_questions([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'questions/1;2/answers?site=stackoverflow')
+
+
+@lest.register
+def test_get_answers_on_questions_return_value() -> None:
+    res = site.get_answers_on_questions([1, 2])
 
     lest.assert_eq(res, [Item({'id': 1})])

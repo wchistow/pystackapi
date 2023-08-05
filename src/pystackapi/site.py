@@ -73,6 +73,12 @@ class Site:
         return [Item(data)
                 for data in self.get(f'collectives/{";".join(slugs)}/answers', **kwargs)['items']]
 
+    def get_answers_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the answers to a set of questions identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'questions/{";".join(map(str, ids))}/answers', **kwargs)['items']]
+
     def get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all articles on the site,
@@ -184,6 +190,12 @@ class Site:
         return [Item(data) for data in
                 self.get(f'articles/{";".join(map(str, ids))}/linked', **kwargs)['items']]
 
+    def get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns questions which link to those questions identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'questions/{";".join(map(str, ids))}/linked', **kwargs)['items']]
+
     def get_posts(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the posts identified by `ids`,
@@ -236,6 +248,12 @@ class Site:
         addition = ';'.join(slugs)
         return [Item(data)
                 for data in self.get(f'collectives/{addition}/questions', **kwargs)['items']]
+
+    def get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns questions that the site considers related to those identified by `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'questions/{";".join(map(str, ids))}/related', **kwargs)['items']]
 
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""

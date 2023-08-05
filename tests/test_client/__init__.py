@@ -21,6 +21,7 @@ from . import test_get_privileges
 from . import test_search
 from . import test_get_suggested_edits
 from . import test_get_questions
+from . import test_get_related
 from . import test_get_revisions
 from . import test_get_tags
 from . import test_get_users

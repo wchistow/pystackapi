@@ -39,6 +39,15 @@
    + [ ] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
    + [ ] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
    + [ ] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
+   + [ ] `get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/info`;
+   + [ ] `get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/faq`;
+   + [ ] `get_moderator_only_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/moderator-only`;
+   + [ ] `get_required_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/required`;
+   + [ ] `get_tags_synonyms(self, tags: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `tags/synonyms` and `tags/{tags}/synonyms`;
+   + [ ] `get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> None` - API method `tags/{tags}/related`;
+   + [ ] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
+   + [ ] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
+   + [ ] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

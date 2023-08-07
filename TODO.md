@@ -35,7 +35,7 @@
    + [X] `get_answers_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/answers`;
    + [X] `get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/linked`;
    + [X] `get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/related`;
-   + [ ] `get_timelines_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/timeline`;
+   + [X] `get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/timeline`;
    + [ ] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
    + [ ] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
    + [ ] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;

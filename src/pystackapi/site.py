@@ -315,6 +315,14 @@ class Site:
         return [Item(data)
                 for data in self.get(f'collectives/{";".join(slugs)}/tags', **kwargs)['items']]
 
+    def get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """
+        Returns a subset of the events that have happened to the questions identified by `ids`.
+        """
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'questions/{";".join(map(str, ids))}/timeline', **kwargs)['items']]
+
     def get_users(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the users identified by `ids`,

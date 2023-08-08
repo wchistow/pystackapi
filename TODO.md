@@ -36,9 +36,9 @@
    + [X] `get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/linked`;
    + [X] `get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/related`;
    + [X] `get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/timeline`;
-   + [ ] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
-   + [ ] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
-   + [ ] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
+   + [X] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
+   + [X] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
+   + [X] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
    + [ ] `get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/info`;
    + [ ] `get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/faq`;
    + [ ] `get_moderator_only_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/moderator-only`;

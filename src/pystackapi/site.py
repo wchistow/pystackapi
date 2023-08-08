@@ -242,6 +242,10 @@ class Site:
         addition = ';'.join(map(str, ids))
         return [Item(data) for data in self.get(f'answers/{addition}/questions', **kwargs)['items']]
 
+    def get_bountied_questions(self, **kwargs: Any) -> list[Item]:
+        """Returns all the questions with active bounties in the system."""
+        return [Item(data) for data in self.get('questions/featured', **kwargs)['items']]
+
     def get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of collectives."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
@@ -249,11 +253,19 @@ class Site:
         return [Item(data)
                 for data in self.get(f'collectives/{addition}/questions', **kwargs)['items']]
 
+    def get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]:
+        """Returns questions which have received no answers."""
+        return [Item(data) for data in self.get('questions/no-answers', **kwargs)['items']]
+
     def get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns questions that the site considers related to those identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
                 self.get(f'questions/{";".join(map(str, ids))}/related', **kwargs)['items']]
+
+    def get_unanswered_questions(self, **kwargs: Any) -> list[Item]:
+        """Returns questions the site considers to be unanswered."""
+        return [Item(data) for data in self.get('questions/unanswered', **kwargs)['items']]
 
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""

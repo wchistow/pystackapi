@@ -327,6 +327,22 @@ class Site:
         return [Item(data)
                 for data in self.get(f'collectives/{";".join(slugs)}/tags', **kwargs)['items']]
 
+    def get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
+        """Returns tags' info from the `tags` found on the site."""
+        _check_iterable_is_not_empty(tags, arg_name='tags')
+        return [Item(data) for data in
+                self.get(f'tags/{";".join(tags)}/info', **kwargs)['items']]
+
+    def get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
+        """Returns the frequently asked questions for the given set of tags in `tags`."""
+        _check_iterable_is_not_empty(tags, arg_name='tags')
+        return [Item(data) for data in
+                self.get(f'tags/{";".join(tags)}/faq', **kwargs)['items']]
+
+    def get_moderator_only_tags(self, **kwargs: Any) -> list[Item]:
+        """Returns the tags found on a site that only moderators can use."""
+        return [Item(data) for data in self.get('tags/moderator-only', **kwargs)['items']]
+
     def get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """
         Returns a subset of the events that have happened to the questions identified by `ids`.

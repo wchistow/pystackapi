@@ -39,9 +39,9 @@
    + [X] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
    + [X] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
    + [X] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
-   + [ ] `get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/info`;
-   + [ ] `get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/faq`;
-   + [ ] `get_moderator_only_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/moderator-only`;
+   + [X] `get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/info`;
+   + [X] `get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/faq`;
+   + [X] `get_moderator_only_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/moderator-only`;
    + [ ] `get_required_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/required`;
    + [ ] `get_tags_synonyms(self, tags: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `tags/synonyms` and `tags/{tags}/synonyms`;
    + [ ] `get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> None` - API method `tags/{tags}/related`;

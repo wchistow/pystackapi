@@ -45,9 +45,9 @@
    + [X] `get_required_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/required`;
    + [X] `get_tags_synonyms(self, tags: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `tags/synonyms` and `tags/{tags}/synonyms`;
    + [X] `get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/related`;
-   + [ ] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
-   + [ ] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
-   + [ ] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
+   + [X] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
+   + [X] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
+   + [X] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

@@ -321,6 +321,31 @@ class Site:
         """Returns all tags in the system."""
         return [Item(data) for data in self.get('tags/', **kwargs)['items']]
 
+    def get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any)\
+            -> list[Item] | NoReturn:
+        """
+        Returns the top 20 answerers active in a given `tag`,
+        of either all-time or the last 30 days.
+        """
+        _check_period_value(period)
+        return [Item(data) for data in
+                self.get(f'tags/{tag}/top-answerers/{period}', **kwargs)['items']]
+
+    def get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any)\
+            -> list[Item] | NoReturn:
+        """
+        Returns the top 20 askers active in a given `tag`, of either all-time or the last 30 days.
+        """
+        _check_period_value(period)
+        return [Item(data) for data in
+                self.get(f'tags/{tag}/top-askers/{period}', **kwargs)['items']]
+
+    def get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
+        """Returns the wikis that go with the given set of tags in `tags`."""
+        _check_iterable_is_not_empty(tags, arg_name='tags')
+        return [Item(data)
+                for data in self.get(f'tags/{";".join(tags)}/wikis', **kwargs)['items']]
+
     def get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns tags belonging to collectives in `slugs` found on the site."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
@@ -427,3 +452,11 @@ def _check_iterable_arg(iterable: Iterable | None, arg_name: str = 'ids') -> Ite
         return []
     _check_iterable_is_not_empty(iterable, arg_name=arg_name)
     return iterable
+
+
+def _check_period_value(value: str) -> None | NoReturn:  # type: ignore[return]
+    if value not in ('all_time', 'month'):
+        raise BadArgumentsError(
+            'the `period` arguments should be one of `\'all_time\'` and `\'month\'`,'
+            f' but not `\'{value}\'`'
+        )

@@ -3,7 +3,9 @@ Tests for
 `Site.get_tags`, `Site.get_tags_on_collectives`,
 `Site.get_tags_info`, `Site.get_tags_faq`,
 `Site.get_moderator_only_tags`, `Site.get_required_tags`,
-`Site.get_tags_synonyms` and `Site.get_related_tags`.
+`Site.get_tags_synonyms`, `Site.get_related_tags`,
+`Site.get_top_answerers_on_tag`, `Site.get_top_askers_on_tag` and
+`Site.get_tags_wikis`.
 """
 import lest
 
@@ -166,5 +168,59 @@ def test_get_related_tags_url() -> None:
 @lest.register
 def test_get_related_tags_return_value() -> None:
     res = site.get_related_tags(['python', 'pandas'])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_top_answerers_on_tag` ----
+
+
+@lest.register
+def test_get_top_answerers_on_tag_url() -> None:
+    site.get_top_answerers_on_tag('python', period='month')
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/python/top-answerers/month?site=stackoverflow')
+
+
+@lest.register
+def test_get_top_answerers_on_tag_return_value() -> None:
+    res = site.get_top_answerers_on_tag('python', period='month')
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_top_askers_on_tag` ----
+
+
+@lest.register
+def test_get_top_askers_on_tag_url() -> None:
+    site.get_top_askers_on_tag('python', period='month')
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/python/top-askers/month?site=stackoverflow')
+
+
+@lest.register
+def test_get_top_askers_on_tag_return_value() -> None:
+    res = site.get_top_askers_on_tag('python', period='month')
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_tags_wikis` ----
+
+
+@lest.register
+def test_get_tags_wikis_url() -> None:
+    site.get_tags_wikis(['python', 'pandas'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/python;pandas/wikis?site=stackoverflow')
+
+
+@lest.register
+def test_get_tags_wikis_return_value() -> None:
+    res = site.get_tags_wikis(['python', 'pandas'])
 
     lest.assert_eq(res, [Item({'id': 1})])

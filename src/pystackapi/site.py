@@ -343,6 +343,27 @@ class Site:
         """Returns the tags found on a site that only moderators can use."""
         return [Item(data) for data in self.get('tags/moderator-only', **kwargs)['items']]
 
+    def get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
+        """Returns the tags that are most related to those in `tags`."""
+        _check_iterable_is_not_empty(tags, arg_name='tags')
+        return [Item(data) for data in
+                self.get(f'tags/{";".join(tags)}/related', **kwargs)['items']]
+
+    def get_required_tags(self, **kwargs: Any) -> list[Item]:
+        """Returns the tags found on a site that fulfill required tag constraints on questions."""
+        return [Item(data) for data in self.get('tags/required', **kwargs)['items']]
+
+    def get_tags_synonyms(self, tags: Iterable[str] | None = None, **kwargs: Any) -> list[Item]:
+        """
+        Returns, if `tags` is set, all the synonyms that point to the tags identified in `tags`,
+        else all tag synonyms found on the site.
+        """
+        if tags is not None:
+            url = f'tags/{";".join(map(str, _check_iterable_arg(tags, arg_name="tags")))}/synonyms'
+        else:
+            url = 'tags/synonyms'
+        return [Item(data) for data in self.get(url, **kwargs)['items']]
+
     def get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """
         Returns a subset of the events that have happened to the questions identified by `ids`.

@@ -1,8 +1,9 @@
 """
 Tests for
 `Site.get_tags`, `Site.get_tags_on_collectives`,
-`Site.get_tags_info`, `Site.get_tags_faq` and
-`Site.get_moderator_only_tags`.
+`Site.get_tags_info`, `Site.get_tags_faq`,
+`Site.get_moderator_only_tags`, `Site.get_required_tags`,
+`Site.get_tags_synonyms` and `Site.get_related_tags`.
 """
 import lest
 
@@ -103,5 +104,67 @@ def test_get_moderator_only_tags_url() -> None:
 @lest.register
 def test_get_moderator_only_tags_return_value() -> None:
     res = site.get_moderator_only_tags()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_required_tags` ----
+
+
+@lest.register
+def test_get_required_tags_url() -> None:
+    site.get_required_tags()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/required?site=stackoverflow')
+
+
+@lest.register
+def test_get_required_tags_return_value() -> None:
+    res = site.get_required_tags()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_required_tags` ----
+
+
+@lest.register
+def test_get_tags_synonyms_without_tags_url() -> None:
+    site.get_tags_synonyms()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/synonyms?site=stackoverflow')
+
+
+@lest.register
+def test_get_tags_synonyms_with_tags_url() -> None:
+    site.get_tags_synonyms(['python', 'pandas'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/python;pandas/synonyms?site=stackoverflow')
+
+
+@lest.register
+def test_get_required_tags_return_value() -> None:
+    res = site.get_required_tags()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_required_tags` ----
+
+
+@lest.register
+def test_get_related_tags_url() -> None:
+    site.get_related_tags(['python', 'pandas'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags/python;pandas/related?site=stackoverflow')
+
+
+@lest.register
+def test_get_related_tags_return_value() -> None:
+    res = site.get_related_tags(['python', 'pandas'])
 
     lest.assert_eq(res, [Item({'id': 1})])

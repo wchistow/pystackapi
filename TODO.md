@@ -48,6 +48,31 @@
    + [X] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
    + [X] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
    + [X] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
+   + [ ] `get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/answers`;
+   + [ ] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
+   + [ ] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
+   + [ ] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
+   + [ ] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
+   + [ ] `get_users_mentiones(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
+   + [ ] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;
+   + [ ] `get_users_privileges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/privileges`;
+   + [ ] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;
+   + [ ] `get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/featured`;
+   + [ ] `get_users_unanswered_questions(self, ids: Iteralbe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;
+   + [ ] `get_users_unaccepted_questions(self, ids: Iteralbe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unaccepted`;
+   + [ ] `get_users_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/no-answers`;
+   + [ ] `get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation`;
+   + [ ] `get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation-history`;
+   + [ ] `get_users_suggested_edits(self, ids: Iterabe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/suggested-edits`;
+   + [ ] `get_users_tags(self, ids: Iterabe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags`;
+   + [ ] `get_users_top_answers_on_tags(self, ids: Iterable[int], tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags/{tags}/top-answers`;
+   + [ ] `get_users_top_questions_on_tags(self, ids: Iterable[int], tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags/{tags}/top-questions`;
+   + [ ] `get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/timeline`;
+   + [ ] `get_user_top_answers_tags(self, id: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-answer-tags`;
+   + [ ] `get_user_top_questions_tags(self, id: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-questions-tags`;
+   + [ ] `get_user_top_tags(self, id: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-tags`;
+   + [ ] `get_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators`;
+   + [ ] `get_elected_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators/elected`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
 

@@ -48,8 +48,8 @@
    + [X] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
    + [X] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
    + [X] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
-   + [ ] `get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/answers`;
-   + [ ] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
+   + [X] `get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/answers`;
+   + [X] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
    + [ ] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
    + [ ] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
    + [ ] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;

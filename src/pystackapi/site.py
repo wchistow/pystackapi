@@ -415,6 +415,18 @@ class Site:
         except IndexError:
             return None
 
+    def get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the answers the users in `ids` have posted."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/answers', **kwargs)['items']]
+
+    def get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the badges the users in `ids` have earned."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/badges', **kwargs)['items']]
+
     def get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns users belonging to collectives in `slugs` found on the site."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')

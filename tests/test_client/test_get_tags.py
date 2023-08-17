@@ -23,6 +23,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_tags` ----
+
+
 @lest.register
 def test_get_tags_url() -> None:
     site.get_tags()

@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_linked_in_articles` ----
+
+
 @lest.register
 def test_get_linked_in_articles_url() -> None:
     site.get_linked_in_articles([1, 2])

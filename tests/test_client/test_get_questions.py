@@ -21,6 +21,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_questions` ----
+
+
 @lest.register
 def test_get_questions_without_ids_url() -> None:
     site.get_questions()
@@ -42,6 +45,9 @@ def test_get_questions_return_value() -> None:
     res = site.get_questions()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_question` ----
 
 
 @lest.register

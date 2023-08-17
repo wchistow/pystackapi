@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_suggested_edits` ----
+
+
 @lest.register
 def test_get_suggested_edits_without_ids_url() -> None:
     site.get_suggested_edits()

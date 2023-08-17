@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_comments` ----
+
+
 @lest.register
 def test_get_comments_without_ids_url() -> None:
     site.get_comments()
@@ -36,6 +39,9 @@ def test_get_comments_return_value() -> None:
     res = site.get_comments()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_comment` ----
 
 
 @lest.register

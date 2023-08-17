@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_articles` ----
+
+
 @lest.register
 def test_get_articles_without_ids_url() -> None:
     site.get_articles()
@@ -36,6 +39,9 @@ def test_get_articles_return_value() -> None:
     res = site.get_articles()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_article` ----
 
 
 @lest.register

@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_users` ----
+
+
 @lest.register
 def test_get_users_without_ids_url() -> None:
     site.get_users()
@@ -36,6 +39,9 @@ def test_get_users_return_value() -> None:
     res = site.get_users()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_user` ----
 
 
 @lest.register

@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_collectives` ----
+
+
 @lest.register
 def test_get_collectives_without_slugs_url() -> None:
     site.get_collectives()
@@ -36,6 +39,9 @@ def test_get_collectives_return_value() -> None:
     res = site.get_collectives()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_collective` ----
 
 
 @lest.register

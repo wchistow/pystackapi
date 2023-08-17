@@ -15,6 +15,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Site.get_revisions` ----
+
+
 @lest.register
 def test_get_revisions_url() -> None:
     site.get_revisions([1])

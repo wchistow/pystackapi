@@ -24,8 +24,8 @@ def reset_requests() -> None:
 def test_get_badges_url() -> None:
     site.get_badges()
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/badges/'
-                                 '?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/badges?site=stackoverflow')
 
 
 @lest.register

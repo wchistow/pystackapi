@@ -23,8 +23,8 @@ def reset_requests() -> None:
 def test_search_url() -> None:
     site.search(tagged='python')
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/'
-                                 '?site=stackoverflow&tagged=python')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/search?site=stackoverflow&tagged=python')
 
 
 @lest.register
@@ -47,8 +47,8 @@ def test_search_return_value() -> None:
 def test_advanced_search_url() -> None:
     site.advanced_search()
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/search/advanced/'
-                                 '?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/search/advanced?site=stackoverflow')
 
 
 @lest.register
@@ -65,8 +65,8 @@ def test_advanced_search_return_value() -> None:
 def test_get_similar_url() -> None:
     site.get_similar('some_title')
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/similar/'
-                                 '?site=stackoverflow&title=some_title')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/similar?site=stackoverflow&title=some_title')
 
 
 @lest.register

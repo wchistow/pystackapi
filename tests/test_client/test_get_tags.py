@@ -30,8 +30,8 @@ def reset_requests() -> None:
 def test_get_tags_url() -> None:
     site.get_tags()
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/tags/'
-                                 '?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/tags?site=stackoverflow')
 
 
 @lest.register

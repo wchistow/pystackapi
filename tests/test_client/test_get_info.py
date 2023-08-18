@@ -19,8 +19,8 @@ def reset_requests() -> None:
 def test_get_info_url() -> None:
     site.get_info()
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/info/'
-                                 '?site=stackoverflow')
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/info?site=stackoverflow')
 
 
 @lest.register

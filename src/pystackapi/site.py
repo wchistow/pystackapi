@@ -99,7 +99,7 @@ class Site:
 
     def get_badges(self, **kwargs: Any) -> list[Item]:
         """Returns all badges in the system."""
-        return [Item(data) for data in self.get('badges/', **kwargs)['items']]
+        return [Item(data) for data in self.get('badges', **kwargs)['items']]
 
     def get_badges_recipients(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
@@ -160,29 +160,29 @@ class Site:
         """Returns the comments on a set of answers."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'answers/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+                self.get(f'answers/{";".join(map(str, ids))}/comments', **kwargs)['items']]
 
     def get_comments_on_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of articles."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'articles/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+                self.get(f'articles/{";".join(map(str, ids))}/comments', **kwargs)['items']]
 
     def get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of posts."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'posts/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+                self.get(f'posts/{";".join(map(str, ids))}/comments', **kwargs)['items']]
 
     def get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of questions."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/comments/', **kwargs)['items']]
+                self.get(f'questions/{";".join(map(str, ids))}/comments', **kwargs)['items']]
 
     def get_info(self) -> Item:
         """Returns a collection of statistics about the site."""
-        return Item(self.get('info/')['items'][0])  # here can't be `IndexError`
+        return Item(self.get('info')['items'][0])  # here can't be `IndexError`
 
     def get_linked_in_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the questions that are linked to the articles identified by `ids`."""
@@ -216,7 +216,7 @@ class Site:
 
     def get_privileges(self, **kwargs: Any) -> list[Item]:
         """Returns the earnable privileges on a site."""
-        return [Item(data) for data in self.get('privileges/', **kwargs)['items']]
+        return [Item(data) for data in self.get('privileges', **kwargs)['items']]
 
     def get_questions(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
@@ -288,18 +288,18 @@ class Site:
         if 'tagged' not in kwargs and 'intitle' not in kwargs:
             raise BadArgumentsError('one of `tagged` or `intitle` keyword arguments must be set.')
 
-        return [Item(data) for data in self.get('search/', **kwargs)['items']]
+        return [Item(data) for data in self.get('search', **kwargs)['items']]
 
     def advanced_search(self, **kwargs: Any) -> list[Item]:
         """Searches a site for any questions which fit the given criteria."""
-        return [Item(data) for data in self.get('search/advanced/', **kwargs)['items']]
+        return [Item(data) for data in self.get('search/advanced', **kwargs)['items']]
 
     def get_similar(self, title: str, **kwargs: Any) -> list[Item]:
         """
         Returns questions which are similar to a hypothetical one based
         on a title and tag combination.
         """
-        return [Item(data) for data in self.get('similar/', title=title, **kwargs)['items']]
+        return [Item(data) for data in self.get('similar', title=title, **kwargs)['items']]
 
     def get_suggested_edits(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
@@ -319,7 +319,7 @@ class Site:
 
     def get_tags(self, **kwargs: Any) -> list[Item]:
         """Returns all tags in the system."""
-        return [Item(data) for data in self.get('tags/', **kwargs)['items']]
+        return [Item(data) for data in self.get('tags', **kwargs)['items']]
 
     def get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any)\
             -> list[Item] | NoReturn:

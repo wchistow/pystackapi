@@ -1,4 +1,9 @@
-"""Tests for `Site.get_comments`, `Site.get_comment` and `Site.get_comments_on_*`."""
+"""
+Tests for `Site.get_comments`, `Site.get_comment`,
+`Site.get_comments_on_answers`, `Site.get_comments_on_articles`,
+`Site.get_comments_on_questions`, `Site.get_comments_on_posts`,
+`Site.get_users_comments` and `Site.get_users_comments_to`.
+"""
 import lest
 
 from pystackapi import site as site_m
@@ -140,5 +145,41 @@ def test_get_comments_on_posts_url() -> None:
 @lest.register
 def test_get_comments_on_posts_return_value() -> None:
     res = site.get_comments_on_posts([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_comments` ----
+
+
+@lest.register
+def test_get_users_comments_url() -> None:
+    site.get_users_comments([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/users/1;2/'
+                                 'comments?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_comments_return_value() -> None:
+    res = site.get_users_comments([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_comments_to` ----
+
+
+@lest.register
+def test_get_users_comments_to_url() -> None:
+    site.get_users_comments_to([1, 2], 3)
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/users/1;2/'
+                                 'comments/3?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_comments_to_return_value() -> None:
+    res = site.get_users_comments_to([1, 2], 3)
 
     lest.assert_eq(res, [Item({'id': 1})])

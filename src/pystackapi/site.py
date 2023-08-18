@@ -433,6 +433,23 @@ class Site:
         return [Item(data)
                 for data in self.get(f'collectives/{";".join(slugs)}/users', **kwargs)['items']]
 
+    def get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the comments posted by users in `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+
+    def get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]:
+        """
+        Returns the comments that the users in `ids` have posted in reply
+        to the single user identified in `toid`.
+        """
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/comments/{toid}',
+                         **kwargs)['items']
+                ]
+
 
 def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]
                                  arg_name: str = 'ids') -> None | NoReturn:

@@ -50,8 +50,8 @@
    + [X] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
    + [X] `get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/answers`;
    + [X] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
-   + [ ] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
-   + [ ] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
+   + [X] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
+   + [X] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
    + [ ] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
    + [ ] `get_users_mentiones(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
    + [ ] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;

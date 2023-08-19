@@ -202,7 +202,8 @@ class Site:
         else, all posts on the site.
         """
         addition = ';'.join(map(str, _check_iterable_arg(ids)))
-        return [Item(data) for data in self.get(f'posts/{addition}', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'posts{"/" if addition else ""}{addition}', **kwargs)['items']]
 
     def get_post(self, p_id: int, **kwargs: Any) -> Item | None:
         """

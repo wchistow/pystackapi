@@ -22,7 +22,7 @@ def reset_requests() -> None:
 def test_get_posts_without_ids_url() -> None:
     site.get_posts()
 
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/posts/'
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/posts'
                                  '?site=stackoverflow')
 
 

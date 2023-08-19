@@ -52,8 +52,8 @@
    + [X] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
    + [X] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
    + [X] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
-   + [ ] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
-   + [ ] `get_users_mentiones(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
+   + [X] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
+   + [X] `get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
    + [ ] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;
    + [ ] `get_users_privileges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/privileges`;
    + [ ] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;

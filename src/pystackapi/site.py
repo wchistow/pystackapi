@@ -450,6 +450,18 @@ class Site:
                          **kwargs)['items']
                 ]
 
+    def get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions that users in `ids` have bookmarked."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/favorites', **kwargs)['items']]
+
+    def get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns all the comments that the users in `ids` were mentioned in."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/mentioned', **kwargs)['items']]
+
 
 def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]
                                  arg_name: str = 'ids') -> None | NoReturn:

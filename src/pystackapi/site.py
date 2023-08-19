@@ -463,6 +463,12 @@ class Site:
         return [Item(data) for data in
                 self.get(f'users/{";".join(map(str, ids))}/mentioned', **kwargs)['items']]
 
+    def get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the posts the users in `ids` have posted."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{";".join(map(str, ids))}/posts', **kwargs)['items']]
+
 
 def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]
                                  arg_name: str = 'ids') -> None | NoReturn:

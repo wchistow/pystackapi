@@ -54,7 +54,7 @@ class Site:
         Returns, if `ids` is set, all the undeleted answers in the system,
         else the set of answers identified by `ids`.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'answers/{addition}', **kwargs)['items']]
 
     def get_answer(self, a_id: int, **kwargs: Any) -> Item | None:
@@ -70,21 +70,21 @@ class Site:
     def get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns answers belonging to collectives in `slugs` found on the site."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
-        return [Item(data)
-                for data in self.get(f'collectives/{";".join(slugs)}/answers', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'collectives/{_join_with_semicolon(slugs)}/answers', **kwargs)['items']]
 
     def get_answers_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the answers to a set of questions identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/answers', **kwargs)['items']]
+                self.get(f'questions/{_join_with_semicolon(ids)}/answers', **kwargs)['items']]
 
     def get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all articles on the site,
         else the articles identified by `ids`.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'articles/{addition}', **kwargs)['items']]
 
     def get_article(self, a_id: int, **kwargs: Any) -> Item | None:
@@ -107,7 +107,7 @@ class Site:
         constrained to a certain set of badges, else recently awarded badges in the system.
         """
         if ids is not None:
-            url = 'badges/' + ';'.join(map(str, _check_iterable_arg(ids))) + '/recipients'
+            url = 'badges/' + _join_with_semicolon(_check_iterable_arg(ids)) + '/recipients'
         else:
             url = 'badges/recipients'
         return [Item(data) for data in self.get(url, **kwargs)['items']]
@@ -125,7 +125,7 @@ class Site:
         Returns, if `slugs` is set, collectives in `slugs` found on the site,
         else, all collectives in the system.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(slugs, arg_name='slugs')))
+        addition = _join_with_semicolon(_check_iterable_arg(slugs, arg_name='slugs'))
         return [Item(data) for data in self.get(f'collectives/{addition}', **kwargs)['items']]
 
     def get_collective(self, slug: str, **kwargs: Any) -> Item | None:
@@ -143,7 +143,7 @@ class Site:
         Returns, if `ids` is set, the comments identified by `ids`,
         else, all comments on the site.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'comments/{addition}', **kwargs)['items']]
 
     def get_comment(self, c_id: int, **kwargs: Any) -> Item | None:
@@ -160,25 +160,25 @@ class Site:
         """Returns the comments on a set of answers."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'answers/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+                self.get(f'answers/{_join_with_semicolon(ids)}/comments', **kwargs)['items']]
 
     def get_comments_on_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of articles."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'articles/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+                self.get(f'articles/{_join_with_semicolon(ids)}/comments', **kwargs)['items']]
 
     def get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of posts."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'posts/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+                self.get(f'posts/{_join_with_semicolon(ids)}/comments', **kwargs)['items']]
 
     def get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments on a set of questions."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+                self.get(f'questions/{_join_with_semicolon(ids)}/comments', **kwargs)['items']]
 
     def get_info(self) -> Item:
         """Returns a collection of statistics about the site."""
@@ -188,20 +188,20 @@ class Site:
         """Returns the questions that are linked to the articles identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'articles/{";".join(map(str, ids))}/linked', **kwargs)['items']]
+                self.get(f'articles/{_join_with_semicolon(ids)}/linked', **kwargs)['items']]
 
     def get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns questions which link to those questions identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/linked', **kwargs)['items']]
+                self.get(f'questions/{_join_with_semicolon(ids)}/linked', **kwargs)['items']]
 
     def get_posts(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the posts identified by `ids`,
         else, all posts on the site.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in
                 self.get(f'posts{"/" if addition else ""}{addition}', **kwargs)['items']]
 
@@ -224,7 +224,7 @@ class Site:
         Returns, if `ids` is set, all the undeleted questions in the system,
         else the set of questions identified by `ids`.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'questions/{addition}', **kwargs)['items']]
 
     def get_question(self, q_id: int, **kwargs: Any) -> Item | None:
@@ -240,8 +240,8 @@ class Site:
     def get_questions_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of answers."""
         _check_iterable_is_not_empty(ids)
-        addition = ';'.join(map(str, ids))
-        return [Item(data) for data in self.get(f'answers/{addition}/questions', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'answers/{_join_with_semicolon(ids)}/questions', **kwargs)['items']]
 
     def get_bountied_questions(self, **kwargs: Any) -> list[Item]:
         """Returns all the questions with active bounties in the system."""
@@ -250,9 +250,8 @@ class Site:
     def get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the questions on a set of collectives."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
-        addition = ';'.join(slugs)
-        return [Item(data)
-                for data in self.get(f'collectives/{addition}/questions', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'collectives/{_join_with_semicolon(slugs)}/questions', **kwargs)['items']]
 
     def get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]:
         """Returns questions which have received no answers."""
@@ -262,7 +261,7 @@ class Site:
         """Returns questions that the site considers related to those identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/related', **kwargs)['items']]
+                self.get(f'questions/{_join_with_semicolon(ids)}/related', **kwargs)['items']]
 
     def get_unanswered_questions(self, **kwargs: Any) -> list[Item]:
         """Returns questions the site considers to be unanswered."""
@@ -270,14 +269,14 @@ class Site:
 
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'revisions/{addition}', **kwargs)['items']]
 
     def get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns revisions on the set of posts, identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data)
-                for data in self.get(f'posts/{";".join(map(str, ids))}/revisions',
+                for data in self.get(f'posts/{_join_with_semicolon(ids)}/revisions',
                                      **kwargs)['items']
                 ]
 
@@ -307,14 +306,14 @@ class Site:
         Returns, if `ids` is set, the suggested edits identified by `ids`,
         else all suggested edits on the site.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'suggested-edits/{addition}', **kwargs)['items']]
 
     def get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns suggested edits on the set of posts, identified by `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data)
-                for data in self.get(f'posts/{";".join(map(str, ids))}/suggested-edits',
+                for data in self.get(f'posts/{_join_with_semicolon(ids)}/suggested-edits',
                                      **kwargs)['items']
                 ]
 
@@ -344,26 +343,26 @@ class Site:
     def get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the wikis that go with the given set of tags in `tags`."""
         _check_iterable_is_not_empty(tags, arg_name='tags')
-        return [Item(data)
-                for data in self.get(f'tags/{";".join(tags)}/wikis', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'tags/{_join_with_semicolon(tags)}/wikis', **kwargs)['items']]
 
     def get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns tags belonging to collectives in `slugs` found on the site."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
-        return [Item(data)
-                for data in self.get(f'collectives/{";".join(slugs)}/tags', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'collectives/{_join_with_semicolon(slugs)}/tags', **kwargs)['items']]
 
     def get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns tags' info from the `tags` found on the site."""
         _check_iterable_is_not_empty(tags, arg_name='tags')
         return [Item(data) for data in
-                self.get(f'tags/{";".join(tags)}/info', **kwargs)['items']]
+                self.get(f'tags/{_join_with_semicolon(tags)}/info', **kwargs)['items']]
 
     def get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the frequently asked questions for the given set of tags in `tags`."""
         _check_iterable_is_not_empty(tags, arg_name='tags')
         return [Item(data) for data in
-                self.get(f'tags/{";".join(tags)}/faq', **kwargs)['items']]
+                self.get(f'tags/{_join_with_semicolon(tags)}/faq', **kwargs)['items']]
 
     def get_moderator_only_tags(self, **kwargs: Any) -> list[Item]:
         """Returns the tags found on a site that only moderators can use."""
@@ -373,7 +372,7 @@ class Site:
         """Returns the tags that are most related to those in `tags`."""
         _check_iterable_is_not_empty(tags, arg_name='tags')
         return [Item(data) for data in
-                self.get(f'tags/{";".join(tags)}/related', **kwargs)['items']]
+                self.get(f'tags/{_join_with_semicolon(tags)}/related', **kwargs)['items']]
 
     def get_required_tags(self, **kwargs: Any) -> list[Item]:
         """Returns the tags found on a site that fulfill required tag constraints on questions."""
@@ -385,7 +384,8 @@ class Site:
         else all tag synonyms found on the site.
         """
         if tags is not None:
-            url = f'tags/{";".join(map(str, _check_iterable_arg(tags, arg_name="tags")))}/synonyms'
+            url = (f'tags/{_join_with_semicolon(_check_iterable_arg(tags, arg_name="tags"))}'
+                   '/synonyms')
         else:
             url = 'tags/synonyms'
         return [Item(data) for data in self.get(url, **kwargs)['items']]
@@ -396,14 +396,14 @@ class Site:
         """
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'questions/{";".join(map(str, ids))}/timeline', **kwargs)['items']]
+                self.get(f'questions/{_join_with_semicolon(ids)}/timeline', **kwargs)['items']]
 
     def get_users(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, the users identified by `ids`,
         else all users on a site.
         """
-        addition = ';'.join(map(str, _check_iterable_arg(ids)))
+        addition = _join_with_semicolon(_check_iterable_arg(ids))
         return [Item(data) for data in self.get(f'users/{addition}', **kwargs)['items']]
 
     def get_user(self, uid: int, **kwargs: Any) -> Item | None:
@@ -420,25 +420,25 @@ class Site:
         """Returns the answers the users in `ids` have posted."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/answers', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/answers', **kwargs)['items']]
 
     def get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the badges the users in `ids` have earned."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/badges', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/badges', **kwargs)['items']]
 
     def get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns users belonging to collectives in `slugs` found on the site."""
         _check_iterable_is_not_empty(slugs, arg_name='slugs')
-        return [Item(data)
-                for data in self.get(f'collectives/{";".join(slugs)}/users', **kwargs)['items']]
+        return [Item(data) for data in
+                self.get(f'collectives/{_join_with_semicolon(slugs)}/users', **kwargs)['items']]
 
     def get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the comments posted by users in `ids`."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/comments', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/comments', **kwargs)['items']]
 
     def get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]:
         """
@@ -447,7 +447,7 @@ class Site:
         """
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/comments/{toid}',
+                self.get(f'users/{_join_with_semicolon(ids)}/comments/{toid}',
                          **kwargs)['items']
                 ]
 
@@ -455,24 +455,28 @@ class Site:
         """Returns the questions that users in `ids` have bookmarked."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/favorites', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/favorites', **kwargs)['items']]
 
     def get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns all the comments that the users in `ids` were mentioned in."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/mentioned', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/mentioned', **kwargs)['items']]
 
     def get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns the posts the users in `ids` have posted."""
         _check_iterable_is_not_empty(ids)
         return [Item(data) for data in
-                self.get(f'users/{";".join(map(str, ids))}/posts', **kwargs)['items']]
+                self.get(f'users/{_join_with_semicolon(ids)}/posts', **kwargs)['items']]
 
     def get_user_privileges(self, uid: int, **kwargs: Any) -> list[Item]:
         """Returns the privileges a user with ID `uid` has."""
         return [Item(data) for data in
                 self.get(f'users/{uid}/privileges', **kwargs)['items']]
+
+
+def _join_with_semicolon(data: Iterable[Any]) -> str:
+    return ';'.join(map(str, data))
 
 
 def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]

@@ -469,6 +469,11 @@ class Site:
         return [Item(data) for data in
                 self.get(f'users/{";".join(map(str, ids))}/posts', **kwargs)['items']]
 
+    def get_user_privileges(self, uid: int, **kwargs: Any) -> list[Item]:
+        """Returns the privileges a user with ID `uid` has."""
+        return [Item(data) for data in
+                self.get(f'users/{uid}/privileges', **kwargs)['items']]
+
 
 def _check_iterable_is_not_empty(iterable: Iterable,  # type: ignore[return]
                                  arg_name: str = 'ids') -> None | NoReturn:

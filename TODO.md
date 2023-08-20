@@ -55,7 +55,7 @@
    + [X] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
    + [X] `get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
    + [X] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;
-   + [ ] `get_users_privileges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/privileges`;
+   + [X] `get_user_privileges(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/privileges`;
    + [ ] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;
    + [ ] `get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/featured`;
    + [ ] `get_users_unanswered_questions(self, ids: Iteralbe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;

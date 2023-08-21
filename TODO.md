@@ -56,11 +56,11 @@
    + [X] `get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
    + [X] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;
    + [X] `get_user_privileges(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/privileges`;
-   + [ ] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;
-   + [ ] `get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/featured`;
-   + [ ] `get_users_unanswered_questions(self, ids: Iteralbe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;
-   + [ ] `get_users_unaccepted_questions(self, ids: Iteralbe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unaccepted`;
-   + [ ] `get_users_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/no-answers`;
+   + [X] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;
+   + [X] `get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/featured`;
+   + [X] `get_users_unanswered_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;
+   + [X] `get_users_unaccepted_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unaccepted`;
+   + [X] `get_users_questions_with_no_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/no-answers`;
    + [ ] `get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation`;
    + [ ] `get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation-history`;
    + [ ] `get_users_suggested_edits(self, ids: Iterabe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/suggested-edits`;

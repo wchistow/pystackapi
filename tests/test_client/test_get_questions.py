@@ -2,8 +2,10 @@
 Tests for
 `Site.get_questions`, `Site.get_question`,
 `Site.get_questions_on_answers`, `Site.get_questions_on_collectives`,
-`Site.get_bountied_questions`, `Site.get_questions_with_no_answers` and
-`Site.get_unanswered_questions`.
+`Site.get_bountied_questions`, `Site.get_questions_with_no_answers`,
+`Site.get_unanswered_questions`, `Site.get_users_questions`,
+`Site.get_users_bountied_questions`, `Site.get_users_unanswered_questions`,
+`Site.get_users_unaccepted_questions` and `Site.get_users_questions_with_no_answers`.
 """
 import lest
 
@@ -164,5 +166,95 @@ def test_get_unanswered_questions_url() -> None:
 @lest.register
 def test_get_unanswered_questions_return_value() -> None:
     res = site.get_unanswered_questions()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_questions` ----
+
+
+@lest.register
+def test_get_users_questions_url() -> None:
+    site.get_users_questions([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'users/1;2/questions?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_questions_return_value() -> None:
+    res = site.get_users_questions([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_bountied_questions` ----
+
+
+@lest.register
+def test_get_users_bountied_questions_url() -> None:
+    site.get_users_bountied_questions([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'users/1;2/questions/featured?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_bountied_questions_return_value() -> None:
+    res = site.get_users_bountied_questions([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_unanswered_questions` ----
+
+
+@lest.register
+def test_get_users_unanswered_questions_url() -> None:
+    site.get_users_unanswered_questions([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'users/1;2/questions/unanswered?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_unanswered_questions_return_value() -> None:
+    res = site.get_users_unanswered_questions([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_unaccepted_questions` ----
+
+
+@lest.register
+def test_get_users_unaccepted_questions_url() -> None:
+    site.get_users_unaccepted_questions([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'users/1;2/questions/unaccepted?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_unaccepted_questions_return_value() -> None:
+    res = site.get_users_unaccepted_questions([1, 2])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_users_questions_with_no_answers` ----
+
+
+@lest.register
+def test_get_users_questions_with_no_answers_url() -> None:
+    site.get_users_questions_with_no_answers([1, 2])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'users/1;2/questions/no-answers?site=stackoverflow')
+
+
+@lest.register
+def test_get_users_questions_with_no_answers_return_value() -> None:
+    res = site.get_users_questions_with_no_answers([1, 2])
 
     lest.assert_eq(res, [Item({'id': 1})])

@@ -474,6 +474,49 @@ class Site:
         return [Item(data) for data in
                 self.get(f'users/{uid}/privileges', **kwargs)['items']]
 
+    def get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions asked by the users in `ids`."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/questions', **kwargs)['items']]
+
+    def get_users_unaccepted_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """
+        Returns the questions asked by the users in `ids` which have at least one answer,
+        but no accepted answer.
+        """
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/questions/unaccepted',
+                         **kwargs)['items']
+                ]
+
+    def get_users_unanswered_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """
+        Returns the questions asked by the users in `ids` which the site considers unanswered,
+        while still having at least one answer posted.
+        """
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/questions/unanswered',
+                         **kwargs)['items']
+                ]
+
+    def get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions on which the users in {ids} have active bounties."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/questions/featured', **kwargs)['items']
+                ]
+
+    def get_users_questions_with_no_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the questions asked by the users in `ids` which have no answers."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/questions/no-answers',
+                         **kwargs)['items']
+                ]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

@@ -61,8 +61,8 @@
    + [X] `get_users_unanswered_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;
    + [X] `get_users_unaccepted_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unaccepted`;
    + [X] `get_users_questions_with_no_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/no-answers`;
-   + [ ] `get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation`;
-   + [ ] `get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation-history`;
+   + [X] `get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation`;
+   + [X] `get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation-history`;
    + [ ] `get_users_suggested_edits(self, ids: Iterabe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/suggested-edits`;
    + [ ] `get_users_tags(self, ids: Iterabe[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags`;
    + [ ] `get_users_top_answers_on_tags(self, ids: Iterable[int], tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags/{tags}/top-answers`;

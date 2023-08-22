@@ -517,6 +517,19 @@ class Site:
                          **kwargs)['items']
                 ]
 
+    def get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns a subset of the reputation changes for users in {ids}."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/reputation', **kwargs)['items']]
+
+    def get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns users' public reputation history."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/reputation-history', **kwargs)['items']
+                ]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

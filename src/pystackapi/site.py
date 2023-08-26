@@ -530,6 +530,12 @@ class Site:
                 self.get(f'users/{_join_with_semicolon(ids)}/reputation-history', **kwargs)['items']
                 ]
 
+    def get_users_suggested_edits(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the suggested edits that the users in `ids` have submitted."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/suggested-edits', **kwargs)['items']]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

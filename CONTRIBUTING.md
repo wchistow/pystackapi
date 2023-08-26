@@ -51,41 +51,27 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
    ```shell
    pystackapi$ pip install -r ./requirements.txt
    ``` 
-2. Install special requirements for running MyPy:
+2. Then, install all developer's requirements:
    ```shell
-   pystackapi$ pip install mypy
-   pystackapi$ pip install types-requests
+   pystackapi$ pip install -r ./dev_requirements.txt
    ```
 3. Run MyPy:
    ```shell
    pystackapi$ python -m mypy ./src/
    ```
-4. Install special requirements for running PyLint:
-   ```shell
-   pystackapi$ pip install pylint
-   ```
-5. Run PyLint:
+4. Run PyLint:
    ```shell
    pystackapi$ python -m pylint ./src/
    ```
-6. Install requirement for running tests:
-   ```shell
-   pystackapi$ pip install lest
-   ```
-7. Run tests:
+5. Run tests:
    ```shell
    pystackapi$ cd tests
    pystackapi/tests$ python main.py
    ```
 
-> Note #1: if you already installed all requirements, you can run MyPy, PyLint and tests by command
+> Note: if you already installed all requirements, you can run MyPy, PyLint and tests by command
 > ```shell
 > pystackapi$ python -m mypy ./src/; python -m pylint ./src/; cd tests; python main.py
-> ```
-
-> Note #2: you can install all developer's requirements by this command:
-> ```shell
-> $ pip install mypy types-requests pylint lest
 > ```
 
 ---

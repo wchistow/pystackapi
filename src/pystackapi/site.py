@@ -536,6 +536,30 @@ class Site:
         return [Item(data) for data in
                 self.get(f'users/{_join_with_semicolon(ids)}/suggested-edits', **kwargs)['items']]
 
+    def get_users_tags(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns the tags the users identified in `ids` have been active in."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/tags', **kwargs)['items']]
+
+    def get_user_top_answers_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any)\
+            -> list[Item]:
+        """
+        Returns the top 30 answers a user has posted in response to questions with the given tags.
+        """
+        return [Item(data) for data in
+                self.get(f'users/{uid}/tags/{_join_with_semicolon(tags)}/top-answers',
+                         **kwargs)['items']
+                ]
+
+    def get_user_top_questions_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any)\
+            -> list[Item]:
+        """Returns the top 30 questions a user has asked with the given tags."""
+        return [Item(data) for data in
+                self.get(f'users/{uid}/tags/{_join_with_semicolon(tags)}/top-questions',
+                         **kwargs)['items']
+                ]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

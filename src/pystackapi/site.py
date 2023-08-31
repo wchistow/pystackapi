@@ -560,6 +560,12 @@ class Site:
                          **kwargs)['items']
                 ]
 
+    def get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns a subset of the actions the users in `ids` have taken on the site."""
+        _check_iterable_is_not_empty(ids)
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/timeline', **kwargs)['items']]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

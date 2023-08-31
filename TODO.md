@@ -67,7 +67,7 @@
    + [X] `get_users_tags(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags`;
    + [X] `get_user_top_answers_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-answers`;
    + [X] `get_user_top_questions_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-questions`;
-   + [ ] `get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/timeline`;
+   + [X] `get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/timeline`;
    + [ ] `get_user_top_answers_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-answer-tags`;
    + [ ] `get_user_top_questions_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-questions-tags`;
    + [ ] `get_user_top_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-tags`;

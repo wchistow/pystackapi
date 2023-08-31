@@ -1,4 +1,8 @@
-"""Tests for `Site.get_users`, `Site.get_user` and `Site.get_users_on_collectives`."""
+"""
+Tests for `Site.get_users`, `Site.get_user`,
+`Site.get_users_on_collectives`, `Site.get_moderators` and
+`Site.get_elected_moderators`.
+"""
 import lest
 
 from pystackapi import site as site_m
@@ -86,5 +90,41 @@ def test_get_users_on_collectives_url() -> None:
 @lest.register
 def test_get_users_on_collectives_return_value() -> None:
     res = site.get_users_on_collectives(['co1', 'co2'])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_moderators` ----
+
+
+@lest.register
+def test_get_moderators_url() -> None:
+    site.get_moderators()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/users/moderators?site=stackoverflow')
+
+
+@lest.register
+def test_get_moderators_return_value() -> None:
+    res = site.get_moderators()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_elected_moderators` ----
+
+
+@lest.register
+def test_get_elected_moderators_url() -> None:
+    site.get_elected_moderators()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/users/moderators/elected?site=stackoverflow')
+
+
+@lest.register
+def test_get_elected_moderators_return_value() -> None:
+    res = site.get_elected_moderators()
 
     lest.assert_eq(res, [Item({'id': 1})])

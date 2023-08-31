@@ -579,6 +579,16 @@ class Site:
         """Returns a single user's top tags by combined question and answer score."""
         return [Item(data) for data in self.get(f'users/{uid}/top-tags', **kwargs)['items']]
 
+    def get_moderators(self, **kwargs: Any) -> list[Item]:
+        """Returns those users on a site who can exercise moderation powers."""
+        return [Item(data) for data in self.get('users/moderators', **kwargs)['items']]
+
+    def get_elected_moderators(self, **kwargs: Any) -> list[Item]:
+        """
+        Returns those users on a site who both have moderator powers, and were actually elected.
+        """
+        return [Item(data) for data in self.get('users/moderators/elected', **kwargs)['items']]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

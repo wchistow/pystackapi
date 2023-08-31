@@ -68,9 +68,9 @@
    + [X] `get_user_top_answers_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-answers`;
    + [X] `get_user_top_questions_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-questions`;
    + [X] `get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/timeline`;
-   + [ ] `get_user_top_answers_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-answer-tags`;
-   + [ ] `get_user_top_questions_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-questions-tags`;
-   + [ ] `get_user_top_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-tags`;
+   + [X] `get_user_top_answers_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-answer-tags`;
+   + [X] `get_user_top_questions_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-question-tags`;
+   + [X] `get_user_top_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-tags`;
    + [ ] `get_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators`;
    + [ ] `get_elected_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators/elected`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;

@@ -5,8 +5,9 @@ Tests for
 `Site.get_moderator_only_tags`, `Site.get_required_tags`,
 `Site.get_tags_synonyms`, `Site.get_related_tags`,
 `Site.get_top_answerers_on_tag`, `Site.get_top_askers_on_tag`,
-`Site.get_tags_wikis`, `Site.get_users_tags` and
-`Site.get_user_top_answers_on_tags`.
+`Site.get_tags_wikis`, `Site.get_users_tags`,
+`Site.get_user_top_answers_on_tags`, `Site.get_user_top_answers_tags`,
+`Site.get_user_top_questions_tags` and `Site.get_user_top_tags`.
 """
 import lest
 
@@ -280,5 +281,59 @@ def test_get_user_top_questions_on_tags_url() -> None:
 @lest.register
 def test_get_user_top_questions_on_tags_return_value() -> None:
     res = site.get_user_top_questions_on_tags(1, ['python', 'pandas'])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_user_top_answers_tags` ----
+
+
+@lest.register
+def test_get_user_top_answers_tags_url() -> None:
+    site.get_user_top_answers_tags(1)
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/users/1/top-answer-tags?site=stackoverflow')
+
+
+@lest.register
+def test_get_user_top_answers_tags_return_value() -> None:
+    res = site.get_user_top_answers_tags(1)
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_user_top_questions_tags` ----
+
+
+@lest.register
+def test_get_user_top_questions_tags_url() -> None:
+    site.get_user_top_questions_tags(1)
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/users/1/top-question-tags?site=stackoverflow')
+
+
+@lest.register
+def test_get_user_top_questions_tags_return_value() -> None:
+    res = site.get_user_top_questions_tags(1)
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_user_top_tags` ----
+
+
+@lest.register
+def test_get_user_top_tags_url() -> None:
+    site.get_user_top_tags(1)
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}'
+                                 '/users/1/top-tags?site=stackoverflow')
+
+
+@lest.register
+def test_get_user_top_tags_return_value() -> None:
+    res = site.get_user_top_tags(1)
 
     lest.assert_eq(res, [Item({'id': 1})])

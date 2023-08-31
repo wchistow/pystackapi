@@ -566,6 +566,19 @@ class Site:
         return [Item(data) for data in
                 self.get(f'users/{_join_with_semicolon(ids)}/timeline', **kwargs)['items']]
 
+    def get_user_top_answers_tags(self, uid: int, ** kwargs: Any) -> list[Item]:
+        """Returns a single user's top tags by answer score."""
+        return [Item(data) for data in self.get(f'users/{uid}/top-answer-tags', **kwargs)['items']]
+
+    def get_user_top_questions_tags(self, uid: int, ** kwargs: Any) -> list[Item]:
+        """Returns a single user's top tags by question score."""
+        return [Item(data) for data in
+                self.get(f'users/{uid}/top-question-tags', **kwargs)['items']]
+
+    def get_user_top_tags(self, uid: int, ** kwargs: Any) -> list[Item]:
+        """Returns a single user's top tags by combined question and answer score."""
+        return [Item(data) for data in self.get(f'users/{uid}/top-tags', **kwargs)['items']]
+
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
     return ';'.join(map(str, data))

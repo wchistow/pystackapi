@@ -390,7 +390,7 @@ class Site:
             url = 'tags/synonyms'
         return [Item(data) for data in self.get(url, **kwargs)['items']]
 
-    def get_timeline_of_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+    def get_questions_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """
         Returns a subset of the events that have happened to the questions identified by `ids`.
         """

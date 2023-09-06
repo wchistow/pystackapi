@@ -3,13 +3,14 @@ Tests for `Site.get_badges`, `Site.get_badges_recipients`,
 `Site.get_tag_based_badges` and `Site.get_users_badges`."""
 import lest
 
-from pystackapi import site as site_m
+from pystackapi import _base_client as client_m
+from pystackapi import Site
 from pystackapi.item import Item
 
 from . import API_VERSION, requests
 
-site_m.__dict__['requests'] = requests
-site = site_m.Site('stackoverflow')
+client_m.__dict__['requests'] = requests
+site = Site('stackoverflow')
 
 
 @lest.setup

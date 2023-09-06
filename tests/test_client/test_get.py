@@ -1,16 +1,17 @@
 """Tests for method `Site.get`."""
 import lest
 
-from pystackapi import site as site_m
-from pystackapi.errors import HttpError
+from pystackapi import _base_client as client_m
+from pystackapi import Site
 from pystackapi.item import Item
+from pystackapi.errors import HttpError
 
 from mocks import RequestsMock
 
 from . import API_VERSION, requests
 
-site_m.__dict__['requests'] = requests
-site = site_m.Site('stackoverflow')
+client_m.__dict__['requests'] = requests
+site = Site('stackoverflow')
 
 
 @lest.setup
@@ -36,7 +37,7 @@ def test_get_with_kwargs_url() -> None:
 
 @lest.register
 def test_get_with_access_token_url() -> None:
-    l_site = site_m.Site('stackoverflow', access_token='someaccesstoken')
+    l_site = Site('stackoverflow', access_token='someaccesstoken')
     l_site.get('ghgh/')
 
     lest.assert_eq(requests.url,
@@ -46,7 +47,7 @@ def test_get_with_access_token_url() -> None:
 
 @lest.register
 def test_get_with_app_key_url() -> None:
-    l_site = site_m.Site('stackoverflow', app_key='someappkey')
+    l_site = Site('stackoverflow', app_key='someappkey')
     l_site.get('ghgh/')
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
@@ -57,13 +58,13 @@ def test_get_with_app_key_url() -> None:
 def test_handling_error() -> None:
     l_requests = RequestsMock(status_code=400)
 
-    site_m.__dict__['requests'] = l_requests
-    l_site = site_m.Site('stackoverflow')
+    client_m.__dict__['requests'] = l_requests
+    l_site = Site('stackoverflow')
 
     with lest.assert_raises(HttpError):
         l_site.get('ghgh/')
 
-    site_m.__dict__['requests'] = requests  # reset
+    client_m.__dict__['requests'] = requests  # reset
 
 
 @lest.register

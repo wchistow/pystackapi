@@ -1,14 +1,15 @@
 """Tests for `Site.search`, `Site.advanced_search` and `Site.get_similar`."""
 import lest
 
-from pystackapi import site as site_m
+from pystackapi import _base_client as client_m
+from pystackapi import Site
 from pystackapi.item import Item
 from pystackapi.errors import BadArgumentsError
 
 from . import API_VERSION, requests
 
-site_m.__dict__['requests'] = requests
-site = site_m.Site('stackoverflow')
+client_m.__dict__['requests'] = requests
+site = Site('stackoverflow')
 
 
 @lest.setup

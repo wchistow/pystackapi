@@ -1,21 +1,13 @@
-from typing import Any, cast, TypedDict, NoReturn
+from typing import Any, NoReturn
 from collections.abc import Iterable
 
-import requests
-
-from .errors import BadArgumentsError, HttpError
+from ._base_client import BaseClient
+from .errors import BadArgumentsError
 from .item import Item
+from ._raw_response_dict import RawResponseDict
 
 
-class RawResponseDict(TypedDict):
-    """Type of API response (returns by method `Site.get`)."""
-    items: list[dict]
-    has_more: bool
-    quota_max: int
-    quota_remaining: int
-
-
-class Site:
+class Site(BaseClient):
     """Implements API client."""
     version = '2.3'
     base_url = f'https://api.stackexchange.com/{version}/'
@@ -28,23 +20,15 @@ class Site:
 
     def get(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns raw result of calling `query` to API."""
-        params = f'?site={self.name}'
+        params = {'site': self.name}
         if self.access_token is not None:
-            params += f'&access_token={self.access_token}'
+            params['access_token'] = self.access_token
         if self.app_key is not None:
-            params += f'&key={self.app_key}'
+            params['key'] = self.app_key
 
-        if kwargs:
-            params += '&' + '&'.join((f'{k}={v}' for k, v in kwargs.items()))
+        params.update(kwargs)
 
-        url = f'{self.base_url}{query}{params}'
-        response = requests.get(url)
-
-        if response.status_code != 200:
-            raise HttpError(response.status_code, url)
-
-        # we guarantee that `response.json` is `RawResponseDict`.
-        return cast(RawResponseDict, response.json())
+        return self._call(f'{self.base_url}{query}', params)
 
     # CONTRIBUTORS: Please, sort methods by alphabet in pairs
     # with first `get_<plural>` and then, get_<singular>`.

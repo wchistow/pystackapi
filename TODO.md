@@ -75,5 +75,6 @@
    + [X] `get_elected_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators/elected`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
+ + [ ] add file `network.py` and class `Network` in it with all network-level method.
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

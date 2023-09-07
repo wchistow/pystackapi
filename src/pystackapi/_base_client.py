@@ -9,7 +9,7 @@ from ._raw_response_dict import RawResponseDict
 class BaseClient:
     """Base class for clients of the StackExchange API."""
     def _call(self, url: str, params: dict) -> RawResponseDict:
-        req_params = '?' + '&'.join(f'{k}={v}' for k, v in params.items())
+        req_params = ('?' if params else '') + '&'.join(f'{k}={v}' for k, v in params.items())
 
         response = requests.get(f'{url}{req_params}')
 

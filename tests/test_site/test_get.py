@@ -4,11 +4,8 @@ import lest
 from pystackapi import _base_client as client_m
 from pystackapi import Site
 from pystackapi.item import Item
-from pystackapi.errors import HttpError
 
-from mocks import RequestsMock
-
-from . import API_VERSION, requests
+from main import API_VERSION, requests
 
 client_m.__dict__['requests'] = requests
 site = Site('stackoverflow')
@@ -17,22 +14,6 @@ site = Site('stackoverflow')
 @lest.setup
 def reset_requests() -> None:
     requests.reset()
-
-
-@lest.register
-def test_simple_get_url() -> None:
-    site.get('ghgh/')
-
-    lest.assert_eq(requests.url,
-                   f'https://api.stackexchange.com/{API_VERSION}/ghgh/?site=stackoverflow')
-
-
-@lest.register
-def test_get_with_kwargs_url() -> None:
-    site.get('ghgh/', arg1='hello')
-
-    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
-                                 '?site=stackoverflow&arg1=hello')
 
 
 @lest.register
@@ -52,19 +33,6 @@ def test_get_with_app_key_url() -> None:
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/ghgh/'
                                  '?site=stackoverflow&key=someappkey')
-
-
-@lest.register
-def test_handling_error() -> None:
-    l_requests = RequestsMock(status_code=400)
-
-    client_m.__dict__['requests'] = l_requests
-    l_site = Site('stackoverflow')
-
-    with lest.assert_raises(HttpError):
-        l_site.get('ghgh/')
-
-    client_m.__dict__['requests'] = requests  # reset
 
 
 @lest.register

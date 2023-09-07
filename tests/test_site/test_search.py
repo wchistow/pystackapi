@@ -6,7 +6,7 @@ from pystackapi import Site
 from pystackapi.item import Item
 from pystackapi.errors import BadArgumentsError
 
-from . import API_VERSION, requests
+from main import API_VERSION, requests
 
 client_m.__dict__['requests'] = requests
 site = Site('stackoverflow')

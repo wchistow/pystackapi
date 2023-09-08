@@ -75,6 +75,14 @@
    + [X] `get_elected_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators/elected`;
  + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
  + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
- + [ ] add file `network.py` and class `Network` in it with all network-level method.
+ + [ ] add file `network.py` and class `Network` in it with this network-level method:
+   + [X] `get_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}`;
+   + [X] `invalidate_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}/invalidate`;
+   + [ ] `get_errors(self, id: int | None = None, **kwargs: Any) -> list[Item]` - API method `errors` and `errors/{id;}`;
+   + [ ] `create_filter(self, include: Iterable[str] | None = None, exclude: Iterable[str] | None = None, base: str | None = None, **kwargs: Any) -> Item` - API method `filters/create`;
+   + [ ] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
+   + [ ] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;
+   + [ ] `get_users_associated_accounts(self, ids: Iterable[int], **kwargs) -> list[Item]` - API method `users/{ids}/associated`;
+   + [ ] `get_users_accounts_merges(self, ids: Iterable[int], **kwargs) -> list[Item]` - API method `users/{ids}/merges`.
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

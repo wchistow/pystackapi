@@ -5,7 +5,7 @@
  + [X] sort constants in file `src/pystackapi/sites.py` by alphabet order;
  + [X] change type of return value in method `Site.get` and, also in `Site.get_*` from `dict` to subclass of `typing.TypedDict`;
  + [ ] add more examples to directory `examples/`;
- + [ ] add more site-level methods with following signatures (of course, each of these methods needs tests):
+ + [X] add more site-level methods with following signatures (of course, each of these methods needs tests):
    + [X] `get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `answers/` and `answers/{ids}`;
    + [X] `get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `articles/` and `answers/{ids}`;
    + [X] `get_collectives(self, slugs: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `collectives/` and `collectives/{slugs}`;

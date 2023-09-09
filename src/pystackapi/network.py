@@ -29,3 +29,11 @@ class Network(BaseClient):
         return [Item(data) for data in
                 self.get(f'access-tokens/{_join_with_semicolon(access_tokens)}/invalidate',
                          **kwargs)['items']]
+
+    def get_errors(self, **kwargs: Any) -> list[Item]:
+        """Returns the various error codes that can be produced by the API."""
+        return [Item(data) for data in self.get('errors', **kwargs)['items']]
+
+    def simulate_error(self, code: int, **kwargs: Any) -> Any:
+        """This method allows you to generate an error."""
+        self.get(f'errors/{code}', **kwargs)

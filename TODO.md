@@ -78,7 +78,8 @@
  + [ ] add file `network.py` and class `Network` in it with this network-level method:
    + [X] `get_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}`;
    + [X] `invalidate_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}/invalidate`;
-   + [ ] `get_errors(self, id: int | None = None, **kwargs: Any) -> list[Item]` - API method `errors` and `errors/{id;}`;
+   + [X] `get_errors(self, **kwargs: Any) -> list[Item]` - API method `errors`;
+   + [X] `simulate_error(self, code: int, **kwargs: Any) -> Item` - API method `errors/{id}`
    + [ ] `create_filter(self, include: Iterable[str] | None = None, exclude: Iterable[str] | None = None, base: str | None = None, **kwargs: Any) -> Item` - API method `filters/create`;
    + [ ] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
    + [ ] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;

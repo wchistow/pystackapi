@@ -14,6 +14,7 @@ requests = RequestsMock(return_items=[{'id': 1}])
 API_VERSION = '2.3'
 
 import test_base_client
+import test_network
 import test_site
 import test_item
 

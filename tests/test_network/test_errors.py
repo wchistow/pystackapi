@@ -19,6 +19,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Network.get_errors` ----
+
+
 @lest.register
 def test_get_errors_without_id_url() -> None:
     network.get_errors()
@@ -31,6 +34,9 @@ def test_get_errors_without_id_return_value() -> None:
     res = network.get_errors()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- test for `Network.simulate_error` ----
 
 
 @lest.register

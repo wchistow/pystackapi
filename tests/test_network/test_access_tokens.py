@@ -16,6 +16,9 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for `Network.invalidate_access_tokens` ----
+
+
 @lest.register
 def test_invalidate_access_tokens_url() -> None:
     network.invalidate_access_tokens(['accesstoken1', 'accesstoken2'])
@@ -27,5 +30,23 @@ def test_invalidate_access_tokens_url() -> None:
 @lest.register
 def test_invalidate_access_tokens_return_value() -> None:
     res = network.invalidate_access_tokens(['accesstoken1', 'accesstoken2'])
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Network.get_access_tokens` ----
+
+
+@lest.register
+def test_get_access_tokens_url() -> None:
+    network.get_access_tokens(['accesstoken1', 'accesstoken2'])
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'access-tokens/accesstoken1;accesstoken2')
+
+
+@lest.register
+def test_get_access_tokens_return_value() -> None:
+    res = network.get_access_tokens(['accesstoken1', 'accesstoken2'])
 
     lest.assert_eq(res, [Item({'id': 1})])

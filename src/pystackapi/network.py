@@ -37,3 +37,13 @@ class Network(BaseClient):
     def simulate_error(self, code: int, **kwargs: Any) -> Any:
         """This method allows you to generate an error."""
         self.get(f'errors/{code}', **kwargs)
+
+    def create_filter(self, **kwargs: Any) -> Item:
+        """
+        Creates a new filter given a list of includes, excludes, a base filter,
+        and whether this filter should be "unsafe".
+
+        It is not expected that many applications will call this method at runtime,
+        filters should be pre-calculated and "baked in" in the common cases.
+        """
+        return Item(self.get('filters/create', **kwargs)['items'][0])

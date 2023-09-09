@@ -80,7 +80,7 @@
    + [X] `invalidate_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}/invalidate`;
    + [X] `get_errors(self, **kwargs: Any) -> list[Item]` - API method `errors`;
    + [X] `simulate_error(self, code: int, **kwargs: Any) -> Item` - API method `errors/{id}`
-   + [ ] `create_filter(self, include: Iterable[str] | None = None, exclude: Iterable[str] | None = None, base: str | None = None, **kwargs: Any) -> Item` - API method `filters/create`;
+   + [X] `create_filter(self, **kwargs: Any) -> Item` - API method `filters/create`;
    + [ ] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
    + [ ] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;
    + [ ] `get_users_associated_accounts(self, ids: Iterable[int], **kwargs) -> list[Item]` - API method `users/{ids}/associated`;

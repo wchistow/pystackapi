@@ -61,3 +61,13 @@ class Network(BaseClient):
     def get_sites(self, **kwargs: Any) -> list[Item]:
         """Returns all sites in the network."""
         return [Item(data) for data in self.get('sites', **kwargs)['items']]
+
+    def get_users_associated_accounts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns all of a user's associated accounts, given their account ids in `ids`."""
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/associated', **kwargs)['items']]
+
+    def get_users_accounts_merges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
+        """Returns a record of merges that have occurred involving the passed account `ids`."""
+        return [Item(data) for data in
+                self.get(f'users/{_join_with_semicolon(ids)}/merges', **kwargs)['items']]

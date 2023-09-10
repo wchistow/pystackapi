@@ -1,4 +1,4 @@
-"""Tests for methods `Network.create_filter` and `Network.get_filters`."""
+"""Tests for method `Network.get_sites`."""
 import lest
 
 from pystackapi import _base_client as client_m

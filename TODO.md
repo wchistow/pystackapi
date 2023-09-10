@@ -81,8 +81,8 @@
    + [X] `get_errors(self, **kwargs: Any) -> list[Item]` - API method `errors`;
    + [X] `simulate_error(self, code: int, **kwargs: Any) -> Item` - API method `errors/{id}`
    + [X] `create_filter(self, **kwargs: Any) -> Item` - API method `filters/create`;
-   + [ ] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
-   + [ ] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;
+   + [X] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
+   + [X] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;
    + [ ] `get_users_associated_accounts(self, ids: Iterable[int], **kwargs) -> list[Item]` - API method `users/{ids}/associated`;
    + [ ] `get_users_accounts_merges(self, ids: Iterable[int], **kwargs) -> list[Item]` - API method `users/{ids}/merges`.
 

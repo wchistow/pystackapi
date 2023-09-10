@@ -47,3 +47,17 @@ class Network(BaseClient):
         filters should be pre-calculated and "baked in" in the common cases.
         """
         return Item(self.get('filters/create', **kwargs)['items'][0])
+
+    def get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]:
+        """
+        Returns the fields included by the given filters, and the "safeness" of those filters.
+
+        It is not expected that this method will be consumed by many applications at runtime,
+        it is provided to aid in debugging.
+        """
+        return [Item(data)
+                for data in self.get(f'filters/{_join_with_semicolon(filters)}', **kwargs)['items']]
+
+    def get_sites(self, **kwargs: Any) -> list[Item]:
+        """Returns all sites in the network."""
+        return [Item(data) for data in self.get('sites', **kwargs)['items']]

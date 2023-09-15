@@ -1,6 +1,6 @@
 [project]
 name = 'pystackapi'
-version = '0.1.0dev'
+version = '0.1.0'
 license = {file = 'LICENSE'}
 description = 'PyStackAPI is a modern, 100% typed wrapper for the StackExchange API, written in Python.'
 authors = [
@@ -8,8 +8,9 @@ authors = [
 ]
 requires-python = '>=3.10'
 readme = 'README.md'
+keywords = ['stackexchange', 'api-wrapper']
 classifiers = [
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 5 - Production/Stable',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.10',

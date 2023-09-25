@@ -7,7 +7,6 @@ class Item(UserDict[str, Any]):
     def __getattr__(self, name: str) -> Any:
         return self.data[name]
 
-    """Improved Readability for Item Data"""
     def __str__(self) -> str:
         out = []
         for attr in self.data:

@@ -12,5 +12,4 @@ class Item(UserDict[str, Any]):
         out = []
         for attr in self.data:
             out.append(f'{attr}: {self.data[attr]}\n')
-        
         return ''.join(out)

@@ -8,7 +8,7 @@ class Item(UserDict[str, Any]):
         return self.data[name]
 
     """Improved Readability for Item Data"""
-    def __str__(self):
+    def __str__(self) -> str:
         out = []
         for attr in self.data:
             out.append(f'{attr}: {self.data[attr]}\n')

@@ -1,6 +1,6 @@
 # Requirements for developers
 
-mypy==1.5.1
+mypy==1.6.0
 types-requests==2.31.0.8
 pylint==3.0.1
 lest==0.6.0

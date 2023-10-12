@@ -53,7 +53,9 @@ For more details, see file [`tests/test_client/test_get_answers.py`](https://git
    ``` 
 2. Then, install all developer's requirements:
    ```shell
-   pystackapi$ pip install -r ./dev_requirements.txt
+   pystackapi$ pip install -r ./dev_requirements/mypy_requirements.txt
+   pystackapi$ pip install -r ./dev_requirements/pylint_requirements.txt
+   pystackapi$ pip install -r ./dev_requirements/tests_requirements.txt
    ```
 3. Run MyPy:
    ```shell

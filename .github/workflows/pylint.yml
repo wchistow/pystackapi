@@ -17,8 +17,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r ./requirements.txt
-        pip install -r ./dev_requirements/pylint_requirements.txt
+        python -m pip install -r ./requirements.txt
+        python -m pip install -r ./dev_requirements/pylint_requirements.txt
     - name: Analysing the code with pylint
       run: |
         python -m pylint ./src/

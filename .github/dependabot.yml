@@ -1,13 +1,12 @@
 version: 2
 updates:
 - package-ecosystem: pip
-  directory:
-    - "/"
-    - "dev_requirements/"
+  directory: "/"
   schedule:
     interval: daily
     time: "10:00"
-  groups:
-    python-packages:
-      patterns:
-        - "*"
+- package-ecosystem: pip
+  directory: "dev_requirements/"
+  schedule:
+    interval: daily
+    time: "10:00"

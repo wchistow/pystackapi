@@ -1,4 +1,9 @@
-# ![](logo.png)
+<h1>
+	<picture>
+	    <source srcset=".images/logos/dark-logo.png" media="(prefers-color-scheme: dark)">
+	    <img src=".images/logos/logo.png">
+	</picture>
+</h1>
 
 Here is PyStackAPI version 0.2.0dev
 

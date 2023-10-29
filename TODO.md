@@ -1,89 +1,10 @@
 # ToDo
 
- + [X] fix type of `**kwargs` argument in method `Site.get`. Now it's `dict[str, Any]`, but have to be only `Any`;
- + [X] remove argument `api_key` of method `Site.__init__` and add `access_token` and `app_key` arguments to it. Also, add  usage of these arguments to method `Site.get`;
- + [X] sort constants in file `src/pystackapi/sites.py` by alphabet order;
- + [X] change type of return value in method `Site.get` and, also in `Site.get_*` from `dict` to subclass of `typing.TypedDict`;
  + [ ] add more examples to directory `examples/`;
- + [X] add more site-level methods with following signatures (of course, each of these methods needs tests):
-   + [X] `get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `answers/` and `answers/{ids}`;
-   + [X] `get_articles(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `articles/` and `answers/{ids}`;
-   + [X] `get_collectives(self, slugs: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `collectives/` and `collectives/{slugs}`;
-   + [X] `get_collective(self, slug: str, **kwargs: Any) -> Item`;
-   + [X] `get_comments(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `comments/` and `answers/{ids}`;
-   + [X] `get_comment(self, c_id: int, **kwargs: Any) -> Item | None`;
-   + [X] `get_privileges(self, **kwargs: Any) -> list[Item]` - API method `privileges/`;
-   + [X] `get_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/`;
-   + [X] `get_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/`;
-   + [X] `get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `revisions/`;
-   + [X] `get_posts(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `posts/` and `posts/{ids}`;
-   + [X] `get_post(self, c_id: int, **kwargs: Any) -> Item | None`;
-   + [X] `get_suggested_edits(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]` - API method `suggested-edits/` and `suggested-edits/{ids}`;
-   + [X] `get_comments_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `answers/{ids}/comments`;
-   + [X] `get_comments_on_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `articles/{ids}/comments`;
-   + [X] `get_comments_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/comments`;
-   + [X] `get_comments_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/comments`;
-   + [X] `get_non_tag_based_badges(self, **kwargs: Any) -> list[Item]` - API method `badges/name`;
-   + [X] `get_questions_on_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `answers/{ids}/questions`;
-   + [X] `get_linked_in_articles(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `articles/{ids}/linked`;
-   + [X] `get_questions_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/questions`;
-   + [X] `get_answers_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/answers`;
-   + [X] `get_tags_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/tags`;
-   + [X] `get_users_on_collectives(self, slugs: Iterable[str], **kwargs: Any) -> list[Item]` - API method `collectives/{slugs}/users`;
-   + [X] `get_revisions_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/revisions`;
-   + [X] `get_suggested_edits_on_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `posts/{ids}/suggested-edits`;
-   + [X] `get_answers_on_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/answers`;
-   + [X] `get_linked_in_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/linked`;
-   + [X] `get_related_to_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/related`;
-   + [X] `get_questions_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `questions/{ids}/timeline`;
-   + [X] `get_bountied_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/featured`;
-   + [X] `get_questions_with_no_answers(self, **kwargs: Any) -> list[Item]` - API method `questions/no-answers`;
-   + [X] `get_unanswered_questions(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered`;
-   + [X] `get_tags_info(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/info`;
-   + [X] `get_tags_faq(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/faq`;
-   + [X] `get_moderator_only_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/moderator-only`;
-   + [X] `get_required_tags(self, **kwargs: Any) -> list[Item]` - API method `tags/required`;
-   + [X] `get_tags_synonyms(self, tags: Iterable[str] | None = None, **kwargs: Any) -> list[Item]` - API method `tags/synonyms` and `tags/{tags}/synonyms`;
-   + [X] `get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/related`;
-   + [X] `get_top_answerers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-answerers/{period}`;
-   + [X] `get_top_askers_on_tag(self, tag: str, period: str, **kwargs: Any) -> list[Item]` - API method `tags/{tag}/top-askers/{period}`;
-   + [X] `get_tags_wikis(self, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `tags/{tags}/wikis`;
-   + [X] `get_users_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/answers`;
-   + [X] `get_users_badges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/badges`;
-   + [X] `get_users_comments(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments`;
-   + [X] `get_users_comments_to(self, ids: Iterable[int], toid: int, **kwargs: Any) -> list[Item]` - API method `users/{ids}/comments/{toid}`;
-   + [X] `get_users_favorites(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/favorites`;
-   + [X] `get_users_mentions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/mentioned`;
-   + [X] `get_users_posts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/posts`;
-   + [X] `get_user_privileges(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/privileges`;
-   + [X] `get_users_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions`;
-   + [X] `get_users_bountied_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/featured`;
-   + [X] `get_users_unanswered_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unanswered`;
-   + [X] `get_users_unaccepted_questions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/unaccepted`;
-   + [X] `get_users_questions_with_no_answers(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/questions/no-answers`;
-   + [X] `get_users_reputation(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation`;
-   + [X] `get_users_reputation_history(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/reputation-history`;
-   + [X] `get_users_suggested_edits(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/suggested-edits`;
-   + [X] `get_users_tags(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/tags`;
-   + [X] `get_user_top_answers_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-answers`;
-   + [X] `get_user_top_questions_on_tags(self, uid: int, tags: Iterable[str], **kwargs: Any) -> list[Item]` - API method `users/{id}/tags/{tags}/top-questions`;
-   + [X] `get_users_timeline(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/timeline`;
-   + [X] `get_user_top_answers_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-answer-tags`;
-   + [X] `get_user_top_questions_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-question-tags`;
-   + [X] `get_user_top_tags(self, uid: int, **kwargs: Any) -> list[Item]` - API method `users/{id}/top-tags`;
-   + [X] `get_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators`;
-   + [X] `get_elected_moderators(self, **kwargs: Any) -> list[Item]` - API method `users/moderators/elected`;
- + [X] `IndexError` raises in methods `Site.get_<singular>`, when there is no items in response;
- + [X] add constant `API_VERSION` to file `tests/test_client/__init__.py` and usage of it to tests.
- + [X] add file `network.py` and class `Network` in it with this network-level method:
-   + [X] `get_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}`;
-   + [X] `invalidate_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]` - API method `access-tokens/{accessTokens}/invalidate`;
-   + [X] `get_errors(self, **kwargs: Any) -> list[Item]` - API method `errors`;
-   + [X] `simulate_error(self, code: int, **kwargs: Any) -> Item` - API method `errors/{id}`
-   + [X] `create_filter(self, **kwargs: Any) -> Item` - API method `filters/create`;
-   + [X] `get_filters(self, filters: Iterable[str], **kwargs: Any) -> list[Item]` - API method `filters/{filters}`;
-   + [X] `get_sites(self, **kwargs: Any) -> list[Item]` - API method `sites`;
-   + [X] `get_users_associated_accounts(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/associated`;
-   + [X] `get_users_accounts_merges(self, ids: Iterable[int], **kwargs: Any) -> list[Item]` - API method `users/{ids}/merges`.
+ + [ ] add methods, that requires authentication (of course, each of these methods needs tests) (they also need checks, that `self.access_token` and `self.app_key` are set):
+   + [ ] `get_me(self) -> Item` - API method `me`;
+   + [ ] `get_my_full_reputation_history(self) -> list[Item]` - API method `me/reputation-history/full`;
+   + [ ] `get_my_inbox(self) -> list[Item]` - API method `me/inbox`;
+   + [ ] `get_my_unread_inbox(self) -> list[Item]` - API method `me/inbox/unread`;
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

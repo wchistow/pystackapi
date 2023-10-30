@@ -44,3 +44,7 @@ class HttpError(Exception):
 
     def __str__(self) -> str:
         return self.msg
+
+
+class AccessTokenOrAppKeyRequired(Exception):
+    """Raises, when method requires access token, but it's not set."""

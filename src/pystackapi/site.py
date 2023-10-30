@@ -5,7 +5,7 @@ from ._base_client import BaseClient
 from ._raw_response_dict import RawResponseDict
 from ._utils import (_join_with_semicolon, _check_iterable_is_not_empty,
                      _check_iterable_arg, _check_period_value)
-from .errors import BadArgumentsError
+from .errors import BadArgumentsError, AccessTokenOrAppKeyRequired
 from .item import Item
 
 
@@ -349,6 +349,12 @@ class Site(BaseClient):
         _check_iterable_is_not_empty(tags, arg_name='tags')
         return [Item(data) for data in
                 self.get(f'tags/{_join_with_semicolon(tags)}/faq', **kwargs)['items']]
+
+    def get_me(self, **kwargs: Any) -> Item:
+        """Returns the user associated with the passed `access_token`."""
+        if self.access_token is None or self.app_key is None:
+            raise AccessTokenOrAppKeyRequired('access token and app key must be set.')
+        return Item(self.get('me', **kwargs)['items'][0])
 
     def get_moderator_only_tags(self, **kwargs: Any) -> list[Item]:
         """Returns the tags found on a site that only moderators can use."""

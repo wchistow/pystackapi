@@ -1,13 +1,14 @@
 """
 Tests for `Site.get_users`, `Site.get_user`,
-`Site.get_users_on_collectives`, `Site.get_moderators` and
-`Site.get_elected_moderators`.
+`Site.get_users_on_collectives`, `Site.get_moderators`,
+`Site.get_elected_moderators` and `Site.get_me`.
 """
 import lest
 
 from pystackapi import _base_client as client_m
 from pystackapi import Site
 from pystackapi.item import Item
+from pystackapi.errors import AccessTokenOrAppKeyRequired
 
 from main import API_VERSION, requests
 
@@ -129,3 +130,38 @@ def test_get_elected_moderators_return_value() -> None:
     res = site.get_elected_moderators()
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_me` ----
+
+@lest.register
+def test_get_me_url() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    site.get_me()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/me'
+                                 '?site=stackoverflow&access_token=someaccesstoken&key=someappkey')
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_me_return_value() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    res = site.get_me()
+
+    lest.assert_eq(res, Item({'id': 1}))
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_me_without_access_token_and_app_key() -> None:
+    with lest.assert_raises(AccessTokenOrAppKeyRequired):
+        site.get_me()

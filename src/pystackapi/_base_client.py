@@ -14,7 +14,7 @@ class BaseClient:
         response = requests.get(f'{url}{req_params}')
 
         if response.status_code != 200:
-            raise HttpError(response.status_code, url)
+            raise HttpError(response.status_code, url + req_params)
 
         # we guarantee that `response.json` is `RawResponseDict`.
         return cast(RawResponseDict, response.json())

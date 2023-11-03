@@ -23,14 +23,13 @@ class Site(BaseClient):
 
     def get(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns raw result of calling `query` to API."""
-        params = {}
+        params = {'site': self.name}
         if self.access_token is not None:
             params['access_token'] = self.access_token
         if self.app_key is not None:
             params['key'] = self.app_key
 
         params.update(kwargs)
-        params['site'] = self.name
 
         return self._call(f'{self.base_url}{query}', params)
 

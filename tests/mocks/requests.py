@@ -20,9 +20,14 @@ class RequestsMock:
     def get(self, url: str) -> 'ResponseMock':
         self.url = url
         if url in self.no_data:
-            return ResponseMock(self.status_code, {'items': []})
+            items = []
         else:
-            return ResponseMock(self.status_code, {'items': self.return_items})
+            items = self.return_items
+
+        if self.status_code == 200:
+            return ResponseMock(self.status_code, {'items': items})
+        else:
+            return ResponseMock(self.status_code, {'error_message': 'some error'})
 
     def reset(self) -> None:
         self.url = None

@@ -4,8 +4,9 @@ from collections.abc import Iterable
 from ._base_client import BaseClient
 from ._raw_response_dict import RawResponseDict
 from ._utils import (_join_with_semicolon, _check_iterable_is_not_empty,
-                     _check_iterable_arg, _check_period_value)
-from .errors import BadArgumentsError, AccessTokenOrAppKeyRequired
+                     _check_iterable_arg, _check_period_value,
+                     _check_access_token_and_app_key_are_passed)
+from .errors import BadArgumentsError
 from .item import Item
 
 
@@ -22,13 +23,14 @@ class Site(BaseClient):
 
     def get(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns raw result of calling `query` to API."""
-        params = {'site': self.name}
+        params = {}
         if self.access_token is not None:
             params['access_token'] = self.access_token
         if self.app_key is not None:
             params['key'] = self.app_key
 
         params.update(kwargs)
+        params['site'] = self.name
 
         return self._call(f'{self.base_url}{query}', params)
 
@@ -352,13 +354,17 @@ class Site(BaseClient):
 
     def get_me(self, **kwargs: Any) -> Item:
         """Returns the user associated with the passed `access_token`."""
-        if self.access_token is None or self.app_key is None:
-            raise AccessTokenOrAppKeyRequired('access token and app key must be set.')
+        _check_access_token_and_app_key_are_passed(self)
         return Item(self.get('me', **kwargs)['items'][0])
 
     def get_moderator_only_tags(self, **kwargs: Any) -> list[Item]:
         """Returns the tags found on a site that only moderators can use."""
         return [Item(data) for data in self.get('tags/moderator-only', **kwargs)['items']]
+
+    def get_my_unread_inbox(self, **kwargs: Any) -> list[Item]:
+        """Returns the unread items in the user identified by `access_token`'s inbox."""
+        _check_access_token_and_app_key_are_passed(self)
+        return [Item(data) for data in self.get('me/inbox/unread', **kwargs)['items']]
 
     def get_related_tags(self, tags: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the tags that are most related to those in `tags`."""

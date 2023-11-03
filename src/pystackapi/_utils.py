@@ -1,7 +1,7 @@
 """Utils for clients."""
 from typing import Any, Iterable, NoReturn
 
-from .errors import BadArgumentsError
+from .errors import AccessTokenOrAppKeyRequired, BadArgumentsError
 
 
 def _join_with_semicolon(data: Iterable[Any]) -> str:
@@ -46,3 +46,16 @@ def _check_period_value(value: str) -> None | NoReturn:  # type: ignore[return]
             'the `period` arguments should be one of `\'all_time\'` and `\'month\'`,'
             f' but not `\'{value}\'`'
         )
+
+
+def _check_access_token_and_app_key_are_passed(site: Any  # type: ignore[return]
+                                               ) -> None | NoReturn:
+    """
+    Raises `AccessTokenOrAppKeyRequired` with message
+    `access token and app key must be set.`,
+    if one of attributes `access_token` and `app_key` of the `site` is `None`.
+
+    :param site: instance of the `pystackapi.site.Site` class.
+    """
+    if site.access_token is None or site.app_key is None:
+        raise AccessTokenOrAppKeyRequired('access token and app key must be set.')

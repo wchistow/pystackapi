@@ -199,5 +199,7 @@ def test_get_me_return_value() -> None:
     site.app_key = None
 
 
-# test on raising error without access token and app key is not needed,
-# because this is already tested in `test_get_me_without_access_token_and_app_key`.
+@lest.register
+def test_get_my_unread_inbox_without_access_token_and_app_key() -> None:
+    with lest.assert_raises(AccessTokenOrAppKeyRequired):
+        site.get_my_unread_inbox()

@@ -8,6 +8,7 @@ import lest
 from pystackapi import _base_client as client_m
 from pystackapi import Site
 from pystackapi.item import Item
+from pystackapi.errors import AccessTokenOrAppKeyRequired
 
 from main import API_VERSION, requests
 
@@ -85,3 +86,9 @@ def test_get_my_full_reputation_history_return_value() -> None:
     # reset
     site.access_token = None
     site.app_key = None
+
+
+@lest.register
+def test_get_my_unread_inbox_without_access_token_and_app_key() -> None:
+    with lest.assert_raises(AccessTokenOrAppKeyRequired):
+        site.get_my_full_reputation_history()

@@ -360,6 +360,11 @@ class Site(BaseClient):
         """Returns the tags found on a site that only moderators can use."""
         return [Item(data) for data in self.get('tags/moderator-only', **kwargs)['items']]
 
+    def get_my_full_reputation_history(self, **kwargs: Any) -> list[Item]:
+        """Returns user's full reputation history, including private events."""
+        _check_access_token_and_app_key_are_passed(self)
+        return [Item(data) for data in self.get('me/reputation-history/full', **kwargs)['items']]
+
     def get_my_unread_inbox(self, **kwargs: Any) -> list[Item]:
         """Returns the unread items in the user identified by `access_token`'s inbox."""
         _check_access_token_and_app_key_are_passed(self)

@@ -21,3 +21,5 @@ from . import test_get_revisions
 from . import test_get_tags
 from . import test_get_timeline
 from . import test_get_users
+
+from . import test_post

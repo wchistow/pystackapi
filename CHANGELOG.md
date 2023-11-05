@@ -6,6 +6,7 @@
 
  + method `get_me` to class `Site`;
  + method `get_my_unread_inbox` to class `Site`;
+ + method `post` to class `Site`
 
 ### Changed:
 

@@ -13,7 +13,7 @@ class Network(BaseClient):
 
     def get(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns raw result of calling `query` to API."""
-        return self._call(f'{self.base_url}{query}', kwargs)
+        return self._get(f'{self.base_url}{query}', kwargs)
 
     def get_access_tokens(self, access_tokens: Iterable[str], **kwargs: Any) -> list[Item]:
         """Returns the properties for a set of access tokens."""

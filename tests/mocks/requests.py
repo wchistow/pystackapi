@@ -16,6 +16,7 @@ class RequestsMock:
         self.no_data = no_data or []
 
         self.url: str | None = None
+        self.data: dict | None = None  # only for POST-requests
 
     def get(self, url: str) -> 'ResponseMock':
         self.url = url
@@ -29,8 +30,23 @@ class RequestsMock:
         else:
             return ResponseMock(self.status_code, {'error_message': 'some error'})
 
+    def post(self, url: str, data: dict) -> 'ResponseMock':
+        self.url = url
+        self.data = data
+
+        if url in self.no_data:
+            items = []
+        else:
+            items = self.return_items
+
+        if self.status_code == 200:
+            return ResponseMock(self.status_code, {'items': items})
+        else:
+            return ResponseMock(self.status_code, {'error_message': 'some error'})
+
     def reset(self) -> None:
         self.url = None
+        self.data = None
 
 
 class ResponseMock:

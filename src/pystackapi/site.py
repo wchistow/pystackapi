@@ -6,7 +6,7 @@ from ._raw_response_dict import RawResponseDict
 from ._utils import (_join_with_semicolon, _check_iterable_is_not_empty,
                      _check_iterable_arg, _check_period_value,
                      _check_access_token_and_app_key_are_passed)
-from .errors import BadArgumentsError
+from .errors import BadArgumentsError, AccessTokenOrAppKeyRequired
 from .item import Item
 
 
@@ -31,7 +31,16 @@ class Site(BaseClient):
 
         params.update(kwargs)
 
-        return self._call(f'{self.base_url}{query}', params)
+        return self._get(f'{self.base_url}{query}', params)
+
+    def post(self, query: str, **kwargs: Any) -> RawResponseDict:
+        """Returns raw result of POST-calling `query` to API."""
+        if self.access_token is None or self.app_key is None:
+            raise AccessTokenOrAppKeyRequired('access token and app key must be set.')
+
+        data = {'site': self.name, 'access_token': self.access_token, 'key': self.app_key, **kwargs}
+
+        return self._post(f'{self.base_url}{query}', data)
 
     # CONTRIBUTORS: Please, sort methods by alphabet in pairs
     # with first `get_<plural>` and then, get_<singular>`.

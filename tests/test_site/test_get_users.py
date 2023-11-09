@@ -1,8 +1,8 @@
 """
 Tests for `Site.get_users`, `Site.get_user`,
 `Site.get_users_on_collectives`, `Site.get_moderators`,
-`Site.get_elected_moderators`, `Site.get_me` and
-`Site.get_my_unread_inbox`.
+`Site.get_elected_moderators`, `Site.get_me`,
+`Site.get_my_unread_inbox` and `Site.get_my_inbox`.
 """
 import lest
 
@@ -173,7 +173,7 @@ def test_get_me_without_access_token_and_app_key() -> None:
 
 
 @lest.register
-def test_get_me_url() -> None:
+def test_get_my_unread_inbox_url() -> None:
     site.access_token = 'someaccesstoken'
     site.app_key = 'someappkey'
     site.get_my_unread_inbox()
@@ -187,7 +187,7 @@ def test_get_me_url() -> None:
 
 
 @lest.register
-def test_get_me_return_value() -> None:
+def test_get_my_unread_inbox_return_value() -> None:
     site.access_token = 'someaccesstoken'
     site.app_key = 'someappkey'
     res = site.get_my_unread_inbox()
@@ -203,3 +203,39 @@ def test_get_me_return_value() -> None:
 def test_get_my_unread_inbox_without_access_token_and_app_key() -> None:
     with lest.assert_raises(AccessTokenOrAppKeyRequired):
         site.get_my_unread_inbox()
+
+
+# ---- tests for `Site.get_my_inbox` ----
+
+
+@lest.register
+def test_get_my_inbox_url() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    site.get_my_inbox()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/me/inbox'
+                                 '?site=stackoverflow&access_token=someaccesstoken&key=someappkey')
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_my_inbox_return_value() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    res = site.get_my_inbox()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_my_inbox_without_access_token_and_app_key() -> None:
+    with lest.assert_raises(AccessTokenOrAppKeyRequired):
+        site.get_my_inbox()

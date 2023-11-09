@@ -374,6 +374,11 @@ class Site(BaseClient):
         _check_access_token_and_app_key_are_passed(self)
         return [Item(data) for data in self.get('me/reputation-history/full', **kwargs)['items']]
 
+    def get_my_inbox(self, **kwargs: Any) -> list[Item]:
+        """Returns the user identified by access_token's inbox."""
+        _check_access_token_and_app_key_are_passed(self)
+        return [Item(data) for data in self.get('me/inbox', **kwargs)['items']]
+
     def get_my_unread_inbox(self, **kwargs: Any) -> list[Item]:
         """Returns the unread items in the user identified by `access_token`'s inbox."""
         _check_access_token_and_app_key_are_passed(self)

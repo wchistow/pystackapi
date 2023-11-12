@@ -41,7 +41,7 @@ def test_get_return_value() -> None:
 
     expected_result = {
         'items': [
-            Item({'id': 1})
+            {'id': 1}
         ]
     }
 

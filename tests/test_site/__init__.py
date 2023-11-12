@@ -1,5 +1,7 @@
 """Tests for class `Site`."""
 
+from . import test_add_answer
+
 from . import test_get
 from . import test_get_answers
 from . import test_get_articles

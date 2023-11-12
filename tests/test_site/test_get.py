@@ -3,7 +3,6 @@ import lest
 
 from pystackapi import _base_client as client_m
 from pystackapi import Site
-from pystackapi.item import Item
 
 from main import API_VERSION, requests
 

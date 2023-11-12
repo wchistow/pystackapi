@@ -45,6 +45,10 @@ class Site(BaseClient):
     # CONTRIBUTORS: Please, sort methods by alphabet in pairs
     # with first `get_<plural>` and then, get_<singular>`.
 
+    def add_answer(self, q_id: int, body: str, **kwargs: Any) -> Item:
+        """Create a new answer on the given question."""
+        return Item(self.post(f'questions/{q_id}/answers/add', body=body, **kwargs)['items'][0])
+
     def get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all the undeleted answers in the system,

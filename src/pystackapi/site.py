@@ -267,6 +267,15 @@ class Site(BaseClient):
         """Returns questions the site considers to be unanswered."""
         return [Item(data) for data in self.get('questions/unanswered', **kwargs)['items']]
 
+    def get_unanswered_questions_on_my_tags(self, **kwargs: Any) -> list[Item]:
+        """
+        Returns questions the site considers to be unanswered,
+        which are within a user's favorite tags.
+        If a user has no favorites, their frequented tags are used instead.
+        """
+        _check_access_token_and_app_key_are_passed(self)
+        return [Item(data) for data in self.get('questions/unanswered/my-tags', **kwargs)['items']]
+
     def get_revisions(self, ids: Iterable[int], **kwargs: Any) -> list[Item]:
         """Returns edit revisions identified by `ids`."""
         addition = _join_with_semicolon(_check_iterable_arg(ids))

@@ -89,6 +89,6 @@ def test_get_my_full_reputation_history_return_value() -> None:
 
 
 @lest.register
-def test_get_my_unread_inbox_without_access_token_and_app_key() -> None:
+def test_get_my_full_reputation_history_without_access_token_and_app_key() -> None:
     with lest.assert_raises(AccessTokenOrAppKeyRequired):
         site.get_my_full_reputation_history()

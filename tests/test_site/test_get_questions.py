@@ -5,7 +5,8 @@ Tests for
 `Site.get_bountied_questions`, `Site.get_questions_with_no_answers`,
 `Site.get_unanswered_questions`, `Site.get_users_questions`,
 `Site.get_users_bountied_questions`, `Site.get_users_unanswered_questions`,
-`Site.get_users_unaccepted_questions` and `Site.get_users_questions_with_no_answers`.
+`Site.get_users_unaccepted_questions`, `Site.get_users_questions_with_no_answers` and
+`Site.get_unanswered_questions_on_my_tags`.
 """
 import lest
 
@@ -14,6 +15,8 @@ from pystackapi import Site
 from pystackapi.item import Item
 
 from main import API_VERSION, requests
+
+from pystackapi.errors import AccessTokenOrAppKeyRequired
 
 client_m.__dict__['requests'] = requests
 site = Site('stackoverflow')
@@ -259,3 +262,40 @@ def test_get_users_questions_with_no_answers_return_value() -> None:
     res = site.get_users_questions_with_no_answers([1, 2])
 
     lest.assert_eq(res, [Item({'id': 1})])
+
+
+# ---- tests for `Site.get_unanswered_questions_on_my_tags` ----
+
+
+@lest.register
+def test_get_unanswered_questions_on_my_tags_url() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    site.get_unanswered_questions_on_my_tags()
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'questions/unanswered/my-tags'
+                                 '?site=stackoverflow&access_token=someaccesstoken&key=someappkey')
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_unanswered_questions_on_my_tags_return_value() -> None:
+    site.access_token = 'someaccesstoken'
+    site.app_key = 'someappkey'
+    res = site.get_unanswered_questions_on_my_tags()
+
+    lest.assert_eq(res, [Item({'id': 1})])
+
+    # reset
+    site.access_token = None
+    site.app_key = None
+
+
+@lest.register
+def test_get_unanswered_questions_on_my_tags_without_access_token_and_app_key() -> None:
+    with lest.assert_raises(AccessTokenOrAppKeyRequired):
+        site.get_unanswered_questions_on_my_tags()

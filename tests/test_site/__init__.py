@@ -1,7 +1,6 @@
 """Tests for class `Site`."""
 
-from . import test_add_answer
-
+# GET methods
 from . import test_get
 from . import test_get_answers
 from . import test_get_articles
@@ -24,4 +23,7 @@ from . import test_get_tags
 from . import test_get_timeline
 from . import test_get_users
 
+# POST methods
+from . import test_add_answer
+from . import test_add_comment
 from . import test_post

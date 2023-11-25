@@ -6,7 +6,7 @@ from ._raw_response_dict import RawResponseDict
 from ._utils import (_join_with_semicolon, _check_iterable_is_not_empty,
                      _check_iterable_arg, _check_period_value,
                      _check_access_token_and_app_key_are_passed)
-from .errors import BadArgumentsError, AccessTokenOrAppKeyRequired
+from .errors import BadArgumentsError
 from .item import Item
 
 
@@ -35,8 +35,7 @@ class Site(BaseClient):
 
     def post(self, query: str, **kwargs: Any) -> RawResponseDict:
         """Returns raw result of POST-calling `query` to API."""
-        if self.access_token is None or self.app_key is None:
-            raise AccessTokenOrAppKeyRequired('access token and app key must be set.')
+        _check_access_token_and_app_key_are_passed(self)
 
         data = {'site': self.name, 'access_token': self.access_token, 'key': self.app_key, **kwargs}
 
@@ -48,6 +47,10 @@ class Site(BaseClient):
     def add_answer(self, q_id: int, body: str, **kwargs: Any) -> Item:
         """Create a new answer on the given question."""
         return Item(self.post(f'questions/{q_id}/answers/add', body=body, **kwargs)['items'][0])
+
+    def add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item:
+        """Create a new comment."""
+        return Item(self.post(f'posts/{post_id}/comments/add', body=body, **kwargs)['items'][0])
 
     def get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """

@@ -52,6 +52,12 @@ class Site(BaseClient):
         """Create a new comment."""
         return Item(self.post(f'posts/{post_id}/comments/add', body=body, **kwargs)['items'][0])
 
+    def add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item:
+        """Create a new question."""
+        return Item(self.post('questions/add', title=title, body=body,
+                              tags=';'.join(tags), **kwargs)['items'][0]
+                    )
+
     def get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all the undeleted answers in the system,

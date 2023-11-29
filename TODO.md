@@ -10,7 +10,7 @@
  + [ ] add methods with POST-requests (of course, each of these methods needs tests) (they also need checks, that `self.access_token` and `self.app_key` are set):
    + [X] `add_answer(self, q_id: int, body: str, **kwargs: Any) -> Item` - API method `questions/{id}/answers/add`;
    + [X] `add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item` - API method `posts/{id}/comments/add`;
-   + [ ] `add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/add`;
+   + [X] `add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/add`;
    + [ ] `edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item` - API method `answers/{id}/edit`;
    + [ ] `edit_question(self, q_id: int, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/{id}/edit`;
 

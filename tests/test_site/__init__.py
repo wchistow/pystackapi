@@ -26,4 +26,5 @@ from . import test_get_users
 # POST methods
 from . import test_add_answer
 from . import test_add_comment
+from . import test_add_question
 from . import test_post

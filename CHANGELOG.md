@@ -5,6 +5,9 @@
 ### Added:
 
  + method `add_answer` to class `Site`;
+ + method `add_comment` to class `Site`;
+ + method `add_question` to class `Site`;
+ + method `edit_question` to class `Site`;
  + method `get_me` to class `Site`;
  + method `get_my_inbox` to class `Site`;
  + method `get_my_full_reputation_history` to class `Site`;

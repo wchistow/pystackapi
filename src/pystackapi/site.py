@@ -58,6 +58,12 @@ class Site(BaseClient):
                               tags=';'.join(tags), **kwargs)['items'][0]
                     )
 
+    def edit_question(self, q_id: int, title: str, body: str, tags: list[str],
+                      **kwargs: Any) -> Item:
+        """Edit an existing question."""
+        return Item(self.post(f'questions/{q_id}/edit', title=title, body=body,
+                              tags=';'.join(tags), **kwargs)['items'][0])
+
     def get_answers(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
         Returns, if `ids` is set, all the undeleted answers in the system,

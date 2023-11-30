@@ -12,6 +12,6 @@
    + [X] `add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item` - API method `posts/{id}/comments/add`;
    + [X] `add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/add`;
    + [ ] `edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item` - API method `answers/{id}/edit`;
-   + [ ] `edit_question(self, q_id: int, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/{id}/edit`;
+   + [X] `edit_question(self, q_id: int, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/{id}/edit`;
 
 *when you're done any of these tasks, replace `[ ]` in start of line with this task to `[X]`.*

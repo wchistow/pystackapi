@@ -1,4 +1,4 @@
-"""Tests for method `Site.add_question`."""
+"""Tests for methods `Site.edit_*`."""
 import lest
 
 from pystackapi import _base_client as client_m
@@ -16,13 +16,16 @@ def reset_requests() -> None:
     requests.reset()
 
 
+# ---- tests for method `Site.edit_question` ----
+
+
 @lest.register
-def test_add_question_url() -> None:
-    site.add_question(title='This is a test question.', body='This is a test question\'s body.',
-                      tags=['testing', 'api'])
+def test_edit_question_url() -> None:
+    site.edit_question(1, title='This is a test question.', body='This is a test question\'s body.',
+                       tags=['testing', 'api'])
 
     lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
-                                 'questions/add')
+                                 'questions/1/edit')
     lest.assert_eq(requests.data, {'site': 'stackoverflow', 'access_token': 'someaccesstoken',
                                    'key': 'someappkey', 'title': 'This is a test question.',
                                    'body': 'This is a test question\'s body.', 'tags': 'testing;api'
@@ -31,8 +34,8 @@ def test_add_question_url() -> None:
 
 
 @lest.register
-def test_add_question_return_value() -> None:
-    res = site.add_question(title='This is a test question.',
+def test_edit_question_return_value() -> None:
+    res = site.edit_question(1, title='This is a test question.',
                             body='This is a test question\'s body.', tags=['testing', 'api'])
 
     lest.assert_eq(res, Item({'id': 1}))

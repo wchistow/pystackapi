@@ -41,12 +41,16 @@ class Site(BaseClient):
 
         return self._post(f'{self.base_url}{query}', data)
 
-    # CONTRIBUTORS: Please, sort methods by alphabet in pairs
-    # with first `get_<plural>` and then, get_<singular>`.
+    # CONTRIBUTORS: Please, sort methods by alphabet.
 
     def add_answer(self, q_id: int, body: str, **kwargs: Any) -> Item:
         """Create a new answer on the given question."""
         return Item(self.post(f'questions/{q_id}/answers/add', body=body, **kwargs)['items'][0])
+
+    def add_answers_suggested_edit(self, a_id: int, body: str, comment: str, **kwargs: Any) -> Item:
+        """Create a suggested edit on an existing answer."""
+        return Item(self.post(f'answers/{a_id}/suggested-edit/add', body=body, comment=comment,
+                              **kwargs)['items'][0])
 
     def add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item:
         """Create a new comment."""

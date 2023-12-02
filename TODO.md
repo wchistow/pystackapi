@@ -9,7 +9,7 @@
    + [X] `get_unanswered_questions_on_my_tags(self, **kwargs: Any) -> list[Item]` - API method `questions/unanswered/my-tags`;
  + [ ] add methods with POST-requests (of course, each of these methods needs tests) (they also need checks, that `self.access_token` and `self.app_key` are set):
    + [X] `add_answer(self, q_id: int, body: str, **kwargs: Any) -> Item` - API method `questions/{id}/answers/add`;
-   + [ ] `add_answers_suggested_edit(self, a_id: int, body: str, commment: str, **kwargs: Any) -> Item` - API method `answers/{id}/suggested-edit/add`;
+   + [X] `add_answers_suggested_edit(self, a_id: int, body: str, comment: str, **kwargs: Any) -> Item` - API method `answers/{id}/suggested-edit/add`;
    + [X] `add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item` - API method `posts/{id}/comments/add`;
    + [X] `add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/add`;
    + [ ] `add_questions_suggested_edit(self, q_id: int, title: str, body: str, tags: list[str], commment: str, **kwargs: Any) -> Item` - API method `questions/{id}/suggested-edit/add`;

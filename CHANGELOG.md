@@ -5,6 +5,8 @@
 ### Added:
 
  + method `add_answer` to class `Site`;
+ + method `add_answers_suggested_edit` to class `Site`;
+ + method `add_questions_suggested_edit` to class `Site`;
  + method `add_comment` to class `Site`;
  + method `add_question` to class `Site`;
  + method `edit_question` to class `Site`;

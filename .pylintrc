@@ -2,5 +2,6 @@
 disable=invalid-name,
         too-many-public-methods,
         too-few-public-methods,
+        too-many-arguments,
         missing-timeout,
         missing-module-docstring,

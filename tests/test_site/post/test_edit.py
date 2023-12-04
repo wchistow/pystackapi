@@ -61,3 +61,25 @@ def test_edit_answer_return_value() -> None:
     res = site.edit_answer(1, 'This is a test answer\'s body.')
 
     lest.assert_eq(res, Item({'id': 1}))
+
+
+# ---- tests for method `Site.edit_comment` ----
+
+
+@lest.register
+def test_edit_comment_url() -> None:
+    site.edit_comment(1, 'This is a test comment\'s body.')
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'comments/1/edit')
+    lest.assert_eq(requests.data, {'site': 'stackoverflow', 'access_token': 'someaccesstoken',
+                                   'key': 'someappkey', 'body': 'This is a test comment\'s body.'
+                                   }
+                   )
+
+
+@lest.register
+def test_edit_comment_return_value() -> None:
+    res = site.edit_comment(1, 'This is a test answer\'s body.')
+
+    lest.assert_eq(res, Item({'id': 1}))

@@ -36,6 +36,28 @@ def test_edit_question_url() -> None:
 @lest.register
 def test_edit_question_return_value() -> None:
     res = site.edit_question(1, title='This is a test question.',
-                            body='This is a test question\'s body.', tags=['testing', 'api'])
+                             body='This is a test question\'s body.', tags=['testing', 'api'])
+
+    lest.assert_eq(res, Item({'id': 1}))
+
+
+# ---- tests for method `Site.edit_answer` ----
+
+
+@lest.register
+def test_edit_answer_url() -> None:
+    site.edit_answer(1, 'This is a test answer\'s body.')
+
+    lest.assert_eq(requests.url, f'https://api.stackexchange.com/{API_VERSION}/'
+                                 'answers/1/edit')
+    lest.assert_eq(requests.data, {'site': 'stackoverflow', 'access_token': 'someaccesstoken',
+                                   'key': 'someappkey', 'body': 'This is a test answer\'s body.'
+                                   }
+                   )
+
+
+@lest.register
+def test_edit_answer_return_value() -> None:
+    res = site.edit_answer(1, 'This is a test answer\'s body.')
 
     lest.assert_eq(res, Item({'id': 1}))

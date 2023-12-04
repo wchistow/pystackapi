@@ -13,7 +13,7 @@
    + [X] `add_comment(self, post_id: int, body: str, **kwargs: Any) -> Item` - API method `posts/{id}/comments/add`;
    + [X] `add_question(self, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/add`;
    + [X] `add_questions_suggested_edit(self, q_id: int, title: str, body: str, tags: list[str], comment: str, **kwargs: Any) -> Item` - API method `questions/{id}/suggested-edit/add`;
-   + [ ] `edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item` - API method `answers/{id}/edit`;
+   + [X] `edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item` - API method `answers/{id}/edit`;
    + [ ] `edit_comment(self, c_id: int, body: str, **kwargs: Any) -> Item` - API method `comments/{id}/edit`;
    + [X] `edit_question(self, q_id: int, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/{id}/edit`;
    + [ ] `delete_answer(self, a_id: int, **kwargs: Any) -> None` - API method `answers/{id}/delete`;

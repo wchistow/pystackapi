@@ -68,6 +68,10 @@ class Site(BaseClient):
         return Item(self.post(f'questions/{q_id}/suggested-edit/add', title=title, body=body,
                               tags=';'.join(tags), comment=comment, **kwargs)['items'][0])
 
+    def edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item:
+        """Edit an existing answer."""
+        return Item(self.post(f'answers/{a_id}/edit', body=body, **kwargs)['items'][0])
+
     def edit_question(self, q_id: int, title: str, body: str, tags: list[str],
                       **kwargs: Any) -> Item:
         """Edit an existing question."""

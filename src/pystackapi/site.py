@@ -72,6 +72,14 @@ class Site(BaseClient):
         """Deletes an answer."""
         self.post(f'answers/{a_id}/delete', **kwargs)
 
+    def delete_comment(self, c_id: int, **kwargs: Any) -> None:
+        """Deletes a comment."""
+        self.post(f'comments/{c_id}/delete', **kwargs)
+
+    def delete_question(self, q_id: int, **kwargs: Any) -> None:
+        """Deletes a question."""
+        self.post(f'questions/{q_id}/delete', **kwargs)
+
     def edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item:
         """Edit an existing answer."""
         return Item(self.post(f'answers/{a_id}/edit', body=body, **kwargs)['items'][0])

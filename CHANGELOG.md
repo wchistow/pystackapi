@@ -4,6 +4,7 @@
 
 ### Added:
 
+ + exception `AccessTokenOrAppKeyRequired` - raises, when method requires access token or app key, but it's not set.
  + method `add_answer` to class `Site`;
  + method `add_answers_suggested_edit` to class `Site`;
  + method `add_questions_suggested_edit` to class `Site`;
@@ -16,7 +17,7 @@
  + method `edit_comment` to class `Site`;
  + method `edit_question` to class `Site`;
  + method `get_me` to class `Site`;
- + method `get_my_inbox` to class `Site`;
+ + method `get_my_inbox` to class `Site`; 
  + method `get_my_full_reputation_history` to class `Site`;
  + method `get_my_unread_inbox` to class `Site`;
  + method `get_unanswered_questions_on_my_tags` to class `Site`;

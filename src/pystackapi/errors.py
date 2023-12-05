@@ -18,4 +18,4 @@ class HttpError(Exception):
 
 
 class AccessTokenOrAppKeyRequired(Exception):
-    """Raises, when method requires access token, but it's not set."""
+    """Raises, when method requires access token or app key, but it's not set."""

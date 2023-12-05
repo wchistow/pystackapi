@@ -16,7 +16,7 @@
    + [X] `edit_answer(self, a_id: int, body: str, **kwargs: Any) -> Item` - API method `answers/{id}/edit`;
    + [X] `edit_comment(self, c_id: int, body: str, **kwargs: Any) -> Item` - API method `comments/{id}/edit`;
    + [X] `edit_question(self, q_id: int, title: str, body: str, tags: list[str], **kwargs: Any) -> Item` - API method `questions/{id}/edit`;
-   + [ ] `delete_answer(self, a_id: int, **kwargs: Any) -> None` - API method `answers/{id}/delete`;
+   + [X] `delete_answer(self, a_id: int, **kwargs: Any) -> None` - API method `answers/{id}/delete`;
    + [ ] `delete_comment(self, c_id: int, **kwargs: Any) -> None` - API method `comments/{id}/delete`;
    + [ ] `delete_question(self, q_id: int, **kwargs: Any) -> None` - API method `questions/{id}/delete`;
 

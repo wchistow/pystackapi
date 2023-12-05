@@ -9,6 +9,7 @@
  + method `add_questions_suggested_edit` to class `Site`;
  + method `add_comment` to class `Site`;
  + method `add_question` to class `Site`;
+ + method `delete_answer` to class `Site`;
  + method `edit_answer` to class `Site`;
  + method `edit_comment` to class `Site`;
  + method `edit_question` to class `Site`;

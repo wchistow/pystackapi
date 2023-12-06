@@ -5,7 +5,7 @@
 	</picture>
 </h1>
 
-Here is PyStackAPI version 0.2.0dev
+Here is PyStackAPI version 0.2.0
 
 ## What is PyStackAPI?
 
@@ -16,7 +16,7 @@ PyStackAPI is a modern, 100% typed wrapper for the StackExchange API, written in
 To install PyStackAPI, just enter in the terminal:
 
 ```shell
-pip install git+https://github.com/wchistow/pystackapi.git@0.1.1
+pip install git+https://github.com/wchistow/pystackapi.git@0.2.0
 ```
 
 ## Documentation

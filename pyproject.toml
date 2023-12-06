@@ -1,6 +1,6 @@
 [project]
 name = 'pystackapi'
-version = '0.2.0dev'
+version = '0.2.0'
 license = {file = 'LICENSE'}
 description = 'PyStackAPI is a modern, 100% typed wrapper for the StackExchange API, written in Python.'
 authors = [

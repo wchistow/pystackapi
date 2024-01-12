@@ -1,6 +1,11 @@
 version: 2
 updates:
 - package-ecosystem: pip
+  directory: "dev_requirements/"
+  schedule:
+    interval: daily
+    time: "9:00"
+- package-ecosystem: pip
   directory: "/"
   schedule:
     interval: daily

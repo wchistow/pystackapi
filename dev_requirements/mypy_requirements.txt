@@ -1,4 +1,4 @@
 # Requirements for running MyPy check
 
 mypy==1.8.0
-types-requests==2.31.0.20240125
+types-requests==2.31.0.20240218

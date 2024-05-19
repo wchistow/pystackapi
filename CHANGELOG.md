@@ -1,5 +1,9 @@
 # Changelog of the PyStackAPI library
 
+## 0.3.0 (??.??.2024)
+
+*Nothing yet*
+
 ## 0.2.0 (06.12.2023)
 
 ### Added:

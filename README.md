@@ -5,7 +5,7 @@
 	</picture>
 </h1>
 
-Here is PyStackAPI version 0.2.0
+Here is PyStackAPI version 0.3.0dev
 
 ## What is PyStackAPI?
 

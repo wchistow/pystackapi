@@ -1,4 +1,4 @@
-from chatexchange import Client  # type: ignore[import-untyped]
+from chatexchange import Client  # type: ignore
 
 
 class Chat:

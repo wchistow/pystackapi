@@ -2,7 +2,9 @@
 
 ## 0.3.0 (??.??.2024)
 
-*Nothing yet*
+### Added:
+
+ + class `pystackapi.Chat` - client for StackExchange Chat;
 
 ## 0.2.0 (06.12.2023)
 

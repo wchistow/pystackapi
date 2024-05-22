@@ -22,7 +22,8 @@ classifiers = [
     'Typing :: Typed',
 ]
 dependencies = [
-  'requests==2.32.1',
+    'chatexchange==0.0.4',
+    'requests==2.32.1',
 ]
 
 [project.urls]

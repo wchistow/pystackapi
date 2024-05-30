@@ -23,7 +23,7 @@ classifiers = [
 ]
 dependencies = [
     'chatexchange==0.0.4',
-    'requests==2.32.2',
+    'requests==2.32.3',
 ]
 
 [project.urls]

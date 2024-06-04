@@ -266,7 +266,7 @@ class Site(BaseClient):
 
     def get_questions(self, ids: Iterable[int] | None = None, **kwargs: Any) -> list[Item]:
         """
-        Returns, if `ids` is set, all the undeleted questions in the system,
+        Returns, if `ids` isn't set, all the undeleted questions in the system,
         else the set of questions identified by `ids`.
         """
         addition = _join_with_semicolon(_check_iterable_arg(ids))

@@ -41,7 +41,7 @@ For example, you are implementing `get_answers` and `get_answer` methods.
     + `test_get_answer_return_value` - tests that method `get_answer` returns desired instance of class `Item` (desired is `Item({'id': 1})`);
     + `test_get_answer_with_no_data` - tests that method `get_answer` returns `None` when the `'items'` key of response is empty list.
 
-For more details, see file [`tests/test_site/test_get/test_get_answers.py`](https://github.com/wchistow/pystackapi/blob/master/tests/test_site/test_get/test_get_answers.py).
+For more details, see file [`tests/test_site/get/test_get_answers.py`](https://github.com/wchistow/pystackapi/blob/master/tests/test_site/get/test_get_answers.py).
 
 ---
 

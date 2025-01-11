@@ -10,7 +10,7 @@ from mocks import RequestsMock, ChatexchangeClientMock
 # because functions `reset_requests` in all modules `./test_*.py`
 # have to referenced to the same object.
 requests = RequestsMock(return_items=[{'id': 1}])
-chatexchange = ChatexchangeClientMock()
+chatexchange = ChatexchangeClientMock(email='user@example.com', password='testpass')
 
 API_VERSION = '2.3'
 

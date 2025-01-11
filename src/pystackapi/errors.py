@@ -19,3 +19,7 @@ class HttpError(Exception):
 
 class AccessTokenOrAppKeyRequired(Exception):
     """Raises, when method requires access token or app key, but it's not set."""
+
+
+class ChatLoginError(Exception):
+    """Raises, when class `pystackapi.chat.Chat` can't login."""

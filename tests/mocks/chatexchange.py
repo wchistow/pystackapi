@@ -2,9 +2,10 @@
 
 
 class ChatexchangeClientMock:
-    def __init__(self, email: str | None = None, password: str | None = None) -> None:
+    def __init__(self, email: str, password: str, host: str = 'stackexchange.com') -> None:
         self.email = email
         self.password = password
+        self.host = host
 
     def reset(self) -> None:
         self.email = None

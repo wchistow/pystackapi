@@ -12,9 +12,9 @@
 
 ## [Tests' structure](https://github.com/wchistow/pystackapi/blob/master/CONTRIBUTING.md#tests-structure)
 
-For example, you are implementing the `get_comment` method.
+For example, you are implementing `get_answers` and `get_answer` methods.
 
-1. add file `test_get_answer.py` to directory `tests/test_client`;
+1. add file `test_get_answers.py` to directory `tests/test_site/test_get`;
 2. at the beginning of it there should be this code:
    ```python
    """Tests for `Site.get_answers` and `Site.get_answer`."""
@@ -41,7 +41,7 @@ For example, you are implementing the `get_comment` method.
     + `test_get_answer_return_value` - tests that method `get_answer` returns desired instance of class `Item` (desired is `Item({'id': 1})`);
     + `test_get_answer_with_no_data` - tests that method `get_answer` returns `None` when the `'items'` key of response is empty list.
 
-For more details, see file [`tests/test_client/test_get_answers.py`](https://github.com/wchistow/pystackapi/blob/master/tests/test_client/test_get_answers.py).
+For more details, see file [`tests/test_site/test_get/test_get_answers.py`](https://github.com/wchistow/pystackapi/blob/master/tests/test_site/test_get/test_get_answers.py).
 
 ---
 

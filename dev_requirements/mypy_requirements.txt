@@ -1,5 +1,5 @@
 # Requirements for running MyPy check
 
 mypy==1.15.0
-types-requests==2.32.0.20241016
+types-requests==2.32.0.20250301
 types-beautifulsoup4==4.12.0.20250204
